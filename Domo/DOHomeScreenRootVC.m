@@ -31,6 +31,7 @@
 	
 	[self.mainContentScrollView setBackgroundColor:[UIColor colorWithWhite:1 alpha:0]];
 	[self.mainContentScrollView setPagingEnabled:TRUE];
+	[self.mainContentScrollView setDelegate:self];
 
 	self.welcomeCommunityHeader = [[DOWelcomeAndCommunityVC alloc] initWithNibName:nil bundle:nil];
 	self.welcomeCommunityHeader.view.layer.shadowColor = UIColor.blackColor.CGColor;
@@ -39,8 +40,13 @@
 	self.welcomeCommunityHeader.view.layer.shadowRadius = 2;
 	
 	self.requestAdviceVC = [[DORequestAdviceVC alloc] initWithNibName:nil bundle:nil];
+	self.requestAdviceVC.view.layer.shadowColor = UIColor.blackColor.CGColor;
+	self.requestAdviceVC.view.layer.shadowOffset = CGSizeMake(0, 1);
+	self.requestAdviceVC.view.layer.shadowOpacity = 0.2;
+	self.requestAdviceVC.view.layer.shadowRadius = 2;
 
-	CGFloat handleHeight = 50;
+
+	CGFloat handleHeight = 48;
 	CGFloat yOriginOfAskAdviceHandle = self.myQuestionsPeakView.frame.origin.y - handleHeight /* above the myquestions handle */;
 	CGFloat totalHeight = yOriginOfAskAdviceHandle + self.requestAdviceVC.view.frame.size.height;
 	[self.mainContentScrollView setContentSize:CGSizeMake(320, totalHeight)];
@@ -54,6 +60,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void) scrollViewDidScroll:(UIScrollView *)scrollView{
+	[scrollView becomeFirstResponder];
 }
 
 @end

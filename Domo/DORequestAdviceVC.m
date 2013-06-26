@@ -12,7 +12,9 @@
 
 @end
 
-@implementation DORequestAdviceVC
+@implementation DORequestAdviceVC{
+	NSString * placeholderText;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,7 +32,22 @@
 	self.questionRequestContainerView.layer.borderWidth = 1;
 	self.questionRequestContainerView.layer.cornerRadius = 3;
 
+	placeholderText = self.adviceRequestNoteView.text;
+	[self.adviceRequestNoteView setDelegate:self];
+
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 	
+    // to update NoteView
+    [self.adviceRequestNoteView setNeedsDisplay];
+}
+
+- (void) textViewDidBeginEditing:(UITextView *)textView{
+	if ([placeholderText isEqualToString:self.adviceRequestNoteView.text]){
+		[self.adviceRequestNoteView setText:@""];
+		[self.adviceRequestNoteView setTextColor:UIColor.blackColor];
+	}
 }
 
 - (void)didReceiveMemoryWarning

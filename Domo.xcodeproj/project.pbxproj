@@ -37,6 +37,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		790B0811177B7EC3005C6308 /* NoteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NoteView.h; path = NoteView/Classes/NoteView.h; sourceTree = SOURCE_ROOT; };
+		790B0812177B7EC3005C6308 /* NoteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NoteView.m; path = NoteView/Classes/NoteView.m; sourceTree = SOURCE_ROOT; };
 		795EAD41177A62DD00EEC7AF /* DOWelcomeAndCommunityVC-iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DOWelcomeAndCommunityVC-iPhone.xib"; sourceTree = "<group>"; };
 		795EAD46177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DomoLogo-header-iphone@2x.png"; sourceTree = "<group>"; };
 		795EAD48177A836600EEC7AF /* DORequestAdviceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DORequestAdviceVC.h; sourceTree = "<group>"; };
@@ -123,6 +125,15 @@
 			name = icons;
 			sourceTree = "<group>";
 		};
+		795EAD67177B761800EEC7AF /* External */ = {
+			isa = PBXGroup;
+			children = (
+				790B0811177B7EC3005C6308 /* NoteView.h */,
+				790B0812177B7EC3005C6308 /* NoteView.m */,
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
 		798A51F91779FC7D00939FB8 = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +165,7 @@
 		798A520D1779FC7D00939FB8 /* Domo */ = {
 			isa = PBXGroup;
 			children = (
+				795EAD67177B761800EEC7AF /* External */,
 				795EAD5D177B411D00EEC7AF /* Logic */,
 				798A522C1779FF8300939FB8 /* resources */,
 				798A52271779FCCC00939FB8 /* views */,

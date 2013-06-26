@@ -10,7 +10,7 @@
 #import "DOWelcomeAndCommunityVC.h"
 #import "DORequestAdviceVC.h"
 
-@interface DOHomeScreenRootVC : UIViewController
+@interface DOHomeScreenRootVC : UIViewController <UIScrollViewDelegate>
 
 @property (nonatomic, strong) DOWelcomeAndCommunityVC * welcomeCommunityHeader;
 @property (nonatomic, strong) DORequestAdviceVC* requestAdviceVC;

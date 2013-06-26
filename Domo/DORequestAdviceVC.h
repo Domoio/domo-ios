@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NoteView.h"
 
-@interface DORequestAdviceVC : UIViewController
+@interface DORequestAdviceVC : UIViewController <UITextViewDelegate>
 @property (nonatomic, strong) IBOutlet UIView * questionRequestContainerView;
+
+@property (nonatomic, strong) IBOutlet NoteView * adviceRequestNoteView;
 @end
