@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface DORequestAdviceVC : UIViewController
-
+@property (nonatomic, strong) IBOutlet UIView * questionRequestContainerView;
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "DORequestAdviceVC.h"
-
+#import <QuartzCore/QuartzCore.h>
 @interface DORequestAdviceVC ()
 
 @end
@@ -26,7 +26,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+	self.questionRequestContainerView.layer.borderColor = [UIColor colorWithWhite:0.55 alpha:0.15].CGColor;
+	self.questionRequestContainerView.layer.borderWidth = 1;
+	self.questionRequestContainerView.layer.cornerRadius = 3;
+
+	
 }
 
 - (void)didReceiveMemoryWarning

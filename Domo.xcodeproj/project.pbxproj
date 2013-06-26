@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		795EAD40177A629B00EEC7AF /* DOPrimarySliderViewController-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 795EAD3F177A629B00EEC7AF /* DOPrimarySliderViewController-iPhone.xib */; };
-		795EAD42177A62DD00EEC7AF /* DOWelcomeAndCommunityView-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 795EAD41177A62DD00EEC7AF /* DOWelcomeAndCommunityView-iPhone.xib */; };
-		795EAD45177A647D00EEC7AF /* DOPrimarySliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 795EAD44177A647D00EEC7AF /* DOPrimarySliderViewController.m */; };
+		795EAD42177A62DD00EEC7AF /* DOWelcomeAndCommunityVC-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 795EAD41177A62DD00EEC7AF /* DOWelcomeAndCommunityVC-iPhone.xib */; };
 		795EAD47177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 795EAD46177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png */; };
 		795EAD4B177A836600EEC7AF /* DORequestAdviceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 795EAD49177A836600EEC7AF /* DORequestAdviceVC.m */; };
 		795EAD4C177A836600EEC7AF /* DORequestAdviceVC-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 795EAD4A177A836600EEC7AF /* DORequestAdviceVC-iPhone.xib */; };
+		795EAD50177B276D00EEC7AF /* DOHomeScreenRootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 795EAD4E177B276D00EEC7AF /* DOHomeScreenRootVC.m */; };
+		795EAD51177B276D00EEC7AF /* DOHomeScreenRootVC-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 795EAD4F177B276D00EEC7AF /* DOHomeScreenRootVC-iPhone.xib */; };
+		795EAD54177B280800EEC7AF /* DOWelcomeAndCommunityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 795EAD53177B280800EEC7AF /* DOWelcomeAndCommunityVC.m */; };
+		795EAD56177B293000EEC7AF /* patternsquare_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 795EAD55177B293000EEC7AF /* patternsquare_green@2x.png */; };
 		798A52061779FC7D00939FB8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798A52051779FC7D00939FB8 /* UIKit.framework */; };
 		798A52081779FC7D00939FB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798A52071779FC7D00939FB8 /* Foundation.framework */; };
 		798A520A1779FC7D00939FB8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798A52091779FC7D00939FB8 /* CoreGraphics.framework */; };
@@ -31,14 +33,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		795EAD3F177A629B00EEC7AF /* DOPrimarySliderViewController-iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DOPrimarySliderViewController-iPhone.xib"; sourceTree = "<group>"; };
-		795EAD41177A62DD00EEC7AF /* DOWelcomeAndCommunityView-iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DOWelcomeAndCommunityView-iPhone.xib"; sourceTree = "<group>"; };
-		795EAD43177A647D00EEC7AF /* DOPrimarySliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOPrimarySliderViewController.h; sourceTree = "<group>"; };
-		795EAD44177A647D00EEC7AF /* DOPrimarySliderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOPrimarySliderViewController.m; sourceTree = "<group>"; };
+		795EAD41177A62DD00EEC7AF /* DOWelcomeAndCommunityVC-iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DOWelcomeAndCommunityVC-iPhone.xib"; sourceTree = "<group>"; };
 		795EAD46177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DomoLogo-header-iphone@2x.png"; sourceTree = "<group>"; };
 		795EAD48177A836600EEC7AF /* DORequestAdviceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DORequestAdviceVC.h; sourceTree = "<group>"; };
 		795EAD49177A836600EEC7AF /* DORequestAdviceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DORequestAdviceVC.m; sourceTree = "<group>"; };
 		795EAD4A177A836600EEC7AF /* DORequestAdviceVC-iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DORequestAdviceVC-iPhone.xib"; sourceTree = "<group>"; };
+		795EAD4D177B276D00EEC7AF /* DOHomeScreenRootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOHomeScreenRootVC.h; sourceTree = "<group>"; };
+		795EAD4E177B276D00EEC7AF /* DOHomeScreenRootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOHomeScreenRootVC.m; sourceTree = "<group>"; };
+		795EAD4F177B276D00EEC7AF /* DOHomeScreenRootVC-iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DOHomeScreenRootVC-iPhone.xib"; sourceTree = "<group>"; };
+		795EAD52177B280800EEC7AF /* DOWelcomeAndCommunityVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOWelcomeAndCommunityVC.h; sourceTree = "<group>"; };
+		795EAD53177B280800EEC7AF /* DOWelcomeAndCommunityVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOWelcomeAndCommunityVC.m; sourceTree = "<group>"; };
+		795EAD55177B293000EEC7AF /* patternsquare_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "patternsquare_green@2x.png"; sourceTree = "<group>"; };
+		795EAD57177B40DD00EEC7AF /* EXDomoConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EXDomoConstants.h; sourceTree = "<group>"; };
+		795EAD59177B411A00EEC7AF /* UIViewAdditions+EX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewAdditions+EX.h"; sourceTree = "<group>"; };
+		795EAD5A177B411A00EEC7AF /* UIViewAdditions+EX.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewAdditions+EX.m"; sourceTree = "<group>"; };
+		795EAD5B177B411A00EEC7AF /* NSDateAdditions+EX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDateAdditions+EX.h"; sourceTree = "<group>"; };
+		795EAD5C177B411A00EEC7AF /* NSDateAdditions+EX.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDateAdditions+EX.m"; sourceTree = "<group>"; };
 		798A52021779FC7D00939FB8 /* Domo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Domo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		798A52051779FC7D00939FB8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		798A52071779FC7D00939FB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -75,6 +85,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		795EAD58177B410C00EEC7AF /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				795EAD59177B411A00EEC7AF /* UIViewAdditions+EX.h */,
+				795EAD5A177B411A00EEC7AF /* UIViewAdditions+EX.m */,
+				795EAD5B177B411A00EEC7AF /* NSDateAdditions+EX.h */,
+				795EAD5C177B411A00EEC7AF /* NSDateAdditions+EX.m */,
+			);
+			name = Additions;
+			sourceTree = "<group>";
+		};
+		795EAD5D177B411D00EEC7AF /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				795EAD58177B410C00EEC7AF /* Additions */,
+			);
+			name = Logic;
+			sourceTree = "<group>";
+		};
 		798A51F91779FC7D00939FB8 = {
 			isa = PBXGroup;
 			children = (
@@ -106,10 +135,12 @@
 		798A520D1779FC7D00939FB8 /* Domo */ = {
 			isa = PBXGroup;
 			children = (
+				795EAD5D177B411D00EEC7AF /* Logic */,
 				798A522C1779FF8300939FB8 /* resources */,
 				798A52271779FCCC00939FB8 /* views */,
 				798A52161779FC7D00939FB8 /* DOAppDelegate.h */,
 				798A52171779FC7D00939FB8 /* DOAppDelegate.m */,
+				795EAD57177B40DD00EEC7AF /* EXDomoConstants.h */,
 				798A521F1779FC7D00939FB8 /* Domo.xcdatamodeld */,
 				798A520E1779FC7D00939FB8 /* Supporting Files */,
 			);
@@ -130,13 +161,15 @@
 		798A52271779FCCC00939FB8 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				795EAD43177A647D00EEC7AF /* DOPrimarySliderViewController.h */,
-				795EAD44177A647D00EEC7AF /* DOPrimarySliderViewController.m */,
-				795EAD3F177A629B00EEC7AF /* DOPrimarySliderViewController-iPhone.xib */,
-				795EAD41177A62DD00EEC7AF /* DOWelcomeAndCommunityView-iPhone.xib */,
+				795EAD52177B280800EEC7AF /* DOWelcomeAndCommunityVC.h */,
+				795EAD53177B280800EEC7AF /* DOWelcomeAndCommunityVC.m */,
+				795EAD41177A62DD00EEC7AF /* DOWelcomeAndCommunityVC-iPhone.xib */,
 				795EAD48177A836600EEC7AF /* DORequestAdviceVC.h */,
 				795EAD49177A836600EEC7AF /* DORequestAdviceVC.m */,
 				795EAD4A177A836600EEC7AF /* DORequestAdviceVC-iPhone.xib */,
+				795EAD4D177B276D00EEC7AF /* DOHomeScreenRootVC.h */,
+				795EAD4E177B276D00EEC7AF /* DOHomeScreenRootVC.m */,
+				795EAD4F177B276D00EEC7AF /* DOHomeScreenRootVC-iPhone.xib */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -144,6 +177,7 @@
 		798A522C1779FF8300939FB8 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				795EAD55177B293000EEC7AF /* patternsquare_green@2x.png */,
 				795EAD46177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png */,
 				798A522D1779FF8300939FB8 /* Arimo-Bold-Latin.ttf */,
 				798A522E1779FF8300939FB8 /* Arimo-BoldItalic-Latin.ttf */,
@@ -216,10 +250,11 @@
 				798A52381779FF8300939FB8 /* Default-568h@2x.png in Resources */,
 				798A52391779FF8300939FB8 /* Default.png in Resources */,
 				798A523A1779FF8300939FB8 /* Default@2x.png in Resources */,
-				795EAD40177A629B00EEC7AF /* DOPrimarySliderViewController-iPhone.xib in Resources */,
-				795EAD42177A62DD00EEC7AF /* DOWelcomeAndCommunityView-iPhone.xib in Resources */,
+				795EAD42177A62DD00EEC7AF /* DOWelcomeAndCommunityVC-iPhone.xib in Resources */,
 				795EAD47177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png in Resources */,
 				795EAD4C177A836600EEC7AF /* DORequestAdviceVC-iPhone.xib in Resources */,
+				795EAD51177B276D00EEC7AF /* DOHomeScreenRootVC-iPhone.xib in Resources */,
+				795EAD56177B293000EEC7AF /* patternsquare_green@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,8 +268,9 @@
 				798A52141779FC7D00939FB8 /* main.m in Sources */,
 				798A52181779FC7D00939FB8 /* DOAppDelegate.m in Sources */,
 				798A52211779FC7D00939FB8 /* Domo.xcdatamodeld in Sources */,
-				795EAD45177A647D00EEC7AF /* DOPrimarySliderViewController.m in Sources */,
 				795EAD4B177A836600EEC7AF /* DORequestAdviceVC.m in Sources */,
+				795EAD50177B276D00EEC7AF /* DOHomeScreenRootVC.m in Sources */,
+				795EAD54177B280800EEC7AF /* DOWelcomeAndCommunityVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
