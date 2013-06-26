@@ -34,7 +34,7 @@
 
 	self.welcomeCommunityHeader = [[DOWelcomeAndCommunityVC alloc] initWithNibName:nil bundle:nil];
 	self.welcomeCommunityHeader.view.layer.shadowColor = UIColor.blackColor.CGColor;
-	self.welcomeCommunityHeader.view.layer.shadowOffset = CGSizeZero;
+	self.welcomeCommunityHeader.view.layer.shadowOffset = CGSizeMake(0, 1);
 	self.welcomeCommunityHeader.view.layer.shadowOpacity = 0.2;
 	self.welcomeCommunityHeader.view.layer.shadowRadius = 2;
 	
