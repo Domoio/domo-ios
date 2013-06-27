@@ -19,7 +19,7 @@
 #endif
 #endif
 
-
+#define deviceIsIPhone5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 #define deviceIsPad ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 #define ArrayHasItems(array) (array != nil && [array count] > 0)
 #define StringHasText(string) (string != nil && [string length] > 0)

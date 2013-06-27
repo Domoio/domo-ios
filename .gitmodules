@@ -1,0 +1,6 @@
+[submodule "NoteView"]
+	path = NoteView
+	url = git@github.com:alist/NoteView.git
+[submodule "MGBox2"]
+	path = MGBox2
+	url = git@github.com:alist/MGBox2.git

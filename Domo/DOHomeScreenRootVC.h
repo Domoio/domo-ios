@@ -9,16 +9,22 @@
 #import <UIKit/UIKit.h>
 #import "DOWelcomeAndCommunityVC.h"
 #import "DORequestAdviceVC.h"
+#import "MGScrollView.h"
+#import "DOMyQuestionsVC.h"
 
 @interface DOHomeScreenRootVC : UIViewController <UIScrollViewDelegate>
 
 @property (nonatomic, strong) DOWelcomeAndCommunityVC * welcomeCommunityHeader;
 @property (nonatomic, strong) DORequestAdviceVC* requestAdviceVC;
+@property (nonatomic, strong) DOMyQuestionsVC * myQuestionsVC;
 
-
-@property (nonatomic, strong) IBOutlet UIScrollView * mainContentScrollView;
+@property (nonatomic, strong) IBOutlet MGScrollView * mainContentScrollView;
 @property (nonatomic, strong) IBOutlet UIView * myQuestionsPeakView;
 
 
+-(BOOL) mainGetAdviceTrayIsScrolledToTop;//if on top 'page' of view
+
+-(BOOL) myQuestionsIsDisplayed;
+-(void) updateMyQuestionsViewForScrollState;
 
 @end

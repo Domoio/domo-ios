@@ -8,6 +8,13 @@
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>app-logo-57px.png</string>
+		<string>app-logo-57px@2x.png</string>
+		<string>app-logo-72px.png</string>
+		<string>app-logo-72px@2x.png</string>
+	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.exomachina.domodepression</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -24,23 +31,6 @@
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>armv7</string>
-	</array>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Arimo-Bold-Latin.ttf</string>
@@ -50,12 +40,20 @@
 	</array>
 	<key>UIPrerenderedIcon</key>
 	<true/>
-	<key>CFBundleIconFiles</key>
+	<key>UIRequiredDeviceCapabilities</key>
 	<array>
-		<string>app-logo-57px.png</string>
-		<string>app-logo-57px@2x.png</string>
-		<string>app-logo-72px.png</string>
-		<string>app-logo-72px@2x.png</string>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 </dict>
 </plist>
