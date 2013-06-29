@@ -48,12 +48,14 @@ const float myQuestionsDisplayedPosition = 20;
 	self.welcomeCommunityHeader.view.layer.shadowOffset = CGSizeMake(0, 1);
 	self.welcomeCommunityHeader.view.layer.shadowOpacity = 0.2;
 	self.welcomeCommunityHeader.view.layer.shadowRadius = 2;
+	self.welcomeCommunityHeader.view.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.welcomeCommunityHeader.view.bounds].CGPath;;
 	
 	self.requestAdviceVC = [[DORequestAdviceVC alloc] initWithNibName:nil bundle:nil];
 	self.requestAdviceVC.view.layer.shadowColor = UIColor.blackColor.CGColor;
 	self.requestAdviceVC.view.layer.shadowOffset = CGSizeMake(0, 1);
 	self.requestAdviceVC.view.layer.shadowOpacity = 0.2;
 	self.requestAdviceVC.view.layer.shadowRadius = 2;
+	self.requestAdviceVC.view.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.requestAdviceVC.view.bounds].CGPath;;
 
 
 	CGFloat handleHeight = 48;
@@ -73,6 +75,9 @@ const float myQuestionsDisplayedPosition = 20;
 	
 	self.myQuestionsVC = [[DOMyQuestionsVC alloc] init];
 	[self.myQuestionsPeakView addSubview:self.myQuestionsVC.view];
+	self.myQuestionsPeakView.layer.shadowColor = UIColor.blackColor.CGColor;
+	self.myQuestionsPeakView.layer.shadowOffset = CGSizeMake(0, -1);
+	self.myQuestionsPeakView.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.myQuestionsPeakView.bounds].CGPath;;
 	
 	//Gesture recognizers
 	UITapGestureRecognizer * adviceRequestTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(adviceRequestTapRecognizerDidTap:)];
@@ -166,8 +171,7 @@ const float myQuestionsDisplayedPosition = 20;
 
 -(void) updateMyQuestionsViewForScrollState{
 	if ([self myQuestionsIsDisplayed]){
-		self.myQuestionsPeakView.layer.shadowColor = UIColor.blackColor.CGColor;
-		self.myQuestionsPeakView.layer.shadowOffset = CGSizeMake(0, -1);
+
 	}else{
 		self.myQuestionsPeakView.layer.shadowOpacity = 0;		
 	}
