@@ -56,8 +56,7 @@
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string type="base64-UTF8" key="IBUIText">V3JpdGUgeW91ciBhbm9ueW1vdXMgcmVxdWVzdCBoZXJlISAKV2UnbGwgc2VuZCB5b3UgYSBwdXNoIG5v
-dGlmaWNhdGlvbiB3aGVuIHlvdXIgcGVlcnMgcmVzcG9uZC4</string>
+								<string key="IBUIText">So what's up? </string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC4zMTc1MTgyNDgyAA</bytes>
@@ -67,13 +66,13 @@ dGlmaWNhdGlvbiB3aGVuIHlvdXIgcGVlcnMgcmVzcG9uZC4</string>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<string key="name">Noteworthy-Light</string>
-									<string key="family">Noteworthy</string>
+									<string key="name">Helvetica</string>
+									<string key="family">Helvetica</string>
 									<int key="traits">0</int>
 									<double key="pointSize">15</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Noteworthy-Light</string>
+									<string key="NSName">Helvetica</string>
 									<double key="NSSize">15</double>
 									<int key="NSfFlags">16</int>
 								</object>
