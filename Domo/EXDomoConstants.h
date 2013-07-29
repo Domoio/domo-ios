@@ -24,7 +24,7 @@
 #define ArrayHasItems(array) (array != nil && [array count] > 0)
 #define StringHasText(string) (string != nil && [string length] > 0)
 #define SetHasItems(set) (set != nil && [set count] > 0)
-
+#define orientationIsPortrait (UIDeviceOrientationIsLandscape( [UIApplication sharedApplication].statusBarOrientation) == FALSE)
 
 
 #define MR_SHORTHAND

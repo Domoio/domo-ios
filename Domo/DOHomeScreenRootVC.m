@@ -13,10 +13,14 @@
 @interface DOHomeScreenRootVC (){
 	float originalMyQuestionsDistanceFromBottom;
 	float askAdviceDisplayedOrigin;
+    
+    float peakViewHeightPortrait;
+    float peakViewHeightLandscape;
 }
 @end
 
 const float myQuestionsDisplayedPosition = 20;
+const float askAdviceHandleHeight = 48;
 
 @implementation DOHomeScreenRootVC
 
@@ -58,11 +62,9 @@ const float myQuestionsDisplayedPosition = 20;
 	self.requestAdviceVC.view.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.requestAdviceVC.view.bounds].CGPath;;
 
 
-	CGFloat handleHeight = 48;
-	CGFloat yOriginOfAskAdviceHandle = self.myQuestionsPeakView.frame.origin.y - handleHeight /* above the myquestions handle */;
+	CGFloat yOriginOfAskAdviceHandle = self.myQuestionsPeakView.frame.origin.y - askAdviceHandleHeight /* above the myquestions handle */;
 	CGFloat totalHeight = yOriginOfAskAdviceHandle + self.requestAdviceVC.view.frame.size.height;
-	//OR
-	//totalHeight = self.mainContentScrollView.height * 2;
+
 	[self.mainContentScrollView setContentSize:CGSizeMake(320, totalHeight)];
 	[self.mainContentScrollView addSubview:self.welcomeCommunityHeader.view];
 	
@@ -76,7 +78,7 @@ const float myQuestionsDisplayedPosition = 20;
 	[self.myQuestionsPeakView addSubview:self.myQuestionsVC.view];
 	self.myQuestionsPeakView.layer.shadowColor = UIColor.blackColor.CGColor;
 	self.myQuestionsPeakView.layer.shadowOffset = CGSizeMake(0, -1);
-	self.myQuestionsPeakView.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.myQuestionsPeakView.bounds].CGPath;;
+	self.myQuestionsPeakView.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.myQuestionsPeakView.bounds].CGPath;
 	
 	//Gesture recognizers
 	UITapGestureRecognizer * adviceRequestTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(adviceRequestTapRecognizerDidTap:)];
@@ -95,9 +97,47 @@ const float myQuestionsDisplayedPosition = 20;
 	[super viewDidAppear:animated];
 	
 	if (originalMyQuestionsDistanceFromBottom == 0){
-		originalMyQuestionsDistanceFromBottom = self.view.height - self.myQuestionsPeakView.origin.y;
-	}
+        // interestingly, actually not interesting but just true
+        // the view autosizing only kicks-in sometime after viewdidload
+        // thus, this is where post-load sizing needs to occur
         
+        
+		originalMyQuestionsDistanceFromBottom = self.view.height - self.myQuestionsPeakView.origin.y;
+        
+        CGFloat yOriginOfAskAdviceHandle = self.myQuestionsPeakView.frame.origin.y - askAdviceHandleHeight /* above the myquestions handle */;
+        CGFloat totalHeight = yOriginOfAskAdviceHandle + self.requestAdviceVC.view.frame.size.height;
+
+        [self.mainContentScrollView setContentSize:CGSizeMake(320, totalHeight)];
+        [self.mainContentScrollView addSubview:self.welcomeCommunityHeader.view];
+        
+        [self.requestAdviceVC.view setOrigin:CGPointMake(0,yOriginOfAskAdviceHandle)];
+        
+        [self setupPeakViewForCurrentOrientation];
+	}
+}
+
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    
+    [self setupPeakViewForCurrentOrientation];
+}
+
+-(void) setupPeakViewForCurrentOrientation{
+    if (orientationIsPortrait){
+        peakViewHeightPortrait = self.view.height - myQuestionsDisplayedPosition;
+        
+        CGSize peakViewSize = self.myQuestionsPeakView.size;
+        peakViewSize.height = peakViewHeightPortrait;
+        self.myQuestionsPeakView.size = peakViewSize;
+    }else{
+        peakViewHeightLandscape = 320 - myQuestionsDisplayedPosition -20; //hard code=lame = wtf apple why doesn't this auto size? (status bar = 20)
+        
+        CGSize peakViewSize = self.myQuestionsPeakView.size;
+        peakViewSize.height = peakViewHeightLandscape;
+        self.myQuestionsPeakView.size = peakViewSize;
+    }
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -238,9 +278,14 @@ const float myQuestionsDisplayedPosition = 20;
             return;
         }
         
-		float shadowRadius = ceilf(((self.view.height - originalMyQuestionsDistanceFromBottom) - self.myQuestionsPeakView.origin.y)/22 );
-		[self.myQuestionsPeakView.layer setShadowRadius:shadowRadius];
-		self.myQuestionsPeakView.layer.shadowOpacity = MAX(shadowRadius/60.0f,0.2f);
+		float shadowRadius = ceilf(([self peekViewRestingYLocation] - self.myQuestionsPeakView.origin.y )/22 );
+        if (shadowRadius < 0.001){ //for whatever reason, floats just aren't capable of super-duper-zero.
+            [self.myQuestionsPeakView.layer setShadowRadius:0];
+            self.myQuestionsPeakView.layer.shadowOpacity = 0;
+        }else{
+            [self.myQuestionsPeakView.layer setShadowRadius:shadowRadius];
+            self.myQuestionsPeakView.layer.shadowOpacity = MAX(shadowRadius/60.0f,0.2f);
+        }
 
     }
 }
