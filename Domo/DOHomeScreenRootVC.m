@@ -11,7 +11,7 @@
 #import "UIResponder+FirstResponder.h"
 
 @interface DOHomeScreenRootVC (){
-	float originalMyQuestionsOrigin;
+	float originalMyQuestionsDistanceFromBottom;
 	float askAdviceDisplayedOrigin;
 }
 @end
@@ -69,7 +69,6 @@ const float myQuestionsDisplayedPosition = 20;
 	[self.requestAdviceVC.view setOrigin:CGPointMake(0,yOriginOfAskAdviceHandle)];
 	[self.mainContentScrollView addSubview:self.requestAdviceVC.view];
 	
-	originalMyQuestionsOrigin = self.myQuestionsPeakView.origin.y;
 	askAdviceDisplayedOrigin = self.requestAdviceVC.view.origin.y;
 
 	
@@ -88,9 +87,17 @@ const float myQuestionsDisplayedPosition = 20;
 	UITapGestureRecognizer * myQuestionsTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(myQuestionsTapRecognizerDidTap:)];
 	[self.myQuestionsPeakView addGestureRecognizer:myQuestionsTapRecognizer];
 
+    //let's KVC for peak view, so we can set shadow radius based on origin
+    [self.myQuestionsPeakView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+	[super viewDidAppear:animated];
 	
-	//let's KVC for peak view, so we can set shadow radius based on origin
-	[self.myQuestionsPeakView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
+	if (originalMyQuestionsDistanceFromBottom == 0){
+		originalMyQuestionsDistanceFromBottom = self.view.height - self.myQuestionsPeakView.origin.y;
+	}
+        
 }
 
 - (void)didReceiveMemoryWarning
@@ -153,7 +160,7 @@ const float myQuestionsDisplayedPosition = 20;
 			finalY = myQuestionsDisplayedPosition;
         }
         else if(finalY > _firstYMyQuestions) {
-			finalY = originalMyQuestionsOrigin;
+			finalY = [self peekViewRestingYLocation];
         }
 		
         CGFloat animationDuration = (ABS(velocityY)*.0002)+.2;
@@ -177,6 +184,16 @@ const float myQuestionsDisplayedPosition = 20;
 	}
 }
 
+-(float) peekViewRestingYLocation{
+	float finalY = self.view.height - originalMyQuestionsDistanceFromBottom;
+	
+	if (UIDeviceOrientationIsLandscape( [UIApplication sharedApplication].statusBarOrientation)){
+		finalY = 320 - originalMyQuestionsDistanceFromBottom - 20;
+	}
+	return finalY;
+}
+
+
 -(void) setMyQuestionsPeakViewDisplayed:(BOOL)display{
 	CGFloat finalY = 0;
 	CGFloat finalX = self.myQuestionsPeakView.origin.x;
@@ -184,7 +201,7 @@ const float myQuestionsDisplayedPosition = 20;
 		finalY = myQuestionsDisplayedPosition;
 	}
 	else {
-		finalY = originalMyQuestionsOrigin;
+		finalY = [self peekViewRestingYLocation];
 	}
 	
 	CGFloat animationDuration = .2+.2;
@@ -199,7 +216,7 @@ const float myQuestionsDisplayedPosition = 20;
 }
 
 -(BOOL) myQuestionsIsDisplayed{
-	return (self.myQuestionsPeakView.origin.y != originalMyQuestionsOrigin);
+	return (self.myQuestionsPeakView.origin.y != [self peekViewRestingYLocation]);
 }
 
 -(void) myQuestionsTapRecognizerDidTap:(UITapGestureRecognizer*)tapGesture{
@@ -217,7 +234,11 @@ const float myQuestionsDisplayedPosition = 20;
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if([keyPath isEqualToString:@"frame"]) {
-		float shadowRadius = ceilf((originalMyQuestionsOrigin - self.myQuestionsPeakView.origin.y)/22 );
+        if (originalMyQuestionsDistanceFromBottom == 0){ //not setup yet, hasn't appeared
+            return;
+        }
+        
+		float shadowRadius = ceilf(((self.view.height - originalMyQuestionsDistanceFromBottom) - self.myQuestionsPeakView.origin.y)/22 );
 		[self.myQuestionsPeakView.layer setShadowRadius:shadowRadius];
 		self.myQuestionsPeakView.layer.shadowOpacity = MAX(shadowRadius/60.0f,0.2f);
 
