@@ -28,5 +28,9 @@
 
 
 #define MR_SHORTHAND
+#import "MagicalRecord.h"
+#import "CoreData+MagicalRecord.h"
+
+
 #import "UIViewAdditions+EX.h"
 #import "NSDateAdditions+EX.h"
