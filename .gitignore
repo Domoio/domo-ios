@@ -14,6 +14,8 @@ profile
 *.xcodeproj/project.xcworkspace/xcuserdata/*
 *.xcuserdatad/*
 *xcodeproj/project.xcworkspace/*
+*.xcuserstate
+
 
 *.perspective
 *.perspectivev3
