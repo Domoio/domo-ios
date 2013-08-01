@@ -40,6 +40,9 @@
 		795EAD64177B4E8C00EEC7AF /* app-logo-57px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 795EAD60177B4E8B00EEC7AF /* app-logo-57px@2x.png */; };
 		795EAD65177B4E8C00EEC7AF /* app-logo-72px.png in Resources */ = {isa = PBXBuildFile; fileRef = 795EAD61177B4E8B00EEC7AF /* app-logo-72px.png */; };
 		795EAD66177B4E8C00EEC7AF /* app-logo-72px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 795EAD62177B4E8B00EEC7AF /* app-logo-72px@2x.png */; };
+		7977BACB17AB1606005A28AF /* AdviceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7977BACA17AB1606005A28AF /* AdviceRequest.m */; };
+		7977BACE17AB1753005A28AF /* Organization.m in Sources */ = {isa = PBXBuildFile; fileRef = 7977BACD17AB1753005A28AF /* Organization.m */; };
+		7977BAD117AB176C005A28AF /* Response.m in Sources */ = {isa = PBXBuildFile; fileRef = 7977BAD017AB176C005A28AF /* Response.m */; };
 		798A52061779FC7D00939FB8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798A52051779FC7D00939FB8 /* UIKit.framework */; };
 		798A52081779FC7D00939FB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798A52071779FC7D00939FB8 /* Foundation.framework */; };
 		798A520A1779FC7D00939FB8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798A52091779FC7D00939FB8 /* CoreGraphics.framework */; };
@@ -173,6 +176,12 @@
 		795EAD60177B4E8B00EEC7AF /* app-logo-57px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-logo-57px@2x.png"; sourceTree = "<group>"; };
 		795EAD61177B4E8B00EEC7AF /* app-logo-72px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-logo-72px.png"; sourceTree = "<group>"; };
 		795EAD62177B4E8B00EEC7AF /* app-logo-72px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-logo-72px@2x.png"; sourceTree = "<group>"; };
+		7977BAC917AB1606005A28AF /* AdviceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdviceRequest.h; sourceTree = "<group>"; };
+		7977BACA17AB1606005A28AF /* AdviceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdviceRequest.m; sourceTree = "<group>"; };
+		7977BACC17AB1753005A28AF /* Organization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Organization.h; sourceTree = "<group>"; };
+		7977BACD17AB1753005A28AF /* Organization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Organization.m; sourceTree = "<group>"; };
+		7977BACF17AB176C005A28AF /* Response.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Response.h; sourceTree = "<group>"; };
+		7977BAD017AB176C005A28AF /* Response.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Response.m; sourceTree = "<group>"; };
 		798A52021779FC7D00939FB8 /* Domo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Domo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		798A52051779FC7D00939FB8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		798A52071779FC7D00939FB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -425,6 +434,20 @@
 			name = External;
 			sourceTree = "<group>";
 		};
+		7977BAC817AB15CD005A28AF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7977BAC917AB1606005A28AF /* AdviceRequest.h */,
+				7977BACA17AB1606005A28AF /* AdviceRequest.m */,
+				7977BACC17AB1753005A28AF /* Organization.h */,
+				7977BACD17AB1753005A28AF /* Organization.m */,
+				7977BACF17AB176C005A28AF /* Response.h */,
+				7977BAD017AB176C005A28AF /* Response.m */,
+				798A521F1779FC7D00939FB8 /* Domo.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		798A51F91779FC7D00939FB8 = {
 			isa = PBXGroup;
 			children = (
@@ -467,7 +490,7 @@
 				798A52161779FC7D00939FB8 /* DOAppDelegate.h */,
 				798A52171779FC7D00939FB8 /* DOAppDelegate.m */,
 				795EAD57177B40DD00EEC7AF /* EXDomoConstants.h */,
-				798A521F1779FC7D00939FB8 /* Domo.xcdatamodeld */,
+				7977BAC817AB15CD005A28AF /* Model */,
 				798A520E1779FC7D00939FB8 /* Supporting Files */,
 			);
 			path = Domo;
@@ -867,6 +890,9 @@
 				799DD40C17A6CDE800225815 /* MagicalRecord+Setup.m in Sources */,
 				799DD40D17A6CDE800225815 /* MagicalRecord+ShorthandSupport.m in Sources */,
 				799DD40E17A6CDE800225815 /* MagicalRecord.m in Sources */,
+				7977BACB17AB1606005A28AF /* AdviceRequest.m in Sources */,
+				7977BACE17AB1753005A28AF /* Organization.m in Sources */,
+				7977BAD117AB176C005A28AF /* Response.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
