@@ -38,7 +38,6 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-	
     // to update NoteView
     [self.adviceRequestNoteView setNeedsDisplay];
 }

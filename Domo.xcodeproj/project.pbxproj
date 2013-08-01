@@ -406,6 +406,7 @@
 		795EAD5D177B411D00EEC7AF /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				7977BAC817AB15CD005A28AF /* Model */,
 				795EAD58177B410C00EEC7AF /* Additions */,
 			);
 			name = Logic;
@@ -484,13 +485,12 @@
 			isa = PBXGroup;
 			children = (
 				795EAD67177B761800EEC7AF /* External */,
-				795EAD5D177B411D00EEC7AF /* Logic */,
 				798A522C1779FF8300939FB8 /* resources */,
 				798A52271779FCCC00939FB8 /* views */,
 				798A52161779FC7D00939FB8 /* DOAppDelegate.h */,
 				798A52171779FC7D00939FB8 /* DOAppDelegate.m */,
 				795EAD57177B40DD00EEC7AF /* EXDomoConstants.h */,
-				7977BAC817AB15CD005A28AF /* Model */,
+				795EAD5D177B411D00EEC7AF /* Logic */,
 				798A520E1779FC7D00939FB8 /* Supporting Files */,
 			);
 			path = Domo;
