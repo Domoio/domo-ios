@@ -13,7 +13,7 @@
 
 @dynamic adviceRequestID;
 @dynamic modifiedDate;
-@dynamic knowledgeArea;
+@dynamic supportArea;
 @dynamic requestContent;
 @dynamic createdDate;
 @dynamic accessCode;
