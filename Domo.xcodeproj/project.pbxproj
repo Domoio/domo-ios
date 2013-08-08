@@ -32,6 +32,7 @@
 		794FDD8B17B3DB4700624BC5 /* domoDetailbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 794FDD8917B3DB4700624BC5 /* domoDetailbutton.png */; };
 		794FDD8E17B3DC9600624BC5 /* domoBackbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 794FDD8C17B3DC9600624BC5 /* domoBackbutton.png */; };
 		794FDD8F17B3DC9600624BC5 /* domoInfobutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 794FDD8D17B3DC9600624BC5 /* domoInfobutton.png */; };
+		794FDD9317B3E06500624BC5 /* patternsquare_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 794FDD9217B3E06500624BC5 /* patternsquare_green.png */; };
 		795EAD42177A62DD00EEC7AF /* DOWelcomeAndCommunityVC-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 795EAD41177A62DD00EEC7AF /* DOWelcomeAndCommunityVC-iPhone.xib */; };
 		795EAD47177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 795EAD46177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png */; };
 		795EAD4B177A836600EEC7AF /* DORequestAdviceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 795EAD49177A836600EEC7AF /* DORequestAdviceVC.m */; };
@@ -168,6 +169,7 @@
 		794FDD8917B3DB4700624BC5 /* domoDetailbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = domoDetailbutton.png; sourceTree = "<group>"; };
 		794FDD8C17B3DC9600624BC5 /* domoBackbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = domoBackbutton.png; sourceTree = "<group>"; };
 		794FDD8D17B3DC9600624BC5 /* domoInfobutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = domoInfobutton.png; sourceTree = "<group>"; };
+		794FDD9217B3E06500624BC5 /* patternsquare_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = patternsquare_green.png; sourceTree = "<group>"; };
 		795EAD41177A62DD00EEC7AF /* DOWelcomeAndCommunityVC-iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DOWelcomeAndCommunityVC-iPhone.xib"; sourceTree = "<group>"; };
 		795EAD46177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DomoLogo-header-iphone@2x.png"; sourceTree = "<group>"; };
 		795EAD48177A836600EEC7AF /* DORequestAdviceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DORequestAdviceVC.h; sourceTree = "<group>"; };
@@ -547,8 +549,6 @@
 			children = (
 				79C3433817AF056600410540 /* Assets */,
 				795EAD5E177B4E8300EEC7AF /* icons */,
-				795EAD55177B293000EEC7AF /* patternsquare_green@2x.png */,
-				795EAD46177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png */,
 				798A522D1779FF8300939FB8 /* Arimo-Bold-Latin.ttf */,
 				798A522E1779FF8300939FB8 /* Arimo-BoldItalic-Latin.ttf */,
 				798A522F1779FF8300939FB8 /* Arimo-Italic-Latin.ttf */,
@@ -753,6 +753,9 @@
 		79C3433817AF056600410540 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				795EAD55177B293000EEC7AF /* patternsquare_green@2x.png */,
+				794FDD9217B3E06500624BC5 /* patternsquare_green.png */,
+				795EAD46177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png */,
 				794FDD8C17B3DC9600624BC5 /* domoBackbutton.png */,
 				794FDD8D17B3DC9600624BC5 /* domoInfobutton.png */,
 				794FDD8817B3DB4700624BC5 /* domoChoosebutton.png */,
@@ -843,6 +846,7 @@
 				794FDD8B17B3DB4700624BC5 /* domoDetailbutton.png in Resources */,
 				794FDD8E17B3DC9600624BC5 /* domoBackbutton.png in Resources */,
 				794FDD8F17B3DC9600624BC5 /* domoInfobutton.png in Resources */,
+				794FDD9317B3E06500624BC5 /* patternsquare_green.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
