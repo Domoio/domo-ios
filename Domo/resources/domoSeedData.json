@@ -1,0 +1,121 @@
+{
+    "organizations": [{
+                  "organizationID": "MIT-organizationID",
+                  "displayName":"Massachusetts Inst. of Technology",
+                  "accessToken" : "DOMO-WHATDUP-MIT",
+                  "usageDescription" : "Help with anxiety, depression, and IHTFP struggles from a group of awesome and peer-selected MIT students who care.",
+                  "supportAreas" : [
+                                    {
+                                    "identifier": "abuse",
+                                    "name": "abuse & harassment"
+                                    },
+                                    {
+                                    "identifier": "career",
+                                    "name": "career concerns"
+                                    },
+                                    {
+                                    "identifier": "ethics",
+                                    "name": "ethics"
+                                    },
+                                    {
+                                    "identifier": "ihtfp",
+                                    "name": "IHTFP matters"
+                                    },
+                                    {
+                                    "identifier": "balance",
+                                    "name": "study-life balance"
+                                    },
+                                    {
+                                    "identifier": "family",
+                                    "name": "family matters"
+                                    },
+                                    {
+                                    "identifier": "spirituality",
+                                    "name": "spirituality/ religion"
+                                    },
+                                    {
+                                    "identifier": "funculture",
+                                    "name": "fun & culture"
+                                    },
+                                    {
+                                    "identifier": "otherconcerns",
+                                    "name": "other things"
+                                    }
+                                    ]
+                  },
+                  {
+                  "organizationID": "domoers-organizationID",
+                  "displayName":"Domoers' Corporate Domo"
+                  },
+                  {
+                  "organizationID": "harvard-athletes-support-line-organizationID",
+                  "displayName":"Harvard Support - Althelete's Annonymous"
+                  }
+    ],
+    "adviceRequests": [{
+                       "adviceRequestID":"1-UUID-adviceRequestID",
+                       "accessCode" : "1-adviceRequest-accessCode",
+                       "createdDate":"2013-06-18T20:00:00-0800",
+                       "modifiedDate":"2013-06-19T20:00:00-0800",
+                       "supportAreaIdentifier" : "ihtfp",
+                       "requestContent" : "Recently I've been feeling: \nPretty down about how I've been doing at University. I seem to be stuck in between doing my startup and actually performing with coursework, and it's a tough place to be.\n\nI could use some help with: \nMaking decisions about how to optimize and share my time between startup and school.",
+                       "organizationID" : "MIT-organizationID",
+                       "responses" : [
+                                      {
+                                      "responseID" : "2-UUID-responseID",
+                                      "isHelpful" : "True",
+                                      "modifiedDate" :"2013-06-19T20:00:00-0800",
+                                      "responderDisplayName" : "FriendJay",
+                                      "responderThanked" : "TRUE",
+                                      "responseContent" : "I think you have a very high chance of making it through while doing enough of both. \nTry making a schedule, and include 8.5 hours of sleep, because it takes some time to wake and go to bed. Especially try calendaring your time in chunks, transitions kill. Tell people you had planned meetings with that they need to go on hold during crunch time. \nI've been through it, too! Startups are hard!"
+                                      },
+                                      {
+                                      "responseID" : "1-UUID-responseID",
+                                      "modifiedDate" : "2013-06-19T19:00:00-0800",
+                                      "responderDisplayName" : "FirstResponder",
+                                      "responderThanked" : "false",
+                                      "responseContent" : "Try splitting up your week: focus intently on each for half of the week, or alternate every other day, and see if you manage to stay on top of your coursework. Every week is an opportunity to re-adjust the balance and see what works. \n\nAnd next semester, if things are really ramping up with the company, maybe try taking one course fewer than normal and see how that goes. If you're really crafty / the stars align just right, maybe you can use a project/lab course as an opportunity to make headway on your startup, directly or otherwise.\n\nOne way of framing things is to try and use the sum of your daily experiences to bring you closer to your goals, whatever they may be. I wish you the best of luck! Once you master time management and find a good balance, you'll be set."
+                                      }
+                                      ]
+                       
+                       },
+                       {
+                       "adviceRequestID":"2-UUID-adviceRequestID",
+                       "accessCode" : "2-adviceRequest-accessCode",
+                       "createdDate":"2013-06-17T20:00:00-0800",
+                       "modifiedDate":"2013-06-17T20:00:00-0800",
+                       "supportAreaIdentifier" : "utility",
+                       "requestContent" : "Hey Guys, I'm not too sure about this whole domo thing, what can I use it for, and why does it matter? \nNo offense, I'm just trying to figure it out!",
+                       "organizationID" : "domoers-organizationID",
+                       "responses" : []
+                       }
+    ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
