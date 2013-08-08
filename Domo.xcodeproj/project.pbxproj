@@ -28,6 +28,10 @@
 		790B086B177B7FD1005C6308 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 790B0867177B7FD1005C6308 /* CoreText.framework */; };
 		790B086C177B7FD1005C6308 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 790B0868177B7FD1005C6308 /* QuartzCore.framework */; };
 		790B086D177B7FD1005C6308 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 790B0869177B7FD1005C6308 /* CoreGraphics.framework */; };
+		794FDD8A17B3DB4700624BC5 /* domoChoosebutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 794FDD8817B3DB4700624BC5 /* domoChoosebutton.png */; };
+		794FDD8B17B3DB4700624BC5 /* domoDetailbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 794FDD8917B3DB4700624BC5 /* domoDetailbutton.png */; };
+		794FDD8E17B3DC9600624BC5 /* domoBackbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 794FDD8C17B3DC9600624BC5 /* domoBackbutton.png */; };
+		794FDD8F17B3DC9600624BC5 /* domoInfobutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 794FDD8D17B3DC9600624BC5 /* domoInfobutton.png */; };
 		795EAD42177A62DD00EEC7AF /* DOWelcomeAndCommunityVC-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 795EAD41177A62DD00EEC7AF /* DOWelcomeAndCommunityVC-iPhone.xib */; };
 		795EAD47177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 795EAD46177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png */; };
 		795EAD4B177A836600EEC7AF /* DORequestAdviceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 795EAD49177A836600EEC7AF /* DORequestAdviceVC.m */; };
@@ -113,6 +117,10 @@
 		799DD40E17A6CDE800225815 /* MagicalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 799DD3F217A6CDE800225815 /* MagicalRecord.m */; };
 		79C21112177C8CE800D7F984 /* DOMyQuestionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C21110177C8CE800D7F984 /* DOMyQuestionsVC.m */; };
 		79C21113177C8CE800D7F984 /* DOMyQuestionsVC-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79C21111177C8CE800D7F984 /* DOMyQuestionsVC-iPhone.xib */; };
+		79C3433D17AF057900410540 /* domoBackbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79C3433917AF057900410540 /* domoBackbutton@2x.png */; };
+		79C3433E17AF057900410540 /* domoChoosebutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79C3433A17AF057900410540 /* domoChoosebutton@2x.png */; };
+		79C3433F17AF057900410540 /* domoDetailbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79C3433B17AF057900410540 /* domoDetailbutton@2x.png */; };
+		79C3434017AF057900410540 /* domoInfobutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79C3433C17AF057900410540 /* domoInfobutton@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -156,6 +164,10 @@
 		790B0867177B7FD1005C6308 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		790B0868177B7FD1005C6308 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		790B0869177B7FD1005C6308 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		794FDD8817B3DB4700624BC5 /* domoChoosebutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = domoChoosebutton.png; sourceTree = "<group>"; };
+		794FDD8917B3DB4700624BC5 /* domoDetailbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = domoDetailbutton.png; sourceTree = "<group>"; };
+		794FDD8C17B3DC9600624BC5 /* domoBackbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = domoBackbutton.png; sourceTree = "<group>"; };
+		794FDD8D17B3DC9600624BC5 /* domoInfobutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = domoInfobutton.png; sourceTree = "<group>"; };
 		795EAD41177A62DD00EEC7AF /* DOWelcomeAndCommunityVC-iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DOWelcomeAndCommunityVC-iPhone.xib"; sourceTree = "<group>"; };
 		795EAD46177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DomoLogo-header-iphone@2x.png"; sourceTree = "<group>"; };
 		795EAD48177A836600EEC7AF /* DORequestAdviceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DORequestAdviceVC.h; sourceTree = "<group>"; };
@@ -321,6 +333,10 @@
 		79C2110F177C8CE800D7F984 /* DOMyQuestionsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMyQuestionsVC.h; sourceTree = "<group>"; };
 		79C21110177C8CE800D7F984 /* DOMyQuestionsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMyQuestionsVC.m; sourceTree = "<group>"; };
 		79C21111177C8CE800D7F984 /* DOMyQuestionsVC-iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DOMyQuestionsVC-iPhone.xib"; sourceTree = "<group>"; };
+		79C3433917AF057900410540 /* domoBackbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "domoBackbutton@2x.png"; sourceTree = "<group>"; };
+		79C3433A17AF057900410540 /* domoChoosebutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "domoChoosebutton@2x.png"; sourceTree = "<group>"; };
+		79C3433B17AF057900410540 /* domoDetailbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "domoDetailbutton@2x.png"; sourceTree = "<group>"; };
+		79C3433C17AF057900410540 /* domoInfobutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "domoInfobutton@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -529,6 +545,7 @@
 		798A522C1779FF8300939FB8 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				79C3433817AF056600410540 /* Assets */,
 				795EAD5E177B4E8300EEC7AF /* icons */,
 				795EAD55177B293000EEC7AF /* patternsquare_green@2x.png */,
 				795EAD46177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png */,
@@ -733,6 +750,21 @@
 			name = Nimbus;
 			sourceTree = "<group>";
 		};
+		79C3433817AF056600410540 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				794FDD8C17B3DC9600624BC5 /* domoBackbutton.png */,
+				794FDD8D17B3DC9600624BC5 /* domoInfobutton.png */,
+				794FDD8817B3DB4700624BC5 /* domoChoosebutton.png */,
+				794FDD8917B3DB4700624BC5 /* domoDetailbutton.png */,
+				79C3433917AF057900410540 /* domoBackbutton@2x.png */,
+				79C3433A17AF057900410540 /* domoChoosebutton@2x.png */,
+				79C3433B17AF057900410540 /* domoDetailbutton@2x.png */,
+				79C3433C17AF057900410540 /* domoInfobutton@2x.png */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -803,6 +835,14 @@
 				795EAD65177B4E8C00EEC7AF /* app-logo-72px.png in Resources */,
 				795EAD66177B4E8C00EEC7AF /* app-logo-72px@2x.png in Resources */,
 				79C21113177C8CE800D7F984 /* DOMyQuestionsVC-iPhone.xib in Resources */,
+				79C3433D17AF057900410540 /* domoBackbutton@2x.png in Resources */,
+				79C3433E17AF057900410540 /* domoChoosebutton@2x.png in Resources */,
+				79C3433F17AF057900410540 /* domoDetailbutton@2x.png in Resources */,
+				79C3434017AF057900410540 /* domoInfobutton@2x.png in Resources */,
+				794FDD8A17B3DB4700624BC5 /* domoChoosebutton.png in Resources */,
+				794FDD8B17B3DB4700624BC5 /* domoDetailbutton.png in Resources */,
+				794FDD8E17B3DC9600624BC5 /* domoBackbutton.png in Resources */,
+				794FDD8F17B3DC9600624BC5 /* domoInfobutton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -922,6 +962,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alexander List (76TLAY9W6F)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -937,6 +978,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "66CBEBA6-1B80-4C25-A33B-BD37DEC5019F";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

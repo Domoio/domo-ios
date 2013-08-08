@@ -10,3 +10,7 @@
 [submodule "nimbus"]
 	path = nimbus
 	url = git@github.com:alist/nimbus.git
+[submodule "RestKit"]
+	path = RestKit
+	url = git@github.com:ExoMachina/RestKit.git
+	branch = master
