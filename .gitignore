@@ -17,6 +17,8 @@ profile
 *.xcuserstate
 *.xcsettings
 
+pods/
+
 *.perspective
 *.perspectivev3
 *.swp
