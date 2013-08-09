@@ -20,7 +20,10 @@
 @property (nonatomic, retain) NSString * accessCode;
 @property (nonatomic, retain) NSSet *responses;
 @property (nonatomic, retain) NSManagedObject *organization;
+
++(RKEntityMapping*) entityMapping;
 @end
+
 
 @interface AdviceRequest (CoreDataGeneratedAccessors)
 

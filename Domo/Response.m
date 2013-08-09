@@ -20,4 +20,13 @@
 @dynamic responderThanked;
 @dynamic adviceRequest;
 
++(RKEntityMapping*) entityMapping{
+    
+    RKEntityMapping* mapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass(Response.class) inManagedObjectStore:[RKObjectManager sharedManager].managedObjectStore];
+    
+    [mapping addAttributeMappingsFromArray:@[@"isHelpful",@"modifiedDate",@"createdDate",@"modifiedDate",@"responderDisplayName",@"responderThanked",@"responseContent",@"responseID"]];
+
+    return mapping;
+}
+
 @end

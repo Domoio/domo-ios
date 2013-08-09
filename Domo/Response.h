@@ -21,4 +21,6 @@
 @property (nonatomic, retain) NSNumber * responderThanked;
 @property (nonatomic, retain) AdviceRequest *adviceRequest;
 
++(RKEntityMapping*) entityMapping;
+
 @end

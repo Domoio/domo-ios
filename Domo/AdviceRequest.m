@@ -7,6 +7,7 @@
 //
 
 #import "AdviceRequest.h"
+#import "Response.h"
 
 
 @implementation AdviceRequest
@@ -20,4 +21,12 @@
 @dynamic responses;
 @dynamic organization;
 
+
++(RKEntityMapping*) entityMapping{
+    RKEntityMapping* mapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass(AdviceRequest.class) inManagedObjectStore:[RKObjectManager sharedManager].managedObjectStore];
+    [mapping addAttributeMappingsFromArray:@[@"accessCode",@"adviceRequestID",@"createdDate",@"modifiedDate",@"organizationID",@"requestContent",@"supportAreaIdentifier"]];
+    [mapping addRelationshipMappingWithSourceKeyPath:@"responses" mapping:[Response entityMapping]];
+    
+    return mapping;
+}
 @end
