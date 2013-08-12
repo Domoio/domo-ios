@@ -46,13 +46,12 @@
 }
 
 -(void) setupDatabases{
-    
     static NSString * storeName = @"domo.sqlite";
-    #ifdef DEV_STATE_RESET
+    #if DEV_STATE_RESET == 1
     NSURL *url = [NSPersistentStore MR_urlForStoreName:storeName];
     [[NSFileManager new] removeItemAtURL:url error:nil];
     #endif
-
+    
     
     NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
@@ -68,22 +67,25 @@
     
     
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://domo-io-staging.herokuapp.com/apiv1/"]];
+    objectManager.managedObjectStore = managedObjectStore;
+
     [RKObjectManager setSharedManager:objectManager];
     
     [self setObjectMappings];
     
-    objectManager.managedObjectStore = managedObjectStore;
     
+    
+    #if DEV_MAKE_DB_SEED == 1
+    [self generateSeedDatabase];
+    #endif
 }
 
 -(void) setObjectMappings{
     RKObjectManager *objectManager = [RKObjectManager sharedManager];
 
-    //create a mapping btw class and data
-    RKEntityMapping * adviceRequestMapping = [AdviceRequest entityMapping];
     
     //add this entity mapping for this class to a set of mappings for posting to a route
-    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:adviceRequestMapping objectClass:[AdviceRequest class] rootKeyPath:@"adviceRequest" method:RKRequestMethodPOST];
+    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:[AdviceRequest requestMapping] objectClass:[AdviceRequest class] rootKeyPath:@"adviceRequest" method:RKRequestMethodPOST];
     [objectManager addRequestDescriptor:requestDescriptor];
 
     //add this class to a route for a post
@@ -94,7 +96,7 @@
     
     //create the RKResponseDescriptor connected to a mapping
     NSIndexSet *statusCodes = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful); // Anything in 2xx
-    RKResponseDescriptor *adviceResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:adviceRequestMapping method:RKRequestMethodAny pathPattern:nil keyPath:@"adviceRequest" statusCodes:statusCodes]; //nil for all responses, adviceUpdateRoute.pathPattern
+    RKResponseDescriptor *adviceResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[AdviceRequest entityMapping] method:RKRequestMethodAny pathPattern:nil keyPath:@"adviceRequest" statusCodes:statusCodes]; //nil for all responses, adviceUpdateRoute.pathPattern
     [objectManager addResponseDescriptor:adviceResponseDescriptor];
     
 }
@@ -116,7 +118,7 @@
     // JSON looks like {"articles": [ {"title": "Article 1", "body": "Text", "author": "Blake" ]}
     NSError *error;
     [importer importObjectsFromItemAtPath:[[NSBundle mainBundle] pathForResource:@"domoDemoData" ofType:@"json"] withMapping:[AdviceRequest entityMapping] keyPath:@"adviceRequests" error:&error];
-    [importer importObjectsFromItemAtPath:[[NSBundle mainBundle] pathForResource:@"domoDemoData" ofType:@"json"] withMapping:[AdviceRequest entityMapping] keyPath:@"organizations" error:&error];
+    [importer importObjectsFromItemAtPath:[[NSBundle mainBundle] pathForResource:@"domoDemoData" ofType:@"json"] withMapping:[Organization entityMapping] keyPath:@"organizations" error:&error];
     
     BOOL success = [importer finishImporting:&error];
     if (success) {

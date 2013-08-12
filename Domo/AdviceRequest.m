@@ -8,7 +8,7 @@
 
 #import "AdviceRequest.h"
 #import "Response.h"
-
+#import "Organization.h"
 
 @implementation AdviceRequest
 
@@ -24,10 +24,22 @@
 
 +(RKEntityMapping*) entityMapping{
     RKEntityMapping* mapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass(AdviceRequest.class) inManagedObjectStore:[RKObjectManager sharedManager].managedObjectStore];
-    [mapping addAttributeMappingsFromArray:@[@"accessCode",@"adviceRequestID",@"createdDate",@"modifiedDate",@"organizationID",@"requestContent",@"supportAreaIdentifier"]];
+    [mapping addAttributeMappingsFromArray:@[@"accessCode",@"adviceRequestID",@"createdDate",@"modifiedDate",@"requestContent",@"supportAreaIdentifier"]];
     mapping.identificationAttributes = @[ @"adviceRequestID" ];
+    [mapping addRelationshipMappingWithSourceKeyPath:@"organizationID" mapping:[Organization entityMapping]];
     [mapping addRelationshipMappingWithSourceKeyPath:@"responses" mapping:[Response entityMapping]];
     
     return mapping;
 }
+
++(RKObjectMapping*) requestMapping{
+    RKObjectMapping *requestMapping = [RKObjectMapping requestMapping]; // objectClass == NSMutableDictionary
+    [requestMapping addAttributeMappingsFromArray:@[@"accessCode",@"adviceRequestID",@"createdDate",@"modifiedDate",@"requestContent",@"supportAreaIdentifier"]];
+    [requestMapping addRelationshipMappingWithSourceKeyPath:@"organizationID" mapping:[Organization requestMapping]];
+    [requestMapping addRelationshipMappingWithSourceKeyPath:@"responses" mapping:[Response requestMapping]];
+    
+    return requestMapping;
+}
+
+
 @end

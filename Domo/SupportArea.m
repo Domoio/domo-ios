@@ -23,4 +23,12 @@
     return mapping;
 }
 
++(RKObjectMapping*) requestMapping{
+    RKObjectMapping *requestMapping = [RKObjectMapping requestMapping]; // objectClass == NSMutableDictionary
+    [requestMapping addAttributeMappingsFromArray:@[@"identifier",@"name"]];
+    
+    return requestMapping;
+}
+
+
 @end

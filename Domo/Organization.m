@@ -29,4 +29,14 @@
     
     return mapping;
 }
+
++(RKObjectMapping*) requestMapping{
+    RKObjectMapping *requestMapping = [RKObjectMapping requestMapping]; // objectClass == NSMutableDictionary
+    [requestMapping addAttributeMappingsFromArray:@[@"accessToken",@"displayName",@"organizationID",@"usageDescription"]];
+    [requestMapping addRelationshipMappingWithSourceKeyPath:@"responses" mapping:[SupportArea requestMapping]];
+
+    return requestMapping;
+}
+
+
 @end

@@ -22,6 +22,7 @@
 
 
 +(RKEntityMapping*) entityMapping;
++(RKObjectMapping*) requestMapping;
 @end
 
 @interface Organization (CoreDataGeneratedAccessors)

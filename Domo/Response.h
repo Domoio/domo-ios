@@ -22,5 +22,5 @@
 @property (nonatomic, retain) AdviceRequest *adviceRequest;
 
 +(RKEntityMapping*) entityMapping;
-
++(RKObjectMapping*) requestMapping;
 @end

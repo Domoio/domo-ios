@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+
 @class Organization;
 
 @interface SupportArea : NSManagedObject
@@ -18,4 +19,5 @@
 @property (nonatomic, retain) Organization *organization;
 
 +(RKEntityMapping*) entityMapping;
++(RKObjectMapping*) requestMapping;
 @end

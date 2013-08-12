@@ -22,6 +22,7 @@
 @property (nonatomic, retain) NSManagedObject *organization;
 
 +(RKEntityMapping*) entityMapping;
++(RKObjectMapping*) requestMapping;
 @end
 
 
