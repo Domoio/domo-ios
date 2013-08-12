@@ -35,6 +35,7 @@
 		794FDD8F17B3DC9600624BC5 /* domoInfobutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 794FDD8D17B3DC9600624BC5 /* domoInfobutton.png */; };
 		794FDD9317B3E06500624BC5 /* patternsquare_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 794FDD9217B3E06500624BC5 /* patternsquare_green.png */; };
 		794FDD9A17B439F400624BC5 /* domoDemoData.json in Resources */ = {isa = PBXBuildFile; fileRef = 794FDD9917B439F400624BC5 /* domoDemoData.json */; };
+		794FDD9D17B9243300624BC5 /* SupportArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 794FDD9C17B9243300624BC5 /* SupportArea.m */; };
 		795EAD42177A62DD00EEC7AF /* DOWelcomeAndCommunityVC-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 795EAD41177A62DD00EEC7AF /* DOWelcomeAndCommunityVC-iPhone.xib */; };
 		795EAD47177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 795EAD46177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png */; };
 		795EAD4B177A836600EEC7AF /* DORequestAdviceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 795EAD49177A836600EEC7AF /* DORequestAdviceVC.m */; };
@@ -175,6 +176,8 @@
 		794FDD8D17B3DC9600624BC5 /* domoInfobutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = domoInfobutton.png; sourceTree = "<group>"; };
 		794FDD9217B3E06500624BC5 /* patternsquare_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = patternsquare_green.png; sourceTree = "<group>"; };
 		794FDD9917B439F400624BC5 /* domoDemoData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = domoDemoData.json; sourceTree = "<group>"; };
+		794FDD9B17B9243200624BC5 /* SupportArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportArea.h; sourceTree = "<group>"; };
+		794FDD9C17B9243300624BC5 /* SupportArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportArea.m; sourceTree = "<group>"; };
 		795EAD41177A62DD00EEC7AF /* DOWelcomeAndCommunityVC-iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DOWelcomeAndCommunityVC-iPhone.xib"; sourceTree = "<group>"; };
 		795EAD46177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DomoLogo-header-iphone@2x.png"; sourceTree = "<group>"; };
 		795EAD48177A836600EEC7AF /* DORequestAdviceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DORequestAdviceVC.h; sourceTree = "<group>"; };
@@ -472,10 +475,12 @@
 			children = (
 				7977BAC917AB1606005A28AF /* AdviceRequest.h */,
 				7977BACA17AB1606005A28AF /* AdviceRequest.m */,
-				7977BACC17AB1753005A28AF /* Organization.h */,
-				7977BACD17AB1753005A28AF /* Organization.m */,
 				7977BACF17AB176C005A28AF /* Response.h */,
 				7977BAD017AB176C005A28AF /* Response.m */,
+				7977BACC17AB1753005A28AF /* Organization.h */,
+				7977BACD17AB1753005A28AF /* Organization.m */,
+				794FDD9B17B9243200624BC5 /* SupportArea.h */,
+				794FDD9C17B9243300624BC5 /* SupportArea.m */,
 				798A521F1779FC7D00939FB8 /* Domo.xcdatamodeld */,
 			);
 			name = Model;
@@ -990,6 +995,7 @@
 				7977BACB17AB1606005A28AF /* AdviceRequest.m in Sources */,
 				7977BACE17AB1753005A28AF /* Organization.m in Sources */,
 				7977BAD117AB176C005A28AF /* Response.m in Sources */,
+				794FDD9D17B9243300624BC5 /* SupportArea.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

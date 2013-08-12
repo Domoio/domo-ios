@@ -108,16 +108,15 @@
     //importObjectsFromItemAtPath:withMapping:keyPath:error //for adviceRequests keypath
 
     NSString *seedPath = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"seedDatabase.sqlite"];
+    [[NSFileManager defaultManager] removeItemAtPath:seedPath error:nil];
+    
     RKManagedObjectImporter *importer = [[RKManagedObjectImporter alloc] initWithManagedObjectModel:objectManager.managedObjectStore.managedObjectModel storePath:seedPath];
     
     // Import the files "articles.json" from the Main Bundle using our RKEntityMapping
     // JSON looks like {"articles": [ {"title": "Article 1", "body": "Text", "author": "Blake" ]}
     NSError *error;
-    NSBundle *mainBundle = [NSBundle mainBundle];
-    [importer importObjectsFromItemAtPath:[mainBundle pathForResource:@"domoDemoData" ofType:@"json"]
-                              withMapping:[AdviceRequest entityMapping]
-                                  keyPath:@"adviceRequests"
-                                    error:&error];
+    [importer importObjectsFromItemAtPath:[[NSBundle mainBundle] pathForResource:@"domoDemoData" ofType:@"json"] withMapping:[AdviceRequest entityMapping] keyPath:@"adviceRequests" error:&error];
+    [importer importObjectsFromItemAtPath:[[NSBundle mainBundle] pathForResource:@"domoDemoData" ofType:@"json"] withMapping:[AdviceRequest entityMapping] keyPath:@"organizations" error:&error];
     
     BOOL success = [importer finishImporting:&error];
     if (success) {

@@ -25,6 +25,7 @@
     RKEntityMapping* mapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass(Response.class) inManagedObjectStore:[RKObjectManager sharedManager].managedObjectStore];
     
     [mapping addAttributeMappingsFromArray:@[@"isHelpful",@"modifiedDate",@"createdDate",@"modifiedDate",@"responderDisplayName",@"responderThanked",@"responseContent",@"responseID"]];
+    mapping.identificationAttributes = @[ @"responseID" ];
 
     return mapping;
 }

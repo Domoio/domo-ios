@@ -17,7 +17,11 @@
 @property (nonatomic, retain) NSString * displayNameString;
 @property (nonatomic, retain) NSData * supportAreas;
 @property (nonatomic, retain) NSString * usersAuthCode;
+@property (nonatomic, retain) NSString * usageDescription;
 @property (nonatomic, retain) NSSet *adviceRequests;
+
+
++(RKEntityMapping*) entityMapping;
 @end
 
 @interface Organization (CoreDataGeneratedAccessors)

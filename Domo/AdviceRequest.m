@@ -25,6 +25,7 @@
 +(RKEntityMapping*) entityMapping{
     RKEntityMapping* mapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass(AdviceRequest.class) inManagedObjectStore:[RKObjectManager sharedManager].managedObjectStore];
     [mapping addAttributeMappingsFromArray:@[@"accessCode",@"adviceRequestID",@"createdDate",@"modifiedDate",@"organizationID",@"requestContent",@"supportAreaIdentifier"]];
+    mapping.identificationAttributes = @[ @"adviceRequestID" ];
     [mapping addRelationshipMappingWithSourceKeyPath:@"responses" mapping:[Response entityMapping]];
     
     return mapping;
