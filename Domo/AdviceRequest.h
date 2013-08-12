@@ -8,18 +8,22 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "SupportArea.h"
 
 
 @interface AdviceRequest : NSManagedObject
 
 @property (nonatomic, retain) NSString * adviceRequestID;
 @property (nonatomic, retain) NSDate * modifiedDate;
-@property (nonatomic, retain) NSString * supportArea;
 @property (nonatomic, retain) NSString * requestContent;
 @property (nonatomic, retain) NSDate * createdDate;
 @property (nonatomic, retain) NSString * accessCode;
 @property (nonatomic, retain) NSSet *responses;
 @property (nonatomic, retain) NSManagedObject *organization;
+@property (nonatomic, retain) SupportArea *supportArea;
+@property (nonatomic, retain) NSString * organizationID;
+@property (nonatomic, retain) NSString * supportAreaIdentifier;
+
 
 +(RKEntityMapping*) entityMapping;
 +(RKObjectMapping*) requestMapping;

@@ -38,6 +38,7 @@
 		794FDD9D17B9243300624BC5 /* SupportArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 794FDD9C17B9243300624BC5 /* SupportArea.m */; };
 		794FDDA217B93E1600624BC5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 794FDD9E17B93E0B00624BC5 /* MobileCoreServices.framework */; };
 		794FDDA317B93E1600624BC5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 794FDD9F17B93E0B00624BC5 /* SystemConfiguration.framework */; };
+		794FDDA517B954C500624BC5 /* seedDatabase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 794FDDA417B954C500624BC5 /* seedDatabase.sqlite */; };
 		795EAD42177A62DD00EEC7AF /* DOWelcomeAndCommunityVC-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 795EAD41177A62DD00EEC7AF /* DOWelcomeAndCommunityVC-iPhone.xib */; };
 		795EAD47177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 795EAD46177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png */; };
 		795EAD4B177A836600EEC7AF /* DORequestAdviceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 795EAD49177A836600EEC7AF /* DORequestAdviceVC.m */; };
@@ -182,6 +183,7 @@
 		794FDD9C17B9243300624BC5 /* SupportArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportArea.m; sourceTree = "<group>"; };
 		794FDD9E17B93E0B00624BC5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		794FDD9F17B93E0B00624BC5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		794FDDA417B954C500624BC5 /* seedDatabase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = seedDatabase.sqlite; sourceTree = "<group>"; };
 		795EAD41177A62DD00EEC7AF /* DOWelcomeAndCommunityVC-iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DOWelcomeAndCommunityVC-iPhone.xib"; sourceTree = "<group>"; };
 		795EAD46177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DomoLogo-header-iphone@2x.png"; sourceTree = "<group>"; };
 		795EAD48177A836600EEC7AF /* DORequestAdviceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DORequestAdviceVC.h; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 		794FDD9517B3E0F700624BC5 /* Pre-load */ = {
 			isa = PBXGroup;
 			children = (
+				794FDDA417B954C500624BC5 /* seedDatabase.sqlite */,
 				794FDD9917B439F400624BC5 /* domoDemoData.json */,
 			);
 			name = "Pre-load";
@@ -880,6 +883,7 @@
 				794FDD8F17B3DC9600624BC5 /* domoInfobutton.png in Resources */,
 				794FDD9317B3E06500624BC5 /* patternsquare_green.png in Resources */,
 				794FDD9A17B439F400624BC5 /* domoDemoData.json in Resources */,
+				794FDDA517B954C500624BC5 /* seedDatabase.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

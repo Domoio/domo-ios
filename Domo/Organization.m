@@ -14,7 +14,7 @@
 @implementation Organization
 
 @dynamic organizationID;
-@dynamic displayNameString;
+@dynamic displayName;
 @dynamic supportAreas;
 @dynamic usersAuthCode;
 @dynamic usageDescription;
@@ -24,7 +24,7 @@
 +(RKEntityMapping*) entityMapping{
     RKEntityMapping* mapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass(Organization.class) inManagedObjectStore:[RKObjectManager sharedManager].managedObjectStore];
     [mapping addAttributeMappingsFromArray:@[@"accessToken",@"displayName",@"organizationID",@"usageDescription"]];
-    [mapping addRelationshipMappingWithSourceKeyPath:@"SupportAreas" mapping:[SupportArea entityMapping]];
+    [mapping addRelationshipMappingWithSourceKeyPath:@"supportAreas" mapping:[SupportArea entityMapping]];
     mapping.identificationAttributes = @[ @"organizationID" ];
     
     return mapping;

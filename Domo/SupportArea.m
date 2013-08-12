@@ -15,6 +15,7 @@
 @dynamic identifier;
 @dynamic name;
 @dynamic organization;
+@dynamic adviceRequests;
 
 +(RKEntityMapping*) entityMapping{
     RKEntityMapping* mapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass(SupportArea.class) inManagedObjectStore:[RKObjectManager sharedManager].managedObjectStore];
