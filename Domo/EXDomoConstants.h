@@ -7,9 +7,9 @@
 //
 
 
-#define DEV_MUTE 1
+#define DEV_MUTE 0
 #define DEV_STATE_RESET 1
-#define DEV_MAKE_DB_SEED 1
+#define DEV_MAKE_DB_SEED 0
 
 #ifdef RELEASE
 #ifdef DEV_STATE_RESET

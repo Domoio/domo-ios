@@ -17,6 +17,8 @@ profile
 *.xcuserstate
 *.xcsettings
 
+*xcuserdata/*
+
 pods/
 
 *.perspective

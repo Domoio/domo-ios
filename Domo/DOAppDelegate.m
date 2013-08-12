@@ -17,6 +17,7 @@
 }
 -(void) setupDatabases;
 -(void) setObjectMappings;
+-(NSString*) seedDatabasePath;
 
 @end
 
@@ -57,7 +58,7 @@
     RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
     NSString *storePath = [RKApplicationDataDirectory() stringByAppendingPathComponent:storeName];
     NSError *error = nil;
-    [managedObjectStore addSQLitePersistentStoreAtPath:storePath fromSeedDatabaseAtPath:nil withConfiguration:nil options:nil error:&error];
+    [managedObjectStore addSQLitePersistentStoreAtPath:storePath fromSeedDatabaseAtPath:[self seedDatabasePath] withConfiguration:nil options:nil error:&error];
     [managedObjectStore createManagedObjectContexts];
     
     // Configure MagicalRecord to use RestKit's Core Data stack
@@ -76,6 +77,7 @@
     
     
     #if DEV_MAKE_DB_SEED == 1
+    #warning making a seed database, not fit for release
     [self generateSeedDatabase];
     #endif
 }
@@ -101,6 +103,8 @@
     
 }
 
+
+
 -(void) generateSeedDatabase{
     
     RKObjectManager *objectManager = [RKObjectManager sharedManager];
@@ -109,7 +113,7 @@
     //importObjectsFromItemAtPath:withMapping:keyPath:error //for organizations keypath
     //importObjectsFromItemAtPath:withMapping:keyPath:error //for adviceRequests keypath
 
-    NSString *seedPath = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"seedDatabase.sqlite"];
+    NSString *seedPath = [self seedDatabasePath];
     [[NSFileManager defaultManager] removeItemAtPath:seedPath error:nil];
     
     RKManagedObjectImporter *importer = [[RKManagedObjectImporter alloc] initWithManagedObjectModel:objectManager.managedObjectStore.managedObjectModel storePath:seedPath];
@@ -124,7 +128,12 @@
     if (success) {
         [importer logSeedingInfo];
     }
+}
+
+-(NSString*) seedDatabasePath{
+    NSString *seedPath = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"seedDatabase.sqlite"];
     
+    return seedPath;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application{
