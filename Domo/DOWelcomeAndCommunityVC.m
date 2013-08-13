@@ -35,4 +35,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)chooseCommunityButtonPressed:(id)sender {
+    [self.delegate welcomeAndCommunityVCWantsDisplayCommunityChooser:self];
+}
 @end

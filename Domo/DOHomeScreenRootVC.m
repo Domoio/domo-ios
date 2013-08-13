@@ -48,6 +48,7 @@ const float askAdviceHandleHeight = 48;
 	[self.mainContentScrollView setDelegate:self];
 
 	self.welcomeCommunityHeader = [[DOWelcomeAndCommunityVC alloc] initWithNibName:nil bundle:nil];
+    self.welcomeCommunityHeader.delegate = self;
 	self.welcomeCommunityHeader.view.layer.shadowColor = UIColor.blackColor.CGColor;
 	self.welcomeCommunityHeader.view.layer.shadowOffset = CGSizeMake(0, 1);
 	self.welcomeCommunityHeader.view.layer.shadowOpacity = 0.2;
@@ -140,11 +141,7 @@ const float askAdviceHandleHeight = 48;
 
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 -(void) scrollViewWillBeginDragging:(UIScrollView *)scrollView{
 	[[[UIResponder new] currentFirstResponder] resignFirstResponder];
@@ -290,10 +287,66 @@ const float askAdviceHandleHeight = 48;
     }
 }
 
+
+#pragma mark community 
+
+- (DOCommunityChooserVC*) communityChooser{
+    if (_communityChooser == nil){
+        _communityChooser = [[DOCommunityChooserVC alloc] init];
+        _communityChooser.delegate = self;
+    }
+    return _communityChooser;
+}
+
+#pragma mark - DODelegation
+- (void) welcomeAndCommunityVCWantsDisplayCommunityChooser:(DOWelcomeAndCommunityVC*)viewController{
+    
+    //add to view, draw happens at end of loop
+    [self.view addSubview:self.communityChooser.view];
+
+    //save first origin of chooser
+    CGPoint originalChooserOrigin = self.communityChooser.communityChooserView.origin;
+    //set pre-animate origin of *chooser*
+    self.communityChooser.communityChooserView.origin =  CGPointMake(self.communityChooser.communityChooserView.origin.x, - 1.0 * self.communityChooser.view.size.height);
+    
+    //set all alpha to zero
+    self.communityChooser.view.alpha = 0;
+    
+    [UIView animateWithDuration:.4 animations:^{
+        self.communityChooser.communityChooserView.origin = originalChooserOrigin;
+        self.communityChooser.view.alpha = 1;
+    }];
+}
+
+-(void) communityChooserDidFinish:(DOCommunityChooserVC*)chooser{
+    
+    [UIView animateWithDuration:.3 animations:^{
+        self.communityChooser.view.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self.communityChooser.view removeFromSuperview];
+    }];
+    
+}
+
+-(void) communityChooserDidSelectOrganization:(Organization*)organization withChooser:(DOCommunityChooserVC*)chooser{
+    
+}
+
+
+#pragma mark - addenda
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+    if ([self.communityChooser.view superview] == nil){
+        _communityChooser = nil;
+    }
+}
+
+
 -(void) dealloc{
 	[self removeObserver:self forKeyPath:@"frame"];
 }
-
 
 
 

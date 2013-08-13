@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "SupportArea.h"
+#import "NICellFactory.h"
 
 @class AdviceRequest;
 
-@interface Organization : NSManagedObject
+@interface Organization : NSManagedObject <NICellObject>
 
 @property (nonatomic, retain) NSString * organizationID;
 @property (nonatomic, retain) NSString * displayName;

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Organization.h"
+#import "NITableViewModel.h"
 
 @class DOCommunityChooserVC;
 
@@ -18,13 +19,24 @@
 
 @end
 
-@interface DOCommunityChooserVC : UIViewController
+@interface DOCommunityChooserVC : UIViewController <NITableViewModelDelegate, UITableViewDelegate,NSFetchedResultsControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *communityNameTextField;
-@property (weak, nonatomic) IBOutlet UITableView *communityChooserTableView;
 @property (weak, nonatomic) IBOutlet UIView *communityChooserView;
 @property (weak, nonatomic) IBOutlet UIView *communityChooserBackgroundView;
+
+@property (nonatomic, strong) NSArray *			displayedObjects;
+@property (nonatomic, strong) NITableViewModel*	tvModel;
+@property (nonatomic, strong) NSFetchedResultsController * fetchController;
+@property (nonatomic, strong) IBOutlet UITableView * tableView;
 
 
 - (IBAction)communityChooserBackgroundViewTapped:(UITapGestureRecognizer *)sender;
 
+@property (weak, nonatomic) id<DOCommunityChooserVCDelegate> delegate;
+
+
+@end
+
+
+@interface communityChooserBackgroundView : UIView
 @end

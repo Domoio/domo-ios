@@ -17,10 +17,10 @@
 }
 -(void) setupDatabases;
 -(void) setObjectMappings;
--(NSString*) seedDatabasePath;
 
 @end
 
+static NSString * seedDatabaseName = @"seedDatabase.sqlite";
 
 // Use a class extension to expose access to MagicalRecord's private setter methods
 @interface NSManagedObjectContext ()
@@ -58,7 +58,7 @@
     RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
     NSString *storePath = [RKApplicationDataDirectory() stringByAppendingPathComponent:storeName];
     NSError *error = nil;
-    [managedObjectStore addSQLitePersistentStoreAtPath:storePath fromSeedDatabaseAtPath:[self seedDatabasePath] withConfiguration:nil options:nil error:&error];
+    [managedObjectStore addSQLitePersistentStoreAtPath:storePath fromSeedDatabaseAtPath:[[NSBundle mainBundle] pathForResource:seedDatabaseName ofType:nil] withConfiguration:nil options:nil error:&error];
     [managedObjectStore createManagedObjectContexts];
     
     // Configure MagicalRecord to use RestKit's Core Data stack
@@ -113,7 +113,7 @@
     //importObjectsFromItemAtPath:withMapping:keyPath:error //for organizations keypath
     //importObjectsFromItemAtPath:withMapping:keyPath:error //for adviceRequests keypath
 
-    NSString *seedPath = [self seedDatabasePath];
+    NSString *seedPath = [RKApplicationDataDirectory() stringByAppendingPathComponent:seedDatabaseName];
     [[NSFileManager defaultManager] removeItemAtPath:seedPath error:nil];
     
     RKManagedObjectImporter *importer = [[RKManagedObjectImporter alloc] initWithManagedObjectModel:objectManager.managedObjectStore.managedObjectModel storePath:seedPath];
@@ -130,11 +130,6 @@
     }
 }
 
--(NSString*) seedDatabasePath{
-    NSString *seedPath = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"seedDatabase.sqlite"];
-    
-    return seedPath;
-}
 
 - (void)applicationWillResignActive:(UIApplication *)application{
 }

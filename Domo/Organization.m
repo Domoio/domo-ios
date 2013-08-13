@@ -9,6 +9,7 @@
 #import "Organization.h"
 #import "AdviceRequest.h"
 #import "SupportArea.h"
+#import "DOCommunityCell.h"
 
 
 @implementation Organization
@@ -36,6 +37,10 @@
     [requestMapping addRelationshipMappingWithSourceKeyPath:@"responses" mapping:[SupportArea requestMapping]];
 
     return requestMapping;
+}
+
+- (Class)cellClass{
+	return [DOCommunityCell class];
 }
 
 

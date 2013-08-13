@@ -31,6 +31,7 @@
 		790B086D177B7FD1005C6308 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 790B0869177B7FD1005C6308 /* CoreGraphics.framework */; };
 		792A8AE617BA6163004BA476 /* DOCommunityChooserVC-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 792A8AE517BA6163004BA476 /* DOCommunityChooserVC-iPhone.xib */; };
 		792A8AEC17BA78DD004BA476 /* DOCommunityChooserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A8AEB17BA78DD004BA476 /* DOCommunityChooserVC.m */; };
+		792A8AEF17BAA30F004BA476 /* DOCommunityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A8AEE17BAA30F004BA476 /* DOCommunityCell.m */; };
 		794FDD8A17B3DB4700624BC5 /* domoChoosebutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 794FDD8817B3DB4700624BC5 /* domoChoosebutton.png */; };
 		794FDD8B17B3DB4700624BC5 /* domoDetailbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 794FDD8917B3DB4700624BC5 /* domoDetailbutton.png */; };
 		794FDD8E17B3DC9600624BC5 /* domoBackbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 794FDD8C17B3DC9600624BC5 /* domoBackbutton.png */; };
@@ -178,6 +179,8 @@
 		792A8AE517BA6163004BA476 /* DOCommunityChooserVC-iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DOCommunityChooserVC-iPhone.xib"; sourceTree = "<group>"; };
 		792A8AEA17BA78DD004BA476 /* DOCommunityChooserVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOCommunityChooserVC.h; sourceTree = "<group>"; };
 		792A8AEB17BA78DD004BA476 /* DOCommunityChooserVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOCommunityChooserVC.m; sourceTree = "<group>"; };
+		792A8AED17BAA30F004BA476 /* DOCommunityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOCommunityCell.h; sourceTree = "<group>"; };
+		792A8AEE17BAA30F004BA476 /* DOCommunityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOCommunityCell.m; sourceTree = "<group>"; };
 		794FDD8817B3DB4700624BC5 /* domoChoosebutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = domoChoosebutton.png; sourceTree = "<group>"; };
 		794FDD8917B3DB4700624BC5 /* domoDetailbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = domoDetailbutton.png; sourceTree = "<group>"; };
 		794FDD8C17B3DC9600624BC5 /* domoBackbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = domoBackbutton.png; sourceTree = "<group>"; };
@@ -435,6 +438,8 @@
 		792A8AE917BA64FB004BA476 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				792A8AED17BAA30F004BA476 /* DOCommunityCell.h */,
+				792A8AEE17BAA30F004BA476 /* DOCommunityCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1026,6 +1031,7 @@
 				7977BAD117AB176C005A28AF /* Response.m in Sources */,
 				794FDD9D17B9243300624BC5 /* SupportArea.m in Sources */,
 				792A8AEC17BA78DD004BA476 /* DOCommunityChooserVC.m in Sources */,
+				792A8AEF17BAA30F004BA476 /* DOCommunityCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
