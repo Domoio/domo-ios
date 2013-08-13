@@ -29,6 +29,8 @@
 		790B086B177B7FD1005C6308 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 790B0867177B7FD1005C6308 /* CoreText.framework */; };
 		790B086C177B7FD1005C6308 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 790B0868177B7FD1005C6308 /* QuartzCore.framework */; };
 		790B086D177B7FD1005C6308 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 790B0869177B7FD1005C6308 /* CoreGraphics.framework */; };
+		792A8AE617BA6163004BA476 /* DOCommunityChooserVC-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 792A8AE517BA6163004BA476 /* DOCommunityChooserVC-iPhone.xib */; };
+		792A8AEC17BA78DD004BA476 /* DOCommunityChooserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A8AEB17BA78DD004BA476 /* DOCommunityChooserVC.m */; };
 		794FDD8A17B3DB4700624BC5 /* domoChoosebutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 794FDD8817B3DB4700624BC5 /* domoChoosebutton.png */; };
 		794FDD8B17B3DB4700624BC5 /* domoDetailbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 794FDD8917B3DB4700624BC5 /* domoDetailbutton.png */; };
 		794FDD8E17B3DC9600624BC5 /* domoBackbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 794FDD8C17B3DC9600624BC5 /* domoBackbutton.png */; };
@@ -173,6 +175,9 @@
 		790B0867177B7FD1005C6308 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		790B0868177B7FD1005C6308 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		790B0869177B7FD1005C6308 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		792A8AE517BA6163004BA476 /* DOCommunityChooserVC-iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DOCommunityChooserVC-iPhone.xib"; sourceTree = "<group>"; };
+		792A8AEA17BA78DD004BA476 /* DOCommunityChooserVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOCommunityChooserVC.h; sourceTree = "<group>"; };
+		792A8AEB17BA78DD004BA476 /* DOCommunityChooserVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOCommunityChooserVC.m; sourceTree = "<group>"; };
 		794FDD8817B3DB4700624BC5 /* domoChoosebutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = domoChoosebutton.png; sourceTree = "<group>"; };
 		794FDD8917B3DB4700624BC5 /* domoDetailbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = domoDetailbutton.png; sourceTree = "<group>"; };
 		794FDD8C17B3DC9600624BC5 /* domoBackbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = domoBackbutton.png; sourceTree = "<group>"; };
@@ -427,6 +432,13 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
+		792A8AE917BA64FB004BA476 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		794FDD9517B3E0F700624BC5 /* Pre-load */ = {
 			isa = PBXGroup;
 			children = (
@@ -572,6 +584,10 @@
 				79C2110F177C8CE800D7F984 /* DOMyQuestionsVC.h */,
 				79C21110177C8CE800D7F984 /* DOMyQuestionsVC.m */,
 				79C21111177C8CE800D7F984 /* DOMyQuestionsVC-iPhone.xib */,
+				792A8AEA17BA78DD004BA476 /* DOCommunityChooserVC.h */,
+				792A8AEB17BA78DD004BA476 /* DOCommunityChooserVC.m */,
+				792A8AE517BA6163004BA476 /* DOCommunityChooserVC-iPhone.xib */,
+				792A8AE917BA64FB004BA476 /* Cells */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -884,6 +900,7 @@
 				794FDD9317B3E06500624BC5 /* patternsquare_green.png in Resources */,
 				794FDD9A17B439F400624BC5 /* domoDemoData.json in Resources */,
 				794FDDA517B954C500624BC5 /* seedDatabase.sqlite in Resources */,
+				792A8AE617BA6163004BA476 /* DOCommunityChooserVC-iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1008,6 +1025,7 @@
 				7977BACE17AB1753005A28AF /* Organization.m in Sources */,
 				7977BAD117AB176C005A28AF /* Response.m in Sources */,
 				794FDD9D17B9243300624BC5 /* SupportArea.m in Sources */,
+				792A8AEC17BA78DD004BA476 /* DOCommunityChooserVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
