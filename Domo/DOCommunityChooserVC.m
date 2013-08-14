@@ -71,6 +71,8 @@
 
 -(NSArray*)displayedObjects{
 	if (_displayedObjects == nil){
+        //compound predicate by name or if is current is true
+        //sort by first is active then by name
 		self.fetchController = [Organization fetchAllGroupedBy:nil withPredicate:nil sortedBy:@"displayName" ascending:TRUE delegate:self];
 		[self.fetchController performFetch:nil];
 		_displayedObjects = [self.fetchController fetchedObjects];
@@ -87,9 +89,27 @@
 }
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:TRUE];
     //unset "active" community, set "active" community, then tell delegate
 //    [self.delegate communityChooserDidFinish:self];
+    
+    
+    double delayInSeconds = 0.5f;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        Organization * selectedOrganization = [[self displayedObjects] objectAtIndex:indexPath.row];
+        if ([[selectedOrganization isCurrentActive] boolValue] == FALSE){
+            //unset "active" community, set "active" community
+            Organization * currentActive = [Organization findFirstByAttribute:@"isCurrentActive" withValue:@(YES)];
+            [currentActive setIsCurrentActive:@(NO)];
+            
+            [selectedOrganization setIsCurrentActive:@(YES)];
+            
+        }
+
+    });
+    
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:TRUE];
 }
 
 
@@ -102,8 +122,10 @@
 	
 	UITableViewCell * cell =  [NICellFactory tableViewModel:tableViewModel cellForTableView:tableView atIndexPath:indexPath withObject:object];
     
-    if (indexPath.row == 0){
+    if ([[[[self displayedObjects] objectAtIndex:indexPath.row] isCurrentActive] boolValue]){
         [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    }else{
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
     }
     
     return cell;

@@ -53,6 +53,12 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
     [[NSFileManager new] removeItemAtURL:url error:nil];
     #endif
     
+    #if DEV_MAKE_DB_SEED == 1
+    #warning making a seed database, not fit for release
+    [self generateSeedDatabase];
+    exit(1);
+    #endif
+    
     
     NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
@@ -69,17 +75,12 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
     
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://domo-io-staging.herokuapp.com/apiv1/"]];
     objectManager.managedObjectStore = managedObjectStore;
-
+    
     [RKObjectManager setSharedManager:objectManager];
     
     [self setObjectMappings];
     
     
-    
-    #if DEV_MAKE_DB_SEED == 1
-    #warning making a seed database, not fit for release
-    [self generateSeedDatabase];
-    #endif
 }
 
 -(void) setObjectMappings{
@@ -106,9 +107,14 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
 
 
 -(void) generateSeedDatabase{
+    //we'll do it all our way, the app will quit after anyway
     
-    RKObjectManager *objectManager = [RKObjectManager sharedManager];
-
+    NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
+    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://domo-io-staging.herokuapp.com/apiv1/"]];
+    objectManager.managedObjectStore = managedObjectStore;
+    
+    [RKObjectManager setSharedManager:objectManager];
     
     //importObjectsFromItemAtPath:withMapping:keyPath:error //for organizations keypath
     //importObjectsFromItemAtPath:withMapping:keyPath:error //for adviceRequests keypath
@@ -116,7 +122,7 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
     NSString *seedPath = [RKApplicationDataDirectory() stringByAppendingPathComponent:seedDatabaseName];
     [[NSFileManager defaultManager] removeItemAtPath:seedPath error:nil];
     
-    RKManagedObjectImporter *importer = [[RKManagedObjectImporter alloc] initWithManagedObjectModel:objectManager.managedObjectStore.managedObjectModel storePath:seedPath];
+    RKManagedObjectImporter *importer = [[RKManagedObjectImporter alloc] initWithManagedObjectModel:managedObjectModel storePath:seedPath];
     
     // Import the files "articles.json" from the Main Bundle using our RKEntityMapping
     // JSON looks like {"articles": [ {"title": "Article 1", "body": "Text", "author": "Blake" ]}

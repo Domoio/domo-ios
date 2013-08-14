@@ -17,6 +17,7 @@
 
 @property (nonatomic, retain) NSString * organizationID;
 @property (nonatomic, retain) NSString * displayName;
+@property (nonatomic, retain) NSNumber * isCurrentActive;
 @property (nonatomic, retain) NSSet *supportAreas;
 @property (nonatomic, retain) NSString * usersAuthCode;
 @property (nonatomic, retain) NSString * usageDescription;

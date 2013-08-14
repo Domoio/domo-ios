@@ -16,6 +16,7 @@
 
 @dynamic organizationID;
 @dynamic displayName;
+@dynamic isCurrentActive;
 @dynamic supportAreas;
 @dynamic usersAuthCode;
 @dynamic usageDescription;

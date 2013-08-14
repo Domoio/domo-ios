@@ -16,6 +16,11 @@
     if (self) {
         // Initialization code
         self.textLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:14.0];
+        
+        
+        UIView *selectionColor = [[UIView alloc] init];
+        selectionColor.backgroundColor = [UIColor colorWithRed:(0/255.0) green:(150/255.0) blue:(71/255.0) alpha:1];
+        self.selectedBackgroundView = selectionColor;
     }
     return self;
 }
