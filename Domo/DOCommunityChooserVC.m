@@ -20,6 +20,7 @@
     return self;
 }
 
+
 -(void) viewDidLoad{
     [super viewDidLoad];
     
@@ -28,7 +29,19 @@
     self.communityChooserView.layer.shadowColor = UIColor.blackColor.CGColor;
 	self.communityChooserView.layer.shadowOffset = CGSizeMake(0, 1);
 	self.communityChooserView.layer.shadowOpacity = 0.3f;
-    self.communityChooserView.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.communityChooserView.bounds].CGPath;;
+    
+    UIBezierPath * coolPath = nil;
+    
+    
+    coolPath = [UIBezierPath bezierPath];
+    [coolPath moveToPoint:CGPointZero];
+    [coolPath addLineToPoint:CGPointMake(self.communityChooserView.width, 0)];
+    [coolPath addLineToPoint:CGPointMake(self.communityChooserView.width, self.communityChooserView.height)];
+    [coolPath addQuadCurveToPoint:CGPointMake(0, self.communityChooserView.height) controlPoint:CGPointMake(self.communityChooserView.width/2.0f, self.communityChooserView.height/1.072f)];
+    [coolPath addLineToPoint:CGPointZero];
+    [coolPath closePath];
+
+    self.communityChooserView.layer.shadowPath = coolPath.CGPath;
     
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self.tvModel];
@@ -76,7 +89,7 @@
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:TRUE];
     //unset "active" community, set "active" community, then tell delegate
-    [self.delegate communityChooserDidFinish:self];
+//    [self.delegate communityChooserDidFinish:self];
 }
 
 

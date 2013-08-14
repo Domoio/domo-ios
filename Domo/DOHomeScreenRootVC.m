@@ -320,9 +320,13 @@ const float askAdviceHandleHeight = 48;
 
 -(void) communityChooserDidFinish:(DOCommunityChooserVC*)chooser{
     
+    CGPoint originalChooserOrigin = self.communityChooser.communityChooserView.origin;
+        
     [UIView animateWithDuration:.3 animations:^{
         self.communityChooser.view.alpha = 0;
+        self.communityChooser.communityChooserView.origin =  CGPointMake(self.communityChooser.communityChooserView.origin.x, - 1.0 * self.communityChooser.view.size.height);
     } completion:^(BOOL finished) {
+        self.communityChooser.communityChooserView.origin = originalChooserOrigin;
         [self.communityChooser.view removeFromSuperview];
     }];
     
