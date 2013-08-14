@@ -23,6 +23,11 @@
 @dynamic adviceRequests;
 
 
++(Organization*)activeOrganization{
+    Organization * currentActive = [Organization findFirstByAttribute:@"isCurrentActive" withValue:@(YES)];
+    return currentActive;
+}
+
 +(RKEntityMapping*) entityMapping{
     RKEntityMapping* mapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass(Organization.class) inManagedObjectStore:[RKObjectManager sharedManager].managedObjectStore];
     [mapping addAttributeMappingsFromArray:@[@"accessToken",@"displayName",@"organizationID",@"usageDescription"]];

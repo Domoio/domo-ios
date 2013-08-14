@@ -11,6 +11,8 @@
 #import "SupportArea.h"
 #import "NICellFactory.h"
 
+static NSString * activeOrganizationChangedNotification = @"activeOrganizationChangedNotification";
+
 @class AdviceRequest;
 
 @interface Organization : NSManagedObject <NICellObject>
@@ -22,6 +24,9 @@
 @property (nonatomic, retain) NSString * usersAuthCode;
 @property (nonatomic, retain) NSString * usageDescription;
 @property (nonatomic, retain) NSSet *adviceRequests;
+
+
++(Organization*) activeOrganization;
 
 +(RKEntityMapping*) entityMapping;
 +(RKObjectMapping*) requestMapping;

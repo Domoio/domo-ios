@@ -104,6 +104,8 @@
             
             [selectedOrganization setIsCurrentActive:@(YES)];
             
+            [[NSNotificationCenter defaultCenter] postNotificationName:activeOrganizationChangedNotification object:selectedOrganization];
+            
         }
 
     });

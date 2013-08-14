@@ -9,7 +9,7 @@
 #import "DORequestAdviceVC.h"
 #import <QuartzCore/QuartzCore.h>
 @interface DORequestAdviceVC ()
-
+-(void) activeOrganizationUpdated:(id)sender;
 @end
 
 @implementation DORequestAdviceVC{
@@ -35,6 +35,16 @@
 	placeholderText = self.adviceRequestNoteView.text;
 	[self.adviceRequestNoteView setDelegate:self];
 
+    
+    [self activeOrganizationUpdated:self];
+    
+    //respond to notification about org change
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(activeOrganizationUpdated:) name:activeOrganizationChangedNotification object:nil];
+}
+
+-(void) activeOrganizationUpdated:(NSNotification*)sender{
+    self.communityLabel.text = [[Organization activeOrganization] displayName];
+    
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -53,6 +63,16 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)supportAreaChooserButtonPressed:(id)sender {
+}
+
+- (IBAction)askButtonPressed:(id)sender {
+}
+
+-(void) dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

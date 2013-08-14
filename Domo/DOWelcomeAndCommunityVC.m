@@ -9,7 +9,7 @@
 #import "DOWelcomeAndCommunityVC.h"
 
 @interface DOWelcomeAndCommunityVC ()
-
+-(void) activeOrganizationUpdated:(id)sender;
 @end
 
 @implementation DOWelcomeAndCommunityVC
@@ -26,7 +26,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+
+    [self activeOrganizationUpdated:self];
+    //respond to notification about org change
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(activeOrganizationUpdated:) name:activeOrganizationChangedNotification object:nil];
+
+}
+
+-(void) activeOrganizationUpdated:(id)sender{
+    self.communityLabel.text = [[Organization activeOrganization] displayName];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,4 +46,9 @@
 - (IBAction)chooseCommunityButtonPressed:(id)sender {
     [self.delegate welcomeAndCommunityVCWantsDisplayCommunityChooser:self];
 }
+
+-(void) dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 @end

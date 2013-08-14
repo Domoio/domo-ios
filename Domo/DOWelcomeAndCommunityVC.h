@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Organization.h"
 
 @class DOWelcomeAndCommunityVC;
 
@@ -18,5 +19,6 @@
 - (IBAction)chooseCommunityButtonPressed:(id)sender;
 
 @property (weak, nonatomic) id<DOWelcomeAndCommunityVCDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UILabel *communityLabel;
 
 @end
