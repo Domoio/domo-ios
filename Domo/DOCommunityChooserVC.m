@@ -10,6 +10,11 @@
 #import <QuartzCore/QuartzCore.h>
 #import "NICellFactory.h"
 
+@interface DOCommunityChooserVC ()
+-(NSPredicate *) searchPredicate;
+-(void) updateSearch;
+@end
+
 @implementation DOCommunityChooserVC
 
 -(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
@@ -46,11 +51,28 @@
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self.tvModel];
     
+    
+    [self.communityNameTextField becomeFirstResponder];
 }
 
 
 - (IBAction)communityChooserBackgroundViewTapped:(UITapGestureRecognizer *)sender {
     [self.delegate communityChooserDidFinish:self];
+}
+
+- (IBAction)communityNameTextFieldChanged:(id)sender {
+
+    [self updateSearch];
+}
+
+-(void) updateSearch{
+    [self.fetchController.fetchRequest setPredicate:[self searchPredicate]];
+    [self.fetchController performFetch:nil];
+    _displayedObjects = [self.fetchController fetchedObjects];
+	self.tvModel = nil;
+	
+	[self.tableView setDataSource:self.tvModel];
+	[self.tableView reloadData];
 }
 
 
@@ -69,11 +91,34 @@
 	return _tvModel;
 }
 
+-(NSPredicate *) searchPredicate{
+    
+    NSString * searchQuery = self.communityNameTextField.text;
+    
+    NSMutableArray * preds = [@[] mutableCopy];
+    
+    NSPredicate * searchQueryPredicate = nil;
+    if (StringHasText(searchQuery)){
+        searchQueryPredicate = [NSPredicate predicateWithFormat:@"displayName contains[cd] %@", searchQuery];
+        [preds addObject:searchQueryPredicate];
+    }else{
+        searchQueryPredicate = [NSPredicate predicateWithFormat:@"displayName.length > 0"];
+        [preds addObject:searchQueryPredicate];
+    }
+    
+    NSPredicate * isActivePredicate = [NSPredicate predicateWithFormat:@"(isCurrentActive == TRUE)"];
+    [preds addObject:isActivePredicate];
+    
+    NSPredicate * pred = [NSCompoundPredicate orPredicateWithSubpredicates:preds];
+    
+    return pred;
+}
+
 -(NSArray*)displayedObjects{
 	if (_displayedObjects == nil){
         //compound predicate by name or if is current is true
         //sort by first is active then by name
-		self.fetchController = [Organization fetchAllGroupedBy:nil withPredicate:nil sortedBy:nil ascending:FALSE delegate:self];
+		self.fetchController = [Organization fetchAllGroupedBy:nil withPredicate:[self searchPredicate] sortedBy:nil ascending:FALSE delegate:self];
         [self.fetchController.fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:TRUE]]];
 		[self.fetchController performFetch:nil];
 		_displayedObjects = [self.fetchController fetchedObjects];

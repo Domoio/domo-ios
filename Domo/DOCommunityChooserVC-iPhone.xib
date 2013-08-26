@@ -81,6 +81,7 @@
 								<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 								<float key="IBUIMinimumFontSize">12</float>
 								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+									<int key="IBUIReturnKeyType">6</int>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
@@ -101,6 +102,7 @@
 								<string key="NSFrame">{{0, 57}, {300, 230}}</string>
 								<reference key="NSSuperview" ref="290242581"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor" id="81748139">
 									<int key="NSColorSpace">3</int>
@@ -230,6 +232,15 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">communityNameTextFieldChanged:</string>
+						<reference key="source" ref="111705813"/>
+						<reference key="destination" ref="841351856"/>
+						<int key="IBEventType">18</int>
+					</object>
+					<int key="connectionID">19</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">communityChooserBackgroundViewTapped:</string>
 						<reference key="source" ref="902187458"/>
 						<reference key="destination" ref="841351856"/>
@@ -321,24 +332,27 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">17</int>
+			<int key="maxID">19</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">DOCommunityChooserVC</string>
 					<string key="superclassName">UIViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">communityChooserBackgroundViewTapped:</string>
-						<string key="NS.object.0">UITapGestureRecognizer</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">communityChooserBackgroundViewTapped:</string>
-						<object class="IBActionInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="communityChooserBackgroundViewTapped:">UITapGestureRecognizer</string>
+						<string key="communityNameTextFieldChanged:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="communityChooserBackgroundViewTapped:">
 							<string key="name">communityChooserBackgroundViewTapped:</string>
 							<string key="candidateClassName">UITapGestureRecognizer</string>
 						</object>
-					</object>
+						<object class="IBActionInfo" key="communityNameTextFieldChanged:">
+							<string key="name">communityNameTextFieldChanged:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="communityChooserBackgroundView">UIView</string>
 						<string key="communityChooserView">UIView</string>

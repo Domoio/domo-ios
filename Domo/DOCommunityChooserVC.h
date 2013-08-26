@@ -31,6 +31,7 @@
 
 
 - (IBAction)communityChooserBackgroundViewTapped:(UITapGestureRecognizer *)sender;
+- (IBAction)communityNameTextFieldChanged:(id)sender;
 
 @property (weak, nonatomic) id<DOCommunityChooserVCDelegate> delegate;
 
