@@ -60,11 +60,22 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
     #endif
     
     
+    NSString *seedPath = [[NSBundle mainBundle] pathForResource:seedDatabaseName ofType:nil];
+    
+    //so if the seed was created dynamically let's use it
+    if ([[NSFileManager defaultManager] fileExistsAtPath:seedPath] == TRUE){
+        seedPath = [RKApplicationDataDirectory() stringByAppendingPathComponent:seedDatabaseName];
+        #if IS_SHIPPING == 1
+        #warning make sure that this isn't printed out!
+        NSLog(@"Warning, dynamic seed at path used - compile and bundle b4 ship: %@", seedPath);
+        #endif
+    }
+    
     NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
     NSString *storePath = [RKApplicationDataDirectory() stringByAppendingPathComponent:storeName];
     NSError *error = nil;
-    [managedObjectStore addSQLitePersistentStoreAtPath:storePath fromSeedDatabaseAtPath:[[NSBundle mainBundle] pathForResource:seedDatabaseName ofType:nil] withConfiguration:nil options:nil error:&error];
+    [managedObjectStore addSQLitePersistentStoreAtPath:storePath fromSeedDatabaseAtPath:seedPath withConfiguration:nil options:nil error:&error];
     [managedObjectStore createManagedObjectContexts];
     
     // Configure MagicalRecord to use RestKit's Core Data stack
@@ -118,6 +129,8 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
     
     //importObjectsFromItemAtPath:withMapping:keyPath:error //for organizations keypath
     //importObjectsFromItemAtPath:withMapping:keyPath:error //for adviceRequests keypath
+    
+
 
     NSString *seedPath = [RKApplicationDataDirectory() stringByAppendingPathComponent:seedDatabaseName];
     [[NSFileManager defaultManager] removeItemAtPath:seedPath error:nil];
@@ -134,6 +147,7 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
     if (success) {
         [importer logSeedingInfo];
     }
+        
 }
 
 

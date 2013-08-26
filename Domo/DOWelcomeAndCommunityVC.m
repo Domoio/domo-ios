@@ -34,7 +34,12 @@
 }
 
 -(void) activeOrganizationUpdated:(id)sender{
-    self.communityLabel.text = [[Organization activeOrganization] displayName];
+    if ([Organization activeOrganization]){
+         self.communityLabel.text = [[Organization activeOrganization] displayName];
+    }else{
+        self.communityLabel.text = NSLocalizedString(@"Choose Your Community", @"select a community label");
+
+    }
 }
 
 - (void)didReceiveMemoryWarning

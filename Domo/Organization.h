@@ -11,7 +11,7 @@
 #import "SupportArea.h"
 #import "NICellFactory.h"
 
-static NSString * activeOrganizationChangedNotification = @"activeOrganizationChangedNotification";
+static NSString * const activeOrganizationChangedNotification = @"activeOrganizationChangedNotification";
 
 @class AdviceRequest;
 

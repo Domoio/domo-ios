@@ -15,7 +15,7 @@
     <entity name="Organization" representedClassName="Organization" syncable="YES">
         <attribute name="accessToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="isCurrentActive" optional="YES" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
+        <attribute name="isCurrentActive" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
         <attribute name="organizationID" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="usageDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="usersAuthCode" optional="YES" attributeType="String" syncable="YES"/>

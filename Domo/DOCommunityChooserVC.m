@@ -73,7 +73,8 @@
 	if (_displayedObjects == nil){
         //compound predicate by name or if is current is true
         //sort by first is active then by name
-		self.fetchController = [Organization fetchAllGroupedBy:nil withPredicate:nil sortedBy:@"displayName" ascending:TRUE delegate:self];
+		self.fetchController = [Organization fetchAllGroupedBy:nil withPredicate:nil sortedBy:nil ascending:FALSE delegate:self];
+        [self.fetchController.fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:TRUE]]];
 		[self.fetchController performFetch:nil];
 		_displayedObjects = [self.fetchController fetchedObjects];
 	}
@@ -82,6 +83,17 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller{
 	self.displayedObjects = [self.fetchController fetchedObjects];
+    
+    for (Organization * org in self.displayedObjects){
+        if ([org.isCurrentActive boolValue] == TRUE){
+            NSMutableArray * mut = [self.displayedObjects mutableCopy];
+            [mut removeObject:org];
+            [mut insertObject:org atIndex:0];
+            self.displayedObjects = mut;
+            break;
+        }
+    }
+    
 	self.tvModel = nil;
 	
 	[self.tableView setDataSource:self.tvModel];
