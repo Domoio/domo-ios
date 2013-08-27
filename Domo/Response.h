@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "NICellFactory.h"
 
 @class AdviceRequest;
 
-@interface Response : NSManagedObject
+@interface Response : NSManagedObject <NICellObject>
 
 @property (nonatomic, retain) NSDate * modifiedDate;
 @property (nonatomic, retain) NSString * responseID;

@@ -8,6 +8,7 @@
 
 #import "Response.h"
 #import "AdviceRequest.h"
+#import "DOMyQuestionsResponseCell.h"
 
 
 @implementation Response
@@ -19,6 +20,12 @@
 @dynamic isHelpful;
 @dynamic responderThanked;
 @dynamic adviceRequest;
+
+
+- (Class)cellClass{
+	return [DOMyQuestionsResponseCell class];
+}
+
 
 +(RKEntityMapping*) entityMapping{
     

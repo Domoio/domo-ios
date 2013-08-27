@@ -10,6 +10,7 @@
 #import "Response.h"
 #import "Organization.h"
 #import "SupportArea.h"
+#import "DOMyQuestionsRequestCell.h"
 
 @implementation AdviceRequest
 
@@ -24,6 +25,18 @@
 @dynamic organizationID;
 @dynamic supportAreaIdentifier;
 
+
+- (Class)cellClass{
+	return [DOMyQuestionsRequestCell class];
+}
+
+
+-(void) awakeFromInsert{
+    [super awakeFromInsert];
+
+    [self setCreatedDate:[NSDate date]];
+    [self setModifiedDate:[self createdDate]];
+}
 
 +(RKEntityMapping*) entityMapping{
     RKEntityMapping* mapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass(AdviceRequest.class) inManagedObjectStore:[RKObjectManager sharedManager].managedObjectStore];

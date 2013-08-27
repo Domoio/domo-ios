@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "SupportArea.h"
+#import "NICellFactory.h"
 
 
-@interface AdviceRequest : NSManagedObject
+
+@interface AdviceRequest : NSManagedObject <NICellObject>
 
 @property (nonatomic, retain) NSString * adviceRequestID;
 @property (nonatomic, retain) NSDate * modifiedDate;

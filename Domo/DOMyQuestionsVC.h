@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NITableViewModel.h"
+#import "NICellFactory.h"
 
-@interface DOMyQuestionsVC : UIViewController
+@interface DOMyQuestionsVC : UIViewController <NITableViewModelDelegate, UITableViewDelegate,NSFetchedResultsControllerDelegate >
+
+@property (nonatomic, strong) NSArray *			displayedObjects;
+@property (nonatomic, strong) NITableViewModel*	tvModel;
+@property (nonatomic, strong) NSFetchedResultsController * fetchController;
+@property (nonatomic, strong) IBOutlet UITableView * tableView;
 
 @end
