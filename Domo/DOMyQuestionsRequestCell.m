@@ -34,14 +34,14 @@
 	
     //comment the following for a cool effect
     self.styleView.backgroundColor = [UIColor whiteColor];
-	self.styleView.layer.borderColor = [UIColor colorWithWhite:0.55 alpha:0.15].CGColor;
-	self.styleView.layer.borderWidth = 1;
-	self.styleView.layer.cornerRadius = 0;
-	self.styleView.layer.shadowColor = UIColor.blackColor.CGColor;
-	self.styleView.layer.shadowOffset = CGSizeMake(0, 1);
-	self.styleView.layer.shadowOpacity = 0.2;
-	self.styleView.layer.shadowRadius = 2;
-	self.styleView.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.styleView.bounds].CGPath;
+//	self.styleView.layer.borderColor = [UIColor colorWithWhite:0.55 alpha:0.15].CGColor;
+//	self.styleView.layer.borderWidth = 1;
+//	self.styleView.layer.cornerRadius = 0;
+//	self.styleView.layer.shadowColor = UIColor.blackColor.CGColor;
+//	self.styleView.layer.shadowOffset = CGSizeMake(0, 1);
+//	self.styleView.layer.shadowOpacity = 0.2;
+//	self.styleView.layer.shadowRadius = 2;
+//	self.styleView.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.styleView.bounds].CGPath;
 
 }
 
@@ -77,7 +77,7 @@
 }
 
 + (CGFloat)heightForObject:(AdviceRequest*)request atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView{
-	return 107;
+	return 222;
 }
 
 @end

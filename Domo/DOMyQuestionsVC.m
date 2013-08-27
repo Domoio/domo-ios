@@ -50,8 +50,15 @@
 		self.fetchController = [AdviceRequest fetchAllGroupedBy:nil withPredicate:nil sortedBy:@"modifiedDate" ascending:FALSE delegate:self];
 		[self.fetchController performFetch:nil];
         
+        NSMutableArray * displayArray = [@[] mutableCopy];
+        
         //now grab responses for each and place in here
-		_displayedObjects = [self.fetchController fetchedObjects];
+        for (AdviceRequest * request in [self.fetchController fetchedObjects]){
+            [displayArray addObject:request];
+            [displayArray addObjectsFromArray:[[request responses] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"modifiedDate" ascending:FALSE]]]];
+        }
+        
+		_displayedObjects = displayArray;
 	}
 	return _displayedObjects;
 }
@@ -83,9 +90,16 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	CGFloat height = tableView.rowHeight;
 	id object = [(NITableViewModel *)tableView.dataSource objectAtIndexPath:indexPath];
+    id nextObject = nil;
+    if ([(NITableViewModel *)tableView.dataSource tableView:tableView numberOfRowsInSection:indexPath.section] > indexPath.row + 1){
+        nextObject = [(NITableViewModel *)tableView.dataSource objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section]];
+    }
 	id class = [object cellClass];
 	
-	const double spacing = 320;
+	double spacing = 0;
+    if ([[nextObject class] isEqual:[AdviceRequest class]] || nextObject == nil){
+        spacing = 320;
+    }
 	
 	if ([class respondsToSelector:@selector(heightForObject:atIndexPath:tableView:)]) {
 		height = [class heightForObject:object atIndexPath:indexPath tableView:tableView] + spacing;
