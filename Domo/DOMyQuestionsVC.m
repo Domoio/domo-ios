@@ -29,6 +29,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.tableView.decelerationRate = UIScrollViewDecelerationRateFast;
     [self.tableView setDataSource:self.tvModel];
 }
 
@@ -98,7 +99,7 @@
 	
 	double spacing = 0;
     if ([[nextObject class] isEqual:[AdviceRequest class]] || nextObject == nil){
-        spacing = 320;
+        spacing = 280;
     }
 	
 	if ([class respondsToSelector:@selector(heightForObject:atIndexPath:tableView:)]) {
@@ -107,7 +108,34 @@
 	return height;
 }
 
+#pragma mark - custom paging tableview
 
+-(void) scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
+    
+    NSIndexPath* indexPath = nil;
+    
+    
+    NSLog(@"Ip%@ for v %f",indexPath,velocity.y);
+    
+    if (velocity.y > .1){
+        //the issue is scrolling down when there is an AdviceResponse right before an AdviceRequest
+        //soo, if we determine whether the advice request comes right before another response, we can make the offset enormous
+        indexPath = [self.tableView indexPathForRowAtPoint:CGPointMake((*targetContentOffset).x, (*targetContentOffset).y + scrollView.height/2)];
+        NSIndexPath * fartherIndexPath = [self.tableView indexPathForRowAtPoint:CGPointMake((*targetContentOffset).x, (*targetContentOffset).y + scrollView.height/1.2)];
+        if ( [(NSObject*)[(NITableViewModel *)self.tableView.dataSource objectAtIndexPath:fartherIndexPath] isKindOfClass:[AdviceRequest class]]){
+            indexPath = fartherIndexPath;
+        }
+        
+        //we don't futz if we're already scrolled all the way down
+        if ((self.tableView.contentSize.height - (*targetContentOffset).y) > scrollView.height){
+            (*targetContentOffset) = [self.tableView rectForRowAtIndexPath:indexPath].origin;
+        }
+    }else if (velocity.y < -.3){
+        indexPath = [self.tableView indexPathForRowAtPoint:(*targetContentOffset)];
+        (*targetContentOffset) = [self.tableView rectForRowAtIndexPath:indexPath].origin;
+    }
+
+}
 
 
 @end
