@@ -24,6 +24,8 @@
 @dynamic supportArea;
 @dynamic organizationID;
 @dynamic supportAreaIdentifier;
+@dynamic isExpanded;
+
 
 
 - (Class)cellClass{

@@ -8,6 +8,7 @@
 
 #import "DOMyQuestionsVC.h"
 #import "AdviceRequest.h"
+#import "Response.h"
 
 @interface DOMyQuestionsVC ()
 
@@ -30,6 +31,7 @@
     // Do any additional setup after loading the view from its nib.
     
     self.tableView.decelerationRate = UIScrollViewDecelerationRateFast;
+    self.tableView.allowsSelection = TRUE;
     [self.tableView setDataSource:self.tvModel];
 }
 
@@ -108,15 +110,24 @@
 	return height;
 }
 
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    id object = [(NITableViewModel *)tableView.dataSource objectAtIndexPath:indexPath];
+    
+    if ([object isKindOfClass:AdviceRequest.class]){
+        [(AdviceRequest*)object setIsExpanded:@(!((AdviceRequest*)object).isExpanded.boolValue)];
+    }else if ([object isKindOfClass:Response.class]){
+        [(Response*)object setIsExpanded:@(!((Response*)object).isExpanded.boolValue)];
+    }
+    
+}
+
 #pragma mark - custom paging tableview
 
 -(void) scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
     
     NSIndexPath* indexPath = nil;
     
-    
-    NSLog(@"Ip%@ for v %f",indexPath,velocity.y);
-    
+        
     if (velocity.y > .1){
         //the issue is scrolling down when there is an AdviceResponse right before an AdviceRequest
         //soo, if we determine whether the advice request comes right before another response, we can make the offset enormous

@@ -26,13 +26,13 @@
 }
 
 -(void)setup{
-    
-    
+        
     UIView * subview  = [[UIView alloc] initWithFrame:self.bounds];
     [self insertSubview:subview atIndex:0];
     self.styleView = subview;
 	
     //comment the following for a cool effect
+    self.styleView.userInteractionEnabled = FALSE;
     self.styleView.backgroundColor = [UIColor whiteColor];
 //	self.styleView.layer.borderColor = [UIColor colorWithWhite:0.55 alpha:0.15].CGColor;
 //	self.styleView.layer.borderWidth = 1;
@@ -77,7 +77,14 @@
 }
 
 + (CGFloat)heightForObject:(AdviceRequest*)request atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView{
-	return 222;
+    const double cellHeight = 222;
+    const double defaultRequestTextHeight = 125;
+
+    if ([request isExpanded].boolValue){
+        CGSize sizeOfRequestText = [[request requestContent ] sizeWithFont:[UIFont fontWithName:@"HelveticaNeue" size:13] constrainedToSize:CGSizeMake(272, DBL_MAX) lineBreakMode:NSLineBreakByTruncatingTail];
+        
+        return cellHeight + sizeOfRequestText.height - defaultRequestTextHeight;
+    }else return cellHeight;
 }
 
 @end

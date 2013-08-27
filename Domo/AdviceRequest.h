@@ -25,6 +25,7 @@
 @property (nonatomic, retain) SupportArea *supportArea;
 @property (nonatomic, retain) NSString * organizationID;
 @property (nonatomic, retain) NSString * supportAreaIdentifier;
+@property (nonatomic, retain) NSNumber * isExpanded;
 
 
 +(RKEntityMapping*) entityMapping;

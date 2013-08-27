@@ -4,6 +4,7 @@
         <attribute name="accessCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="adviceRequestID" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="createdDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="isExpanded" optional="YES" transient="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="modifiedDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="organizationID" attributeType="String" syncable="YES"/>
         <attribute name="requestContent" optional="YES" attributeType="String" syncable="YES"/>
@@ -23,6 +24,7 @@
         <relationship name="supportAreas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SupportArea" inverseName="organization" inverseEntity="SupportArea" syncable="YES"/>
     </entity>
     <entity name="Response" representedClassName="Response" syncable="YES">
+        <attribute name="isExpanded" optional="YES" transient="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="isHelpful" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="modifiedDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="responderDisplayName" optional="YES" attributeType="String" syncable="YES"/>
@@ -38,9 +40,9 @@
         <relationship name="organization" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" inverseName="supportAreas" inverseEntity="Organization" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AdviceRequest" positionX="232" positionY="53" width="128" height="193"/>
+        <element name="AdviceRequest" positionX="232" positionY="53" width="128" height="210"/>
         <element name="Organization" positionX="-20" positionY="468" width="128" height="165"/>
-        <element name="Response" positionX="250" positionY="327" width="128" height="148"/>
+        <element name="Response" positionX="250" positionY="327" width="128" height="165"/>
         <element name="SupportArea" positionX="-164" positionY="180" width="128" height="103"/>
     </elements>
 </model>

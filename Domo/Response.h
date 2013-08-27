@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSString * responderDisplayName;
 @property (nonatomic, retain) NSNumber * isHelpful;
 @property (nonatomic, retain) NSNumber * responderThanked;
+@property (nonatomic, retain) NSNumber * isExpanded;
 @property (nonatomic, retain) AdviceRequest *adviceRequest;
 
 +(RKEntityMapping*) entityMapping;

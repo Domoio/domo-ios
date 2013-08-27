@@ -19,6 +19,7 @@
 @dynamic responderDisplayName;
 @dynamic isHelpful;
 @dynamic responderThanked;
+@dynamic isExpanded;
 @dynamic adviceRequest;
 
 
