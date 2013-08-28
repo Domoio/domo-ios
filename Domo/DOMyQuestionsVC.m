@@ -135,10 +135,6 @@
 
 -(void) scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
     
-    if (self.tableView.delegate == nil){
-        NSLog(@"%@",@"AHAHH");
-    }
-    
     NSIndexPath* indexPath = nil;
     
         

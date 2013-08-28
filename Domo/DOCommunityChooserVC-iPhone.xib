@@ -44,6 +44,7 @@
 						<array class="NSMutableArray" key="NSSubviews"/>
 						<string key="NSFrameSize">{320, 568}</string>
 						<reference key="NSSuperview" ref="1060161360"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="290242581"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="174490162">
@@ -63,6 +64,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{30, 12}, {240, 30}}</string>
 								<reference key="NSSuperview" ref="290242581"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="404839874"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -97,8 +99,9 @@
 							<object class="IBUITableView" id="801840278">
 								<reference key="NSNextResponder" ref="290242581"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{0, 50}, {300, 230}}</string>
+								<string key="NSFrame">{{0, 50}, {300, 234}}</string>
 								<reference key="NSSuperview" ref="290242581"/>
+								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor" id="81748139">
 									<int key="NSColorSpace">3</int>
@@ -119,6 +122,7 @@
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{268, 17}, {18, 19}}</string>
 								<reference key="NSSuperview" ref="290242581"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="801840278"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -150,6 +154,7 @@
 						</array>
 						<string key="NSFrame">{{10, 50}, {300, 287}}</string>
 						<reference key="NSSuperview" ref="1060161360"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="111705813"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -164,6 +169,7 @@
 				</array>
 				<string key="NSFrameSize">{320, 568}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="350367545"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<reference key="IBUIBackgroundColor" ref="174490162"/>
@@ -327,7 +333,64 @@
 			<nil key="sourceID"/>
 			<int key="maxID">19</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">DOCommunityChooserVC</string>
+					<string key="superclassName">UIViewController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="communityChooserBackgroundViewTapped:">UITapGestureRecognizer</string>
+						<string key="communityNameTextFieldChanged:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="communityChooserBackgroundViewTapped:">
+							<string key="name">communityChooserBackgroundViewTapped:</string>
+							<string key="candidateClassName">UITapGestureRecognizer</string>
+						</object>
+						<object class="IBActionInfo" key="communityNameTextFieldChanged:">
+							<string key="name">communityNameTextFieldChanged:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="communityChooserBackgroundView">UIView</string>
+						<string key="communityChooserView">UIView</string>
+						<string key="communityNameTextField">UITextField</string>
+						<string key="tableView">UITableView</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="communityChooserBackgroundView">
+							<string key="name">communityChooserBackgroundView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="communityChooserView">
+							<string key="name">communityChooserView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="communityNameTextField">
+							<string key="name">communityNameTextField</string>
+							<string key="candidateClassName">UITextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="tableView">
+							<string key="name">tableView</string>
+							<string key="candidateClassName">UITableView</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/DOCommunityChooserVC.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">communityChooserBackgroundView</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/communityChooserBackgroundView.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

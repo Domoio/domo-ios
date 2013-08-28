@@ -164,7 +164,6 @@
             [selectedSupportArea setIsCurrentActive:@(YES)];
             
             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:TRUE];
-//            [self.delegate supportAreaChooserDidFinish:self];
         }
         
     });

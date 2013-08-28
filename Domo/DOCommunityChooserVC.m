@@ -9,6 +9,8 @@
 #import "DOCommunityChooserVC.h"
 #import <QuartzCore/QuartzCore.h>
 #import "NICellFactory.h"
+#import "UIResponder+FirstResponder.h"
+
 
 @interface DOCommunityChooserVC ()
 -(NSPredicate *) searchPredicate;
@@ -173,7 +175,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:TRUE];
 }
 
-
+-(void) scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+	[[[UIResponder new] currentFirstResponder] resignFirstResponder];
+}
 
 #pragma mark - NITableViewCell
 - (UITableViewCell *)tableViewModel: (NITableViewModel *)tableViewModel

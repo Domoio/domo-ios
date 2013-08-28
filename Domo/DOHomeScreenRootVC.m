@@ -44,8 +44,8 @@ const float askAdviceHandleHeight = 48;
 	
 	
 	[self.mainContentScrollView setBackgroundColor:[UIColor colorWithWhite:1 alpha:0]];
-	[self.mainContentScrollView setPagingEnabled:TRUE];
 	[self.mainContentScrollView setDelegate:self];
+    self.mainContentScrollView.decelerationRate = 0.9930;
 
 	self.welcomeCommunityHeader = [[DOWelcomeAndCommunityVC alloc] initWithNibName:nil bundle:nil];
     self.welcomeCommunityHeader.delegate = self;
@@ -148,6 +148,57 @@ const float askAdviceHandleHeight = 48;
 	[[[UIResponder new] currentFirstResponder] resignFirstResponder];
 }
 
+-(CGPoint) displayOriginForRequestAdviceView{
+    CGPoint reqAdvViewOrigin = CGPointZero;
+    
+    CGFloat originYMargin = self.mainContentScrollView.size.height - self.requestAdviceVC.view.size.height;
+    
+    CGFloat originY = self.mainContentScrollView.contentSize.height - (originYMargin + self.requestAdviceVC.view.size.height);
+    reqAdvViewOrigin.y = originY;
+    
+    return reqAdvViewOrigin;
+}
+
+-(void) scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
+
+    
+    CGPoint viewTargetPoint = CGPointZero;
+    // if it's closer to the requestAdvice
+    
+    if (velocity.y > 0){
+        if (abs(self.welcomeCommunityHeader.view.origin.y - (*targetContentOffset).y) > abs(self.requestAdviceVC.view.origin.y - self.mainContentScrollView.height/1.75 - (*targetContentOffset).y)){
+            viewTargetPoint = [self displayOriginForRequestAdviceView];
+        }else { //it's closer to welcome/header
+            viewTargetPoint = self.welcomeCommunityHeader.view.origin;
+        }
+    }else{
+        if (abs(self.welcomeCommunityHeader.view.origin.y - (*targetContentOffset).y) > abs(self.requestAdviceVC.view.origin.y + self.mainContentScrollView.height/1.75 - (*targetContentOffset).y)){
+            viewTargetPoint = [self displayOriginForRequestAdviceView];
+        }else { //it's closer to welcome/header
+            viewTargetPoint = self.welcomeCommunityHeader.view.origin;
+        }
+    }
+    
+        
+    //if v>0 && curLoc = a && viewTargetPoint < a; We can't just set new target (scrolling down)
+    if (velocity.y > 0 && viewTargetPoint.y < scrollView.contentOffset.y){
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [self.mainContentScrollView setContentOffset:viewTargetPoint animated:TRUE];
+        });
+
+    }else if (velocity.y < 0 && viewTargetPoint.y > scrollView.contentOffset.y){ //(scrolling up & target point is beneath decelleration pt)
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [self.mainContentScrollView setContentOffset:viewTargetPoint animated:TRUE];
+        });
+
+    }else{
+        (*targetContentOffset) = viewTargetPoint;
+    }
+    
+}
+
 -(void) adviceRequestTapRecognizerDidTap:(UITapGestureRecognizer*)tapGesture{
     if ([tapGesture locationInView:self.requestAdviceVC.view].y > 60)
         return;
@@ -155,16 +206,16 @@ const float askAdviceHandleHeight = 48;
 	if (tapGesture.state == UIGestureRecognizerStateRecognized){
 		if ([self mainGetAdviceTrayIsScrolledToTop]){
 
-			[self.mainContentScrollView setContentOffset:CGPointMake(0, askAdviceDisplayedOrigin) animated:TRUE];
+			[self.mainContentScrollView setContentOffset:[self displayOriginForRequestAdviceView] animated:TRUE];
 			
 		}else{
             
-			[self.mainContentScrollView setPagingEnabled:FALSE]; //a hack because our page height is weird
+//			[self.mainContentScrollView setPagingEnabled:FALSE]; //a hack because our page height is weird
 			[self.mainContentScrollView setContentOffset:CGPointMake(0, 0) animated:TRUE];
 			double delayInSeconds = 0.5;
 			dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
 			dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-				[self.mainContentScrollView setPagingEnabled:TRUE];
+//				[self.mainContentScrollView setPagingEnabled:TRUE];
 			});
 		}
 	}
