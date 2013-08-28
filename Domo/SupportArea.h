@@ -10,6 +10,10 @@
 #import <CoreData/CoreData.h>
 #import "NICellFactory.h"
 
+
+
+static NSString * const activeSupportAreaChangedNotification = @"activeSupportAreaChangedNotification";
+
 @class Organization;
 
 @interface SupportArea : NSManagedObject

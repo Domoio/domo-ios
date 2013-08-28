@@ -10,6 +10,8 @@
 #import <QuartzCore/QuartzCore.h>
 @interface DORequestAdviceVC ()
 -(void) activeOrganizationUpdated:(id)sender;
+-(void) activeSupportAreaUpdated:(id)sender;
+
 @end
 
 @implementation DORequestAdviceVC{
@@ -38,20 +40,39 @@
 	[self.adviceRequestNoteView setDelegate:self];
 
     
-    [self activeOrganizationUpdated:self];
+    [self activeOrganizationUpdated:nil];
+    [self activeSupportAreaUpdated:nil];
     
     //respond to notification about org change
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(activeOrganizationUpdated:) name:activeOrganizationChangedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(activeSupportAreaUpdated:) name:activeSupportAreaChangedNotification object:nil];
 }
 
 -(void) activeOrganizationUpdated:(NSNotification*)sender{
     if ([Organization activeOrganization]){
+        self.supportAreaLabel.textColor = [UIColor blackColor];
+
         self.communityLabel.text = [[Organization activeOrganization] displayName];
     }else{
+        self.supportAreaLabel.textColor = [UIColor grayColor];
+
         self.communityLabel.text = NSLocalizedString(@"Choose Your Community", @"select a community label");
-        
-    }    
+    }
+    
+    [self activeSupportAreaUpdated:nil];
 }
+
+-(void) activeSupportAreaUpdated:(NSNotification*)sender{
+    
+
+    if ([SupportArea activeSupportAreaForActiveOrganization]){
+        self.supportAreaLabel.text = [[SupportArea activeSupportAreaForActiveOrganization] name];
+    }else{
+        self.supportAreaLabel.text = NSLocalizedString(@"Select a knowledge area", @"select a knowledge area placeholder label");
+        
+    }
+}
+
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     // to update NoteView
@@ -72,8 +93,8 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
+    
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
