@@ -14,6 +14,7 @@
 
 @implementation DORequestAdviceVC{
 	NSString * placeholderText;
+	UIColor * placeholderTextColor;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -33,6 +34,7 @@
 	self.questionRequestContainerView.layer.cornerRadius = 3;
 
 	placeholderText = self.adviceRequestNoteView.text;
+    placeholderTextColor = self.adviceRequestNoteView.textColor;
 	[self.adviceRequestNoteView setDelegate:self];
 
     
@@ -63,6 +65,13 @@
 	}
 }
 
+-(void) textViewDidEndEditing:(UITextView *)textView{
+    if ([[self.adviceRequestNoteView text] isEqualToString:@""]){
+        self.adviceRequestNoteView.text = placeholderText;
+        self.adviceRequestNoteView.textColor = placeholderTextColor;
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -70,6 +79,7 @@
 }
 
 - (IBAction)supportAreaChooserButtonPressed:(id)sender {
+    [self.delegate requestAdviceVCWantsDisplaySupportAreaChooser:self];
 }
 
 - (IBAction)askButtonPressed:(id)sender {

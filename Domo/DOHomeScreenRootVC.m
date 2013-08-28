@@ -56,6 +56,7 @@ const float askAdviceHandleHeight = 48;
 	self.welcomeCommunityHeader.view.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.welcomeCommunityHeader.view.bounds].CGPath;;
 	
 	self.requestAdviceVC = [[DORequestAdviceVC alloc] initWithNibName:nil bundle:nil];
+    self.requestAdviceVC.delegate = self;
 	self.requestAdviceVC.view.layer.shadowColor = UIColor.blackColor.CGColor;
 	self.requestAdviceVC.view.layer.shadowOffset = CGSizeMake(0, 1);
 	self.requestAdviceVC.view.layer.shadowOpacity = 0.2;
@@ -148,12 +149,16 @@ const float askAdviceHandleHeight = 48;
 }
 
 -(void) adviceRequestTapRecognizerDidTap:(UITapGestureRecognizer*)tapGesture{
+    if ([tapGesture locationInView:self.requestAdviceVC.view].y > 60)
+        return;
+
 	if (tapGesture.state == UIGestureRecognizerStateRecognized){
 		if ([self mainGetAdviceTrayIsScrolledToTop]){
 
 			[self.mainContentScrollView setContentOffset:CGPointMake(0, askAdviceDisplayedOrigin) animated:TRUE];
 			
 		}else{
+            
 			[self.mainContentScrollView setPagingEnabled:FALSE]; //a hack because our page height is weird
 			[self.mainContentScrollView setContentOffset:CGPointMake(0, 0) animated:TRUE];
 			double delayInSeconds = 0.5;
@@ -288,7 +293,7 @@ const float askAdviceHandleHeight = 48;
 }
 
 
-#pragma mark community 
+#pragma mark choosers
 
 - (DOCommunityChooserVC*) communityChooser{
     if (_communityChooser == nil){
@@ -298,7 +303,49 @@ const float askAdviceHandleHeight = 48;
     return _communityChooser;
 }
 
+- (DOSupportAreaChooserVC*) supportAreaChooser{
+    if (_supportAreaChooser == nil){
+        _supportAreaChooser = [[DOSupportAreaChooserVC alloc] init];
+        _supportAreaChooser.delegate = self;
+    }
+    return _supportAreaChooser;
+}
 #pragma mark - DODelegation
+//support areas
+- (void) requestAdviceVCWantsDisplaySupportAreaChooser:(DORequestAdviceVC*)viewController{
+    //add to view, draw happens at end of loop
+    [self.view addSubview:self.supportAreaChooser.view];
+    
+    //save first origin of chooser
+    CGPoint originalChooserOrigin = self.supportAreaChooser.chooserView.origin;
+    //set pre-animate origin of *chooser*
+    self.supportAreaChooser.chooserView.origin =  CGPointMake(self.supportAreaChooser.chooserView.origin.x, - 1.0 * self.supportAreaChooser.view.size.height);
+    
+    //set all alpha to zero
+    self.supportAreaChooser.view.alpha = 0;
+    
+    [UIView animateWithDuration:.4 animations:^{
+        self.supportAreaChooser.chooserView.origin = originalChooserOrigin;
+        self.supportAreaChooser.view.alpha = 1;
+    }];
+}
+
+-(void) supportAreaChooserDidFinish:(DOSupportAreaChooserVC*)chooser{
+    CGPoint originalChooserOrigin = self.supportAreaChooser.chooserView.origin;
+    
+    [UIView animateWithDuration:.3 animations:^{
+        self.supportAreaChooser.view.alpha = 0;
+        self.supportAreaChooser.chooserView.origin =  CGPointMake(self.supportAreaChooser.chooserView.origin.x, - 1.0 * self.communityChooser.view.size.height);
+    } completion:^(BOOL finished) {
+        self.supportAreaChooser.chooserView.origin = originalChooserOrigin;
+        [self.supportAreaChooser.view removeFromSuperview];
+    }];   
+}
+-(void) supportAreaChooserDidSelectSupportArea:(SupportArea*)supportArea withChooser:(DOSupportAreaChooserVC*)chooser{
+    
+}
+
+//Org
 - (void) welcomeAndCommunityVCWantsDisplayCommunityChooser:(DOWelcomeAndCommunityVC*)viewController{
     
     //add to view, draw happens at end of loop

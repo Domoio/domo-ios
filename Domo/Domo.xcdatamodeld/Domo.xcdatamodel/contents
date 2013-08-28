@@ -35,6 +35,7 @@
     </entity>
     <entity name="SupportArea" representedClassName="SupportArea" syncable="YES">
         <attribute name="identifier" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="isCurrentActive" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="adviceRequests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AdviceRequest" inverseName="supportArea" inverseEntity="AdviceRequest" syncable="YES"/>
         <relationship name="organization" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" inverseName="supportAreas" inverseEntity="Organization" syncable="YES"/>
@@ -43,6 +44,6 @@
         <element name="AdviceRequest" positionX="232" positionY="53" width="128" height="210"/>
         <element name="Organization" positionX="-20" positionY="468" width="128" height="165"/>
         <element name="Response" positionX="250" positionY="327" width="128" height="165"/>
-        <element name="SupportArea" positionX="-164" positionY="180" width="128" height="103"/>
+        <element name="SupportArea" positionX="-164" positionY="180" width="128" height="120"/>
     </elements>
 </model>

@@ -11,7 +11,6 @@
 #import "Response.h"
 
 @interface DOMyQuestionsVC ()
-
 @end
 
 @implementation DOMyQuestionsVC
@@ -31,7 +30,6 @@
     // Do any additional setup after loading the view from its nib.
     
     self.tableView.decelerationRate = UIScrollViewDecelerationRateFast;
-    self.tableView.allowsSelection = TRUE;
     [self.tableView setDataSource:self.tvModel];
 }
 
@@ -67,7 +65,7 @@
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller{
-	self.displayedObjects = [self.fetchController fetchedObjects];
+	self.displayedObjects = nil;
 	self.tvModel = nil;
 	
 	[self.tableView setDataSource:self.tvModel];
@@ -111,6 +109,8 @@
 }
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"%@",@"didSelectRowAtIndexPath");
+
     id object = [(NITableViewModel *)tableView.dataSource objectAtIndexPath:indexPath];
     
     if ([object isKindOfClass:AdviceRequest.class]){
@@ -121,9 +121,23 @@
     
 }
 
+-(void) tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"%@",@"accessoryButtonTappedForRowWithIndexPath");
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath  *)indexPath{
+    NSLog(@"%@",@"shouldHighlightRowAtIndexPath");
+
+    return TRUE;
+}
+
 #pragma mark - custom paging tableview
 
 -(void) scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
+    
+    if (self.tableView.delegate == nil){
+        NSLog(@"%@",@"AHAHH");
+    }
     
     NSIndexPath* indexPath = nil;
     

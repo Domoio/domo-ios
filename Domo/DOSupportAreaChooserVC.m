@@ -1,24 +1,26 @@
 //
-//  DOCommunityChooserVC.m
+//  DOSupportAreaChooserVC.m
 //  Domo
 //
-//  Created by Alexander Hoekje List on 8/13/13.
+//  Created by Alexander Hoekje List on 8/27/13.
 //  Copyright (c) 2013 ExoMachina. All rights reserved.
 //
 
-#import "DOCommunityChooserVC.h"
+#import "DOSupportAreaChooserVC.h"
 #import <QuartzCore/QuartzCore.h>
 #import "NICellFactory.h"
+#import "Organization.h"
 
-@interface DOCommunityChooserVC ()
+@interface DOSupportAreaChooserVC ()
 -(NSPredicate *) searchPredicate;
 -(void) updateSearch;
 @end
 
-@implementation DOCommunityChooserVC
+
+@implementation DOSupportAreaChooserVC
 
 -(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:@"DOCommunityChooserVC-iPhone" bundle:nibBundleOrNil];
+    self = [super initWithNibName:@"DOSupportAreaChooserVC-iPhone" bundle:nibBundleOrNil];
     if (self) {
         
     }
@@ -29,40 +31,50 @@
 -(void) viewDidLoad{
     [super viewDidLoad];
     
-    self.communityChooserView.layer.cornerRadius = 2;
-    self.communityChooserView.layer.shadowRadius = 8;
-    self.communityChooserView.layer.shadowColor = UIColor.blackColor.CGColor;
-	self.communityChooserView.layer.shadowOffset = CGSizeMake(0, 1);
-	self.communityChooserView.layer.shadowOpacity = 0.3f;
+    self.chooserView.layer.cornerRadius = 2;
+    self.chooserView.layer.shadowRadius = 8;
+    self.chooserView.layer.shadowColor = UIColor.blackColor.CGColor;
+	self.chooserView.layer.shadowOffset = CGSizeMake(0, 1);
+	self.chooserView.layer.shadowOpacity = 0.3f;
     
     UIBezierPath * coolPath = nil;
     
     
     coolPath = [UIBezierPath bezierPath];
     [coolPath moveToPoint:CGPointZero];
-    [coolPath addLineToPoint:CGPointMake(self.communityChooserView.width, 0)];
-    [coolPath addLineToPoint:CGPointMake(self.communityChooserView.width, self.communityChooserView.height)];
-    [coolPath addQuadCurveToPoint:CGPointMake(0, self.communityChooserView.height) controlPoint:CGPointMake(self.communityChooserView.width/2.0f, self.communityChooserView.height/1.072f)];
+    [coolPath addLineToPoint:CGPointMake(self.chooserView.width, 0)];
+    [coolPath addLineToPoint:CGPointMake(self.chooserView.width, self.chooserView.height)];
+    [coolPath addQuadCurveToPoint:CGPointMake(0, self.chooserView.height) controlPoint:CGPointMake(self.chooserView.width/2.0f, self.chooserView.height/1.072f)];
     [coolPath addLineToPoint:CGPointZero];
     [coolPath closePath];
-
-    self.communityChooserView.layer.shadowPath = coolPath.CGPath;
+    
+    self.chooserView.layer.shadowPath = coolPath.CGPath;
     
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self.tvModel];
     
-    //wait till we know the onboarding pathway to jump to conclusions like this..
-//    [self.communityNameTextField becomeFirstResponder];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(activeOrganizationUpdated:) name:activeOrganizationChangedNotification object:nil];
+    
 }
 
-
-- (IBAction)communityChooserBackgroundViewTapped:(UITapGestureRecognizer *)sender {
-    [self.delegate communityChooserDidFinish:self];
-}
-
-- (IBAction)communityNameTextFieldChanged:(id)sender {
-
+-(void) activeOrganizationUpdated:(id)sender{
     [self updateSearch];
+}
+
+
+- (IBAction)chooserBackgroundViewTapped:(UITapGestureRecognizer *)sender {
+    [self.delegate supportAreaChooserDidFinish:self];
+}
+
+-(NSFetchedResultsController*)fetchController{
+    //compound predicate by name or if is current is true
+    //sort by first is active then by name
+    if (_fetchController == nil){
+        self.fetchController = [SupportArea fetchAllGroupedBy:nil withPredicate:[self searchPredicate] sortedBy:nil ascending:FALSE delegate:self];
+        [self.fetchController.fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:TRUE]]];
+        [self.fetchController performFetch:nil];
+    }
+    return _fetchController;
 }
 
 -(void) updateSearch{
@@ -74,8 +86,6 @@
 	[self.tableView setDataSource:self.tvModel];
 	[self.tableView reloadData];
 }
-
-
 
 #pragma mark - data and table
 
@@ -93,34 +103,24 @@
 
 -(NSPredicate *) searchPredicate{
     
-    NSString * searchQuery = self.communityNameTextField.text;
     
     NSMutableArray * preds = [@[] mutableCopy];
-    
-    NSPredicate * searchQueryPredicate = nil;
-    if (StringHasText(searchQuery)){
-        searchQueryPredicate = [NSPredicate predicateWithFormat:@"displayName contains[cd] %@", searchQuery];
-        [preds addObject:searchQueryPredicate];
-    }else{
-        searchQueryPredicate = [NSPredicate predicateWithFormat:@"displayName.length > 0"];
-        [preds addObject:searchQueryPredicate];
-    }
+        
+    NSPredicate *searchQueryPredicate = [NSPredicate predicateWithFormat:@"name.length > 0"];
+    [preds addObject:searchQueryPredicate];
     
     NSPredicate * isActivePredicate = [NSPredicate predicateWithFormat:@"(isCurrentActive == TRUE)"];
     [preds addObject:isActivePredicate];
     
-    NSPredicate * pred = [NSCompoundPredicate orPredicateWithSubpredicates:preds];
+    NSPredicate * communityPred = [NSPredicate predicateWithFormat:@"(organization == %@)",[Organization activeOrganization]];
+    
+    NSPredicate * pred = [NSCompoundPredicate andPredicateWithSubpredicates:@[communityPred,[NSCompoundPredicate orPredicateWithSubpredicates:preds]]];
     
     return pred;
 }
 
 -(NSArray*)displayedObjects{
 	if (_displayedObjects == nil){
-        //compound predicate by name or if is current is true
-        //sort by first is active then by name
-		self.fetchController = [Organization fetchAllGroupedBy:nil withPredicate:[self searchPredicate] sortedBy:nil ascending:FALSE delegate:self];
-        [self.fetchController.fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:TRUE]]];
-		[self.fetchController performFetch:nil];
 		_displayedObjects = [self.fetchController fetchedObjects];
 	}
 	return _displayedObjects;
@@ -129,11 +129,11 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller{
 	self.displayedObjects = [self.fetchController fetchedObjects];
     
-    for (Organization * org in self.displayedObjects){
-        if ([org.isCurrentActive boolValue] == TRUE){
+    for (SupportArea * sArea in self.displayedObjects){
+        if ([sArea.isCurrentActive boolValue] == TRUE){
             NSMutableArray * mut = [self.displayedObjects mutableCopy];
-            [mut removeObject:org];
-            [mut insertObject:org atIndex:0];
+            [mut removeObject:sArea];
+            [mut insertObject:sArea atIndex:0];
             self.displayedObjects = mut;
             break;
         }
@@ -147,26 +147,26 @@
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //unset "active" community, set "active" community, then tell delegate
-//    [self.delegate communityChooserDidFinish:self];
+    //    [self.delegate communityChooserDidFinish:self];
     
     
     double delayInSeconds = 0.5f;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        Organization * selectedOrganization = [[self displayedObjects] objectAtIndex:indexPath.row];
-        if ([[selectedOrganization isCurrentActive] boolValue] == FALSE){
+        SupportArea * selectedSupportArea = [[self displayedObjects] objectAtIndex:indexPath.row];
+        if ([[selectedSupportArea isCurrentActive] boolValue] == FALSE){
             //unset "active" community, set "active" community
-            Organization * currentActive = [Organization findFirstByAttribute:@"isCurrentActive" withValue:@(YES)];
+            
+            SupportArea * currentActive = [SupportArea activeSupportAreaForActiveOrganization];
+
             [currentActive setIsCurrentActive:@(NO)];
             
-            [selectedOrganization setIsCurrentActive:@(YES)];
+            [selectedSupportArea setIsCurrentActive:@(YES)];
             
             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:TRUE];
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:activeOrganizationChangedNotification object:selectedOrganization];
-            [self.delegate communityChooserDidFinish:self];
+//            [self.delegate supportAreaChooserDidFinish:self];
         }
-
+        
     });
     
     
@@ -215,13 +215,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 @end
 
 
 
-@implementation communityChooserBackgroundView //shout-outs to SIAlertView
+@implementation chooserBackgroundView //shout-outs to SIAlertView
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {

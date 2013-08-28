@@ -12,14 +12,16 @@
 #import "MGScrollView.h"
 #import "DOMyQuestionsVC.h"
 #import "DOCommunityChooserVC.h"
+#import "DOSupportAreaChooserVC.h"
 
-@interface DOHomeScreenRootVC : UIViewController <UIScrollViewDelegate,DOWelcomeAndCommunityVCDelegate,DOCommunityChooserVCDelegate>
+@interface DOHomeScreenRootVC : UIViewController <UIScrollViewDelegate,DOWelcomeAndCommunityVCDelegate,DOCommunityChooserVCDelegate, DORequestAdviceVCDelegate,DOSupportAreaChooserVCDelegate>
 
 @property (nonatomic, strong) DOWelcomeAndCommunityVC * welcomeCommunityHeader;
 @property (nonatomic, strong) DORequestAdviceVC* requestAdviceVC;
 @property (nonatomic, strong) DOMyQuestionsVC * myQuestionsVC;
 
 @property (nonatomic, strong) DOCommunityChooserVC * communityChooser;
+@property (nonatomic, strong) DOSupportAreaChooserVC * supportAreaChooser;
 
 @property (nonatomic, strong) IBOutlet MGScrollView * mainContentScrollView;
 @property (nonatomic, strong) IBOutlet UIView * myQuestionsPeakView;

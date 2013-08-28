@@ -10,10 +10,19 @@
 #import "NoteView.h"
 #import "Organization.h"
 
+@class DORequestAdviceVC;
+
+@protocol DORequestAdviceVCDelegate <NSObject>
+- (void) requestAdviceVCWantsDisplaySupportAreaChooser:(DORequestAdviceVC*)viewController;
+@end
+
+
 @interface DORequestAdviceVC : UIViewController <UITextViewDelegate>
 @property (nonatomic, strong) IBOutlet UIView * questionRequestContainerView;
 @property (weak, nonatomic) IBOutlet UILabel *communityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *supportAreaLabel;
+
+@property (weak, nonatomic) id<DORequestAdviceVCDelegate> delegate;
 
 @property (nonatomic, strong) IBOutlet NoteView * adviceRequestNoteView;
 
