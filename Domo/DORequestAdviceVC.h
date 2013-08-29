@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "NoteView.h"
 #import "Organization.h"
+#import "AdviceRequest.h"
 
 @class DORequestAdviceVC;
 
@@ -21,6 +22,8 @@
 @property (nonatomic, strong) IBOutlet UIView * questionRequestContainerView;
 @property (weak, nonatomic) IBOutlet UILabel *communityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *supportAreaLabel;
+
+@property (strong, nonatomic) AdviceRequest * pendingAdviceRequest;
 
 @property (weak, nonatomic) id<DORequestAdviceVCDelegate> delegate;
 

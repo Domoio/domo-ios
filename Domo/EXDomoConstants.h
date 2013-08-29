@@ -9,7 +9,7 @@
 
 #define IS_SHIPPING 0
 #define DEV_MUTE 0
-#define DEV_STATE_RESET 1
+#define DEV_STATE_RESET 0
 #define DEV_MAKE_DB_SEED 0
 
 

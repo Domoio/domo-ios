@@ -20,6 +20,7 @@
 @dynamic createdDate;
 @dynamic accessCode;
 @dynamic responses;
+@dynamic statusCode;
 @dynamic organization;
 @dynamic supportArea;
 @dynamic organizationID;
@@ -36,8 +37,22 @@
 -(void) awakeFromInsert{
     [super awakeFromInsert];
 
+    [self setStatusCode:@(AdviceRequestStatusCodeEditing)];
     [self setCreatedDate:[NSDate date]];
     [self setModifiedDate:[self createdDate]];
+}
+
++(AdviceRequest*) currentEditingAdviceRequestForActiveOrganization{
+    return [self currentEditingAdviceRequestForOrganization:[Organization activeOrganization]];
+}
+
++(AdviceRequest*) currentEditingAdviceRequestForOrganization:(Organization*)organization{
+    NSPredicate * statusPredicate = [NSPredicate predicateWithFormat:@"(statusCode == %@)",@(AdviceRequestStatusCodeEditing)];
+    NSPredicate * communityPred = [NSPredicate predicateWithFormat:@"(organization == %@)",organization];
+
+    AdviceRequest* ar = [AdviceRequest findFirstWithPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:@[statusPredicate,communityPred]]];
+    
+    return ar;
 }
 
 +(RKEntityMapping*) entityMapping{

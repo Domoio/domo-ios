@@ -12,20 +12,32 @@
 #import "NICellFactory.h"
 
 
+typedef enum {
+    AdviceRequestStatusCodeEditing,
+    AdviceRequestStatusCodePendingSubmission,
+    AdviceRequestStatusCodeSubmitted
+}AdviceRequestStatusCode;
+
+@class Organization;
 
 @interface AdviceRequest : NSManagedObject <NICellObject>
 
+@property (nonatomic, retain) NSString * accessCode;
 @property (nonatomic, retain) NSString * adviceRequestID;
 @property (nonatomic, retain) NSDate * modifiedDate;
 @property (nonatomic, retain) NSString * requestContent;
 @property (nonatomic, retain) NSDate * createdDate;
-@property (nonatomic, retain) NSString * accessCode;
+@property (nonatomic, retain) NSNumber * isExpanded;
 @property (nonatomic, retain) NSSet *responses;
+@property (nonatomic, retain) NSNumber * statusCode; //AdviceRequestStatusCode NSNumber
+@property (nonatomic, retain) NSString * supportAreaIdentifier;
 @property (nonatomic, retain) NSManagedObject *organization;
 @property (nonatomic, retain) SupportArea *supportArea;
 @property (nonatomic, retain) NSString * organizationID;
-@property (nonatomic, retain) NSString * supportAreaIdentifier;
-@property (nonatomic, retain) NSNumber * isExpanded;
+
+
++(AdviceRequest*) currentEditingAdviceRequestForOrganization:(Organization*)organization;
++(AdviceRequest*) currentEditingAdviceRequestForActiveOrganization;
 
 
 +(RKEntityMapping*) entityMapping;
