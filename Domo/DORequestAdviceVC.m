@@ -161,6 +161,104 @@
 
 -(void) validateAndOrSubmitQuestion{
     
+    //if ready to submit
+    
+    [self performSubmitRequestAnimation];
+    
+    self.pendingAdviceRequest = nil; //load new advice request
+    [self loadFromAdviceRequest:self.pendingAdviceRequest];
+    
+    [self.questionRequestContainerView setAlpha:0];
+    [self.view addSubview:self.questionRequestContainerView];
+    [UIView animateWithDuration:1 delay:2 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        [self.questionRequestContainerView setAlpha:1];
+    } completion:nil];
+    
+}
+
+-(void) performSubmitRequestAnimation{
+    CGSize paperSize = self.questionRequestContainerView.size; //CGSizeMake(self.questionRequestContainerView.size.width * [UIScreen mainScreen].scale,self.questionRequestContainerView.size.height * [UIScreen mainScreen].scale);
+    CGFloat scale = [UIScreen mainScreen].scale;
+    CGAffineTransform twoXTransform = CGAffineTransformIdentity;
+    twoXTransform = CGAffineTransformScale(twoXTransform, scale, scale);
+    
+    UIGraphicsBeginImageContextWithOptions(paperSize, NO, 0.0);
+    [self.questionRequestContainerView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    CGRect topThirdRect = CGRectMake(0, 0, paperSize.width, roundf(paperSize.height/3.3f)); //slightly smaller than a third
+    UIImage* topThirdImage = [UIImage imageWithCGImage:CGImageCreateWithImageInRect(viewImage.CGImage, CGRectApplyAffineTransform(topThirdRect, twoXTransform)) scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
+    UIImageView * topThirdImageView = [[UIImageView alloc] initWithImage:topThirdImage];
+    topThirdImageView.layer.anchorPoint = CGPointMake(0.5, 1);
+    [topThirdImageView setOrigin:CGPointMake(0, 0)]; //since our anchor is at bottom
+    
+    CGRect middleThirdRect = CGRectMake(0, topThirdRect.size.height, paperSize.width, roundf(paperSize.height/2.6f));//slightly bigger than all of them
+    UIImage* middleThirdImage = [UIImage imageWithCGImage:CGImageCreateWithImageInRect(viewImage.CGImage, CGRectApplyAffineTransform(middleThirdRect, twoXTransform)) scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
+    UIImageView * middleThirdImageView = [[UIImageView alloc] initWithImage:middleThirdImage ];
+    [middleThirdImageView setOrigin:CGPointMake(0, topThirdRect.size.height)];
+    
+    CGFloat heightFromTopTwoThirds = topThirdRect.size.height + middleThirdRect.size.height;
+    CGRect bottomThirdRect = CGRectMake(0, heightFromTopTwoThirds, paperSize.width, paperSize.height - heightFromTopTwoThirds);
+    UIImage* bottomThirdImage = [UIImage imageWithCGImage:CGImageCreateWithImageInRect(viewImage.CGImage, CGRectApplyAffineTransform(bottomThirdRect, twoXTransform)) scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
+    UIImageView * bottomThirdImageView = [[UIImageView alloc] initWithImage:bottomThirdImage];
+    [bottomThirdImageView setOrigin:CGPointMake(0, heightFromTopTwoThirds)];
+    bottomThirdImageView.layer.anchorPoint = CGPointMake(0.5, 0);
+    [bottomThirdImageView setOrigin:CGPointMake(0, heightFromTopTwoThirds)];
+    
+    UIView * animateView = [[UIView alloc] initWithFrame:self.questionRequestContainerView.frame];
+    //    [animateView setBackgroundColor:[self view].backgroundColor];
+    [animateView addSubview:middleThirdImageView];
+    [animateView addSubview:topThirdImageView];//folds above middle
+    [animateView addSubview:bottomThirdImageView];
+    
+    [self.view addSubview:animateView];
+    [self.questionRequestContainerView removeFromSuperview];
+    
+    [UIView animateWithDuration:0.65 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        CATransform3D imageViewTransform = CATransform3DIdentity;
+        imageViewTransform.m34 = 1.0 / -2000;
+        imageViewTransform = CATransform3DRotate(imageViewTransform, 3.1415 * -2.0 * 180/360.0, 1, 0, 0);
+        topThirdImageView.layer.transform = imageViewTransform;
+        
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.65 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            CATransform3D imageViewTransform = CATransform3DIdentity;
+            imageViewTransform.m34 = 1.0 / -2000;
+            imageViewTransform = CATransform3DRotate(imageViewTransform, 3.1415 * 1.999 * 180/360.0, 1, 0, 0);
+            bottomThirdImageView.layer.transform = imageViewTransform;
+            
+            
+            //this used to be below 
+            CATransform3D hideTransform = CATransform3DMakeScale(0.5f, 0.5f, 1);
+            CGPoint hidePoint = CGPointMake(roundf(self.view.width/1.8f), self.view.height + 100);
+            
+            CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+            pathAnimation.duration = .75;
+            pathAnimation.calculationMode = kCAAnimationPaced;
+            pathAnimation.fillMode = kCAFillModeForwards;
+            pathAnimation.removedOnCompletion = NO;
+            
+            CGPoint viewOrigin = animateView.center;
+            CGMutablePathRef curvedPath = CGPathCreateMutable();
+            CGPathMoveToPoint(curvedPath, NULL, viewOrigin.x, viewOrigin.y);
+            CGPathAddCurveToPoint(curvedPath, NULL, hidePoint.x, viewOrigin.y, hidePoint.x, viewOrigin.y, hidePoint.x, hidePoint.y);
+            pathAnimation.path = curvedPath;
+            CGPathRelease(curvedPath);
+            
+            [animateView.layer addAnimation:pathAnimation forKey:@"pathAnimation"];
+            
+            [UIView animateWithDuration:pathAnimation.duration delay:.3 options:UIViewAnimationOptionCurveLinear animations:^{
+                animateView.layer.transform = hideTransform;
+            } completion:^(BOOL finished) {
+                [animateView removeFromSuperview];
+            }];
+
+        } completion:^(BOOL finished) {
+            //was here
+            
+        }];
+    }];
 }
 
 -(void) dealloc{
