@@ -33,21 +33,41 @@
 	return [DOMyQuestionsRequestCell class];
 }
 
+-(void) generateTempUUID{
+    CFUUIDRef theUUID = CFUUIDCreate(NULL);
+    CFStringRef uuidString = CFUUIDCreateString(NULL, theUUID);
+    CFRelease(theUUID);
+    [self setAdviceRequestID:(NSString*)CFBridgingRelease(uuidString)];
+}
 
 -(void) awakeFromInsert{
     [super awakeFromInsert];
 
-    [self setStatusCode:@(AdviceRequestStatusCodeEditing)];
+    [self generateTempUUID];
+    
+    [self setStatusCode:AdviceRequestStatusCodeEditing];
     [self setCreatedDate:[NSDate date]];
     [self setModifiedDate:[self createdDate]];
 }
 
+-(void)setOrganization:(Organization *)organization{
+    NSString * key = @"organization";
+    
+    [self willChangeValueForKey:key];
+    [self setPrimitiveValue:organization forKey:key];
+    [self didChangeValueForKey:key];
+    
+    NSString * orgID = [organization organizationID];
+    [self setOrganizationID:orgID];
+}
+
 +(AdviceRequest*) currentEditingAdviceRequestForActiveOrganization{
-    return [self currentEditingAdviceRequestForOrganization:[Organization activeOrganization]];
+    Organization * activeOrg = [Organization activeOrganization];
+    return [self currentEditingAdviceRequestForOrganization:activeOrg];
 }
 
 +(AdviceRequest*) currentEditingAdviceRequestForOrganization:(Organization*)organization{
-    NSPredicate * statusPredicate = [NSPredicate predicateWithFormat:@"(statusCode == %@)",@(AdviceRequestStatusCodeEditing)];
+    NSPredicate * statusPredicate = [NSPredicate predicateWithFormat:@"(statusCode == %@)",AdviceRequestStatusCodeEditing];
     NSPredicate * communityPred = [NSPredicate predicateWithFormat:@"(organization == %@)",organization];
 
     AdviceRequest* ar = [AdviceRequest findFirstWithPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:@[statusPredicate,communityPred]]];
@@ -58,6 +78,7 @@
 +(RKEntityMapping*) entityMapping{
     RKEntityMapping* mapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass(AdviceRequest.class) inManagedObjectStore:[RKObjectManager sharedManager].managedObjectStore];
     [mapping addAttributeMappingsFromArray:@[@"accessCode",@"adviceRequestID",@"createdDate",@"modifiedDate",@"organizationID",@"requestContent",@"supportAreaIdentifier"]];
+    [mapping addAttributeMappingsFromDictionary:@{@"status": @"statusCode"}];
     mapping.identificationAttributes = @[ @"adviceRequestID" ];
 
     RKConnectionDescription *organizationConnection = [[RKConnectionDescription alloc] initWithRelationship:([mapping.entity relationshipsByName][@"organization"]) attributes:@{ @"organizationID": @"organizationID" }];

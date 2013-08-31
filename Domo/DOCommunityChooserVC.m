@@ -162,11 +162,11 @@
             [currentActive setIsCurrentActive:@(NO)];
             
             [selectedOrganization setIsCurrentActive:@(YES)];
-            NSError * saveError = nil;
-            [[NSManagedObjectContext defaultContext] save:&saveError];
-            if (saveError){
-                NSLog(@"darn, a save error. %@",saveError);
-            }
+            [[NSManagedObjectContext defaultContext] saveToPersistentStoreWithCompletion:^(BOOL success, NSError *saveError) {
+                if (saveError){
+                    NSLog(@"darn, a save error. %@",saveError);
+                }
+            }];
             
             
             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:TRUE];

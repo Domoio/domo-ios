@@ -106,7 +106,6 @@
         if (savedAdviceRequest == nil){
             _pendingAdviceRequest = [AdviceRequest MR_createEntity];
             [_pendingAdviceRequest setOrganization:[Organization activeOrganization]];
-            [[NSManagedObjectContext contextForCurrentThread] save:nil];
         }else{
             _pendingAdviceRequest = savedAdviceRequest;
         }
@@ -137,12 +136,11 @@
         self.adviceRequestNoteView.textColor = placeholderTextColor;
     }
     
-//    if ([self.pendingAdviceRequest isUpdated]){
-    NSError * saveError = nil;
-    [[NSManagedObjectContext defaultContext] save:&saveError];
-    if (saveError){
-        NSLog(@"darn, a save error. %@",saveError);
-    }
+    [[NSManagedObjectContext contextForCurrentThread] saveToPersistentStoreWithCompletion:^(BOOL success, NSError *saveError) {
+        if (saveError){
+            NSLog(@"darn, a save error. %@",saveError);
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning{

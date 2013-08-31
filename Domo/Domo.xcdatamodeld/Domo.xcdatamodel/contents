@@ -6,9 +6,9 @@
         <attribute name="createdDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="isExpanded" optional="YES" transient="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="modifiedDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
-        <attribute name="organizationID" attributeType="String" syncable="YES"/>
+        <attribute name="organizationID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="requestContent" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="statusCode" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="statusCode" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="supportAreaIdentifier" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="organization" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" inverseName="adviceRequests" inverseEntity="Organization" syncable="YES"/>
         <relationship name="responses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Response" inverseName="adviceRequest" inverseEntity="Response" syncable="YES"/>

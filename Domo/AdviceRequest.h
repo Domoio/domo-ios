@@ -12,11 +12,12 @@
 #import "NICellFactory.h"
 
 
-typedef enum {
-    AdviceRequestStatusCodeEditing,
-    AdviceRequestStatusCodePendingSubmission,
-    AdviceRequestStatusCodeSubmitted
-}AdviceRequestStatusCode;
+
+static NSString * const AdviceRequestStatusCodeEditing = @"EDITING";
+static NSString * const AdviceRequestStatusCodePendingSubmission = @"PSUB"; //local flag
+static NSString * const AdviceRequestStatusCodePendingApproval = @"PAPP";
+static NSString * const AdviceRequestStatusCodePendingResponse = @"PRES";
+
 
 @class Organization;
 
@@ -29,7 +30,7 @@ typedef enum {
 @property (nonatomic, retain) NSDate * createdDate;
 @property (nonatomic, retain) NSNumber * isExpanded;
 @property (nonatomic, retain) NSSet *responses;
-@property (nonatomic, retain) NSNumber * statusCode; //AdviceRequestStatusCode NSNumber
+@property (nonatomic, retain) NSString * statusCode; //AdviceRequestStatusCode NSString
 @property (nonatomic, retain) NSString * supportAreaIdentifier;
 @property (nonatomic, retain) NSManagedObject *organization;
 @property (nonatomic, retain) SupportArea *supportArea;
@@ -42,6 +43,8 @@ typedef enum {
 
 +(RKEntityMapping*) entityMapping;
 +(RKObjectMapping*) requestMapping;
+
+-(void) generateTempUUID;
 @end
 
 
