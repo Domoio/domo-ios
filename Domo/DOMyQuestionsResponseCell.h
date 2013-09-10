@@ -10,7 +10,17 @@
 #import "NICellCatalog.h"
 #import "Response.h"
 
+
+@class DOMyQuestionsResponseCell;
+
+@protocol DOMyQuestionsResponseCellDelegate <NSObject>
+-(void) myQuestionsResponseCellCellWasTappedWithCell:(DOMyQuestionsResponseCell*)cell;
+@end
+
+
 @interface DOMyQuestionsResponseCell : UITableViewCell <NICell>
+
+@property (weak, nonatomic) id<DOMyQuestionsResponseCellDelegate> delegate;
 
 @property (strong, nonatomic) UIView * styleView;
 @property (weak, nonatomic) IBOutlet UILabel *responderDisplayNameLabel;

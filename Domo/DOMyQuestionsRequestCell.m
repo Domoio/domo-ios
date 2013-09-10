@@ -7,7 +7,12 @@
 //
 
 #import "DOMyQuestionsRequestCell.h"
+#import "Organization.h"
 #import <QuartzCore/QuartzCore.h>
+#import "TTTTimeIntervalFormatter.h"
+
+static const double defaultRequestTextHeight = 125;
+
 
 @implementation DOMyQuestionsRequestCell
 
@@ -30,61 +35,97 @@
     UIView * subview  = [[UIView alloc] initWithFrame:self.bounds];
     [self insertSubview:subview atIndex:0];
     self.styleView = subview;
-	
-    //comment the following for a cool effect
+    
     self.styleView.userInteractionEnabled = FALSE;
     self.styleView.backgroundColor = [UIColor whiteColor];
-//	self.styleView.layer.borderColor = [UIColor colorWithWhite:0.55 alpha:0.15].CGColor;
-//	self.styleView.layer.borderWidth = 1;
-//	self.styleView.layer.cornerRadius = 0;
-//	self.styleView.layer.shadowColor = UIColor.blackColor.CGColor;
-//	self.styleView.layer.shadowOffset = CGSizeMake(0, 1);
-//	self.styleView.layer.shadowOpacity = 0.2;
-//	self.styleView.layer.shadowRadius = 2;
-//	self.styleView.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.styleView.bounds].CGPath;
-
+    
+    UITapGestureRecognizer * tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellTappedWithRecognizer:)];
+    [self addGestureRecognizer:tapRecognizer];
 }
 
 -(UINib*) viewNib{
 	return [UINib nibWithNibName:@"DOMyQuestionsRequestCell-iPhone" bundle:[NSBundle mainBundle]];
 }
 
+
+-(void) cellTappedWithRecognizer:(UITapGestureRecognizer*)recognizer{
+    [self.delegate myQuestionsRequestCellWasTappedWithCell:self];
+}
+
 - (BOOL)shouldUpdateCellWithObject:(AdviceRequest*)request{
     
     [self.requestTextLabel setText:[request requestContent]];
+    [self.styleView setHeight:[DOMyQuestionsRequestCell heightForObject:request atIndexPath:nil tableView:nil]];
     
-//	[self.conversationLabel setText:[conversation subject]];
-//	
-//	NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-//	[dateFormatter setDateStyle:NSDateFormatterFullStyle];
-//	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-//	[dateFormatter setLocale:[NSLocale currentLocale]];
-//	[dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-//	
-//	NSString * partnerName = @"someone";
-//	if ([conversation.partnerName length] >0){
-//		partnerName = conversation.partnerName;
-//	}
-//	else if ([conversation.partnerTwitter length] >0){
-//		partnerName = conversation.partnerTwitter;
-//	}
-//	
-//	NSString * detailString = [NSString stringWithFormat:@"with %@ on %@", partnerName, [dateFormatter stringFromDate:conversation.modifiedDate]];
-//	[self.detailsLabel setText:detailString];
-//    
-	
+    CGFloat textfieldReqHeight = [DOMyQuestionsRequestCell sizeForRequestText:request.requestContent].height;
+    if (request.isExpanded.boolValue == FALSE){
+        textfieldReqHeight = MIN(defaultRequestTextHeight, textfieldReqHeight);
+    }
+    [self.requestTextLabel setHeight:textfieldReqHeight];
+    
+    NSDate * relevantDate = [request createdDate];
+    
+    NSString * agoString = nil;
+    
+    if ([relevantDate timeIntervalSinceNow] > (-1*60*60*24*3)){
+        TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
+        [timeIntervalFormatter setUsesIdiomaticDeicticExpressions:NO];
+        agoString = [timeIntervalFormatter stringForTimeInterval:[relevantDate timeIntervalSinceNow]];
+    }else {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setLocale:[NSLocale currentLocale]];
+        [dateFormatter setDoesRelativeDateFormatting:YES];
+    
+        agoString = [dateFormatter stringFromDate:relevantDate];
+    }
+    
+    [self.timeAgoSubmittedLabel setText:agoString];
+    
+    [self.toWithSkillsLabel setText:[DOMyQuestionsRequestCell toWithSkillsLabelTextForRequest:request]];
+    
 	return TRUE;
+}
+
++(NSString*) toWithSkillsLabelTextForRequest:(AdviceRequest*)request{
+    NSString * text = nil;
+    if (request.supportArea != nil){
+        text = [NSString stringWithFormat:NSLocalizedString(@"to people at %@ claiming insight in %@", @"toWithSkillsLabelStringFormat"),request.organization.displayName, request.supportArea.name];
+    }else{
+        text = [NSString stringWithFormat:NSLocalizedString(@"to people at %@ claiming insight in some area", @"toWithSkillsUndefinedLabelStringFormat"),request.organization.displayName];
+    }
+    
+    return text;
+}
+
++(CGSize)sizeForRequestText:(NSString*)requestContentText{
+    UIFont * requestFont = [UIFont fontWithName:@"HelveticaNeue" size:13];
+    CGSize requestMaxSize = CGSizeMake(272, DBL_MAX);
+    CGSize sizeOfRequestText = [requestContentText sizeWithFont:requestFont constrainedToSize:requestMaxSize lineBreakMode:NSLineBreakByTruncatingTail];
+
+    return sizeOfRequestText;
+
 }
 
 + (CGFloat)heightForObject:(AdviceRequest*)request atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView{
     const double cellHeight = 222;
-    const double defaultRequestTextHeight = 125;
-
+    
+    CGSize sizeOfRequestText = [self sizeForRequestText:[request requestContent]];
+    
     if ([request isExpanded].boolValue){
-        CGSize sizeOfRequestText = [[request requestContent ] sizeWithFont:[UIFont fontWithName:@"HelveticaNeue" size:13] constrainedToSize:CGSizeMake(272, DBL_MAX) lineBreakMode:NSLineBreakByTruncatingTail];
         
         return cellHeight + sizeOfRequestText.height - defaultRequestTextHeight;
-    }else return cellHeight;
+        
+    }else {
+        if (sizeOfRequestText.height < defaultRequestTextHeight){
+            CGFloat newHeight = cellHeight + sizeOfRequestText.height - defaultRequestTextHeight;
+            return newHeight;
+        }else{
+            return cellHeight;
+        }
+        
+    }
 }
 
 @end

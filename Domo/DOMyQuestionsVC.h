@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "NITableViewModel.h"
 #import "NICellFactory.h"
+#import "DOMyQuestionsRequestCell.h"
+#import "DOMyQuestionsResponseCell.h"
 
-@interface DOMyQuestionsVC : UIViewController <NITableViewModelDelegate, UITableViewDelegate,NSFetchedResultsControllerDelegate >
+@interface DOMyQuestionsVC : UIViewController <NITableViewModelDelegate, UITableViewDelegate,NSFetchedResultsControllerDelegate, DOMyQuestionsRequestCellDelegate, DOMyQuestionsResponseCellDelegate >
 
 @property (nonatomic, strong) NSArray *			displayedObjects;
 @property (nonatomic, strong) NITableViewModel*	tvModel;

@@ -84,8 +84,15 @@
                         atIndexPath: (NSIndexPath *)indexPath
                          withObject: (id <NSObject>)object{
 	
-	return  [NICellFactory tableViewModel:tableViewModel cellForTableView:tableView atIndexPath:indexPath withObject:object];
+    UITableViewCell * cell =  [NICellFactory tableViewModel:tableViewModel cellForTableView:tableView atIndexPath:indexPath withObject:object];
     
+    if ([cell isKindOfClass:[DOMyQuestionsRequestCell class]]){
+        [(DOMyQuestionsRequestCell*)cell setDelegate:self];
+    }if ([cell isKindOfClass:[DOMyQuestionsResponseCell class]]){
+        [(DOMyQuestionsResponseCell*)cell setDelegate:self];
+    }
+    
+    return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -129,6 +136,45 @@
     NSLog(@"%@",@"shouldHighlightRowAtIndexPath");
 
     return TRUE;
+}
+
+
+#pragma mark - cells delegation
+-(void) myQuestionsResponseCellCellWasTappedWithCell:(DOMyQuestionsResponseCell*)cell{
+    NSLog(@"%@",@"myQuestionsResponseCellCellWasTappedWithCell");
+
+}
+
+-(void) myQuestionsRequestCellWasTappedWithCell:(DOMyQuestionsRequestCell *)cell{
+    NSLog(@"%@",@"myQuestionsRequestCellWasTappedWithCell");
+    NSIndexPath * tappedIndexPath = [self.tableView indexPathForCell:cell];
+    AdviceRequest * request = [self.displayedObjects objectAtIndex:tappedIndexPath.row]; //not using any sections
+    [request setIsExpanded:@(!request.isExpanded.boolValue)];
+    
+    [self.tableView reloadRowsAtIndexPaths:[self animationPartnerIndexPathsToIndexPath:tappedIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+-(NSArray*)animationPartnerIndexPathsToIndexPath: (NSIndexPath*)path{
+
+    // want to reload the cells beneath if necessary-- necessary to reload all cells underneath
+    // need to 1) get index path of next cell 1.5) check if it's beyond array bounds 2) get object at that index path
+    //    3)test cell as either AdviceRequest or AdviceResponse, if it's an AdviceResponse, add the index path to the array of animation partner, if it's an AdviceRequest, return the indexPath array
+    
+    NSMutableArray * setOfRefresehers = [@[path] mutableCopy];
+    
+    bool stillTesting = TRUE;
+    NSIndexPath * nextIndexPath = path;
+            nextIndexPath = [NSIndexPath indexPathForRow:nextIndexPath.row+1 inSection:nextIndexPath.section];
+        if ([self.displayedObjects count] > nextIndexPath.row){
+             NSObject * displayedObject = [self.displayedObjects objectAtIndex:nextIndexPath.row];
+            if ([displayedObject isKindOfClass:[Response class]]){
+                [setOfRefresehers addObject:nextIndexPath];
+            }else{
+                stillTesting = FALSE;
+            }
+        }
+    
+    return setOfRefresehers;
 }
 
 #pragma mark - custom paging tableview

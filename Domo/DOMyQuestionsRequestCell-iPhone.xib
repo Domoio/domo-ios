@@ -42,7 +42,7 @@
 							<object class="IBUILabel" id="328840702">
 								<reference key="NSNextResponder" ref="455916875"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{13, 18}, {88, 20}}</string>
+								<string key="NSFrame">{{13, 18}, {265, 20}}</string>
 								<reference key="NSSuperview" ref="455916875"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="981900986"/>
@@ -89,7 +89,6 @@
 								<string key="IBUIText">Recently I've been feeling: \nPretty down about how I've been doing at University. I seem to be stuck in between doing my startupadsdads and actually performing with coursework, and it's a tough place to be.\n\nI could use some help with: \nMaking decisions about how to optimize and share my time between startup and school. </string>
 								<reference key="IBUITextColor" ref="585652716"/>
 								<nil key="IBUIHighlightedColor"/>
-								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUINumberOfLines">0</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<string key="name">HelveticaNeue</string>

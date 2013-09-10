@@ -32,7 +32,7 @@ static NSString * const AdviceRequestStatusCodePendingResponse = @"PRES";
 @property (nonatomic, retain) NSSet *responses;
 @property (nonatomic, retain) NSString * statusCode; //AdviceRequestStatusCode NSString
 @property (nonatomic, retain) NSString * supportAreaIdentifier;
-@property (nonatomic, retain) NSManagedObject *organization;
+@property (nonatomic, retain) Organization *organization;
 @property (nonatomic, retain) SupportArea *supportArea;
 @property (nonatomic, retain) NSString * organizationID;
 

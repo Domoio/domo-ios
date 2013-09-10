@@ -14,3 +14,6 @@
 	path = RestKit
 	url = git@github.com:ExoMachina/RestKit.git
 	branch = master
+[submodule "FormatterKit"]
+	path = FormatterKit
+	url = git@github.com:alist/FormatterKit.git
