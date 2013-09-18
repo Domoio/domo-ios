@@ -15,4 +15,5 @@
 
 @property (nonatomic, strong) DOHomeScreenRootVC * homeScreenVC;
 
+-(void) callInToServer;
 @end

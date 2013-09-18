@@ -43,7 +43,21 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
 	[self.window setRootViewController:self.homeScreenVC];
 	
     [self.window makeKeyAndVisible];
+    
+    
+    [self callInToServer];
     return YES;
+}
+
+-(void) callInToServer{
+    RKObjectManager *manager = [RKObjectManager sharedManager];
+                                
+    [manager getObjectsAtPath:@"organizations" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
+        NSLog(@"The public call-in: %@", [result array]);
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"Whoops call-in failed: %@", [error description]);
+    }];
+    
 }
 
 -(void) setupDatabases{
@@ -84,7 +98,7 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
     [NSManagedObjectContext MR_setDefaultContext:managedObjectStore.mainQueueManagedObjectContext];
     
     
-    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://domo-io-staging.herokuapp.com/apiv1/"]];
+    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://domoapis.herokuapp.com/api/v1/"]];
     objectManager.managedObjectStore = managedObjectStore;
     
     [RKObjectManager setSharedManager:objectManager];
@@ -107,10 +121,17 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
     [objectManager.router.routeSet addRoute:adviceUpdateRoute];
     [objectManager.router.routeSet addRoute:[RKRoute routeWithClass:[AdviceRequest class] pathPattern:@"advice" method:RKRequestMethodPOST]];
 
+
     
+    NSIndexSet *successStatusCodes = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful); // Anything in 2xx
+    RKResponseDescriptor *organizationResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[Organization entityMapping] method:RKRequestMethodAny pathPattern:nil keyPath:@"response.organizations" statusCodes:successStatusCodes]; //nil for all responses, adviceUpdateRoute.pathPattern
+    [objectManager addResponseDescriptor:organizationResponseDescriptor];
+    RKResponseDescriptor *organizationNestedDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[Organization entityMapping] method:RKRequestMethodAny pathPattern:nil keyPath:@"organizations" statusCodes:successStatusCodes]; //nil for all responses, adviceUpdateRoute.pathPattern
+    [objectManager addResponseDescriptor:organizationNestedDescriptor];
+
+
     //create the RKResponseDescriptor connected to a mapping
-    NSIndexSet *statusCodes = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful); // Anything in 2xx
-    RKResponseDescriptor *adviceResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[AdviceRequest entityMapping] method:RKRequestMethodAny pathPattern:nil keyPath:@"adviceRequest" statusCodes:statusCodes]; //nil for all responses, adviceUpdateRoute.pathPattern
+    RKResponseDescriptor *adviceResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[AdviceRequest entityMapping] method:RKRequestMethodAny pathPattern:nil keyPath:@"adviceRequest" statusCodes:successStatusCodes]; //nil for all responses, adviceUpdateRoute.pathPattern
     [objectManager addResponseDescriptor:adviceResponseDescriptor];
     
 }
