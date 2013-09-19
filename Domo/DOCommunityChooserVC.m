@@ -58,6 +58,16 @@
 }
 
 
+-(DOCommunityChooserCodeEntryVC*)codeEntryVC{
+    if (_codeEntryVC == nil){
+        _codeEntryVC = [[DOCommunityChooserCodeEntryVC alloc] init];
+        [_codeEntryVC.view setFrame:self.communityChooserView.bounds];
+        [_codeEntryVC setDelegate:self];
+    }
+    return _codeEntryVC;
+}
+
+
 - (IBAction)communityChooserBackgroundViewTapped:(UITapGestureRecognizer *)sender {
     [self.delegate communityChooserDidFinish:self];
 }
@@ -152,27 +162,46 @@
 //    [self.delegate communityChooserDidFinish:self];
     
     
-    double delayInSeconds = 0.5f;
+    double delayInSeconds = 0.0f;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         Organization * selectedOrganization = [[self displayedObjects] objectAtIndex:indexPath.row];
         if ([[selectedOrganization isCurrentActive] boolValue] == FALSE){
             //unset "active" community, set "active" community
-            Organization * currentActive = [Organization findFirstByAttribute:@"isCurrentActive" withValue:@(YES)];
-            [currentActive setIsCurrentActive:@(NO)];
             
-            [selectedOrganization setIsCurrentActive:@(YES)];
-            [[NSManagedObjectContext defaultContext] saveToPersistentStoreWithCompletion:^(BOOL success, NSError *saveError) {
-                if (saveError){
-                    NSLog(@"darn, a save error. %@",saveError);
-                }
-            }];
+            void (^updateAndDismiss)(void) = ^ {
+                Organization * currentActive = [Organization findFirstByAttribute:@"isCurrentActive" withValue:@(YES)];
+                [currentActive setIsCurrentActive:@(NO)];
+                
+                [selectedOrganization setIsCurrentActive:@(YES)];
+                [[NSManagedObjectContext defaultContext] saveToPersistentStoreWithCompletion:^(BOOL success, NSError *saveError) {
+                    if (saveError){
+                        NSLog(@"darn, a save error. %@",saveError);
+                    }
+                }];
+                
+                
+                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:TRUE];
+                
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:activeOrganizationChangedNotification object:selectedOrganization];
+                [self.delegate communityChooserDidFinish:self];
+            };
             
-            
-            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:TRUE];
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:activeOrganizationChangedNotification object:selectedOrganization];
-            [self.delegate communityChooserDidFinish:self];
+            if (StringHasText([selectedOrganization usersAuthCode]) == FALSE){
+
+                [self.codeEntryVC setEvaluatingOrganization:selectedOrganization];
+                [UIView beginAnimations:@"flip" context:nil];
+                
+                [self.communityChooserView addSubview:self.codeEntryVC.view];
+                
+                [UIView setAnimationDuration:.5];
+                [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.communityChooserView cache:FALSE];
+                [UIView commitAnimations];
+                
+            }else{
+                updateAndDismiss();
+            }
         }
 
     });
@@ -224,12 +253,27 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma  mark delegation
+-(void) codeEntryVCDidCancel:(DOCommunityChooserCodeEntryVC*)vc{
+    [UIView beginAnimations:@"flip" context:nil];
+    
+    [self.codeEntryVC.view removeFromSuperview];
+    
+    [UIView setAnimationDuration:.5];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.communityChooserView cache:FALSE];
+    [UIView commitAnimations];
+
+}
+-(void) codeEntryVCDidCompleteSuccesfull:(DOCommunityChooserCodeEntryVC*)vc{
+    [self codeEntryVCDidCancel:vc];
+}
 
 
 
 @end
 
 
+#pragma mark background view
 
 @implementation communityChooserBackgroundView //shout-outs to SIAlertView
 - (id)initWithFrame:(CGRect)frame{

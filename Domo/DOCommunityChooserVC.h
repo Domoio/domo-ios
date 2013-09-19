@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Organization.h"
 #import "NITableViewModel.h"
+#import "DOCommunityChooserCodeEntryVC.h"
 
 @class DOCommunityChooserVC;
 
@@ -19,7 +20,7 @@
 
 @end
 
-@interface DOCommunityChooserVC : UIViewController <NITableViewModelDelegate, UITableViewDelegate,NSFetchedResultsControllerDelegate>
+@interface DOCommunityChooserVC : UIViewController <NITableViewModelDelegate, UITableViewDelegate,NSFetchedResultsControllerDelegate, DOCommunityChooserCodeEntryVCDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *communityNameTextField;
 @property (weak, nonatomic) IBOutlet UIView *communityChooserView;
 @property (weak, nonatomic) IBOutlet UIView *communityChooserBackgroundView;
@@ -29,6 +30,7 @@
 @property (nonatomic, strong) NSFetchedResultsController * fetchController;
 @property (nonatomic, strong) IBOutlet UITableView * tableView;
 
+@property (nonatomic, strong) DOCommunityChooserCodeEntryVC * codeEntryVC;
 
 - (IBAction)communityChooserBackgroundViewTapped:(UITapGestureRecognizer *)sender;
 - (IBAction)communityNameTextFieldChanged:(id)sender;

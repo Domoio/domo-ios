@@ -13,8 +13,9 @@
 
 
 @implementation Organization
-
+@dynamic accessToken;
 @dynamic organizationID;
+@dynamic urlFragment;
 @dynamic displayName;
 @dynamic isCurrentActive;
 @dynamic supportAreas;
@@ -32,6 +33,8 @@
     RKEntityMapping* mapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass(Organization.class) inManagedObjectStore:[RKObjectManager sharedManager].managedObjectStore];
     [mapping addAttributeMappingsFromArray:@[@"accessToken",@"displayName",@"usageDescription"]];
     [mapping addAttributeMappingsFromDictionary:@{@"_id": @"organizationID"}]; //source, destination
+    [mapping addAttributeMappingsFromDictionary:@{@"orgURL": @"urlFragment"}]; //source, destination
+    [mapping addAttributeMappingsFromDictionary:@{@"code": @"usersAuthCode"}]; //source, destination
     [mapping addRelationshipMappingWithSourceKeyPath:@"supportAreas" mapping:[SupportArea entityMapping]];
     mapping.identificationAttributes = @[ @"organizationID" ];
     

@@ -139,6 +139,10 @@
 		79C3433E17AF057900410540 /* domoChoosebutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79C3433A17AF057900410540 /* domoChoosebutton@2x.png */; };
 		79C3433F17AF057900410540 /* domoDetailbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79C3433B17AF057900410540 /* domoDetailbutton@2x.png */; };
 		79C3434017AF057900410540 /* domoInfobutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79C3433C17AF057900410540 /* domoInfobutton@2x.png */; };
+		79E1C20217EA6285006C3C27 /* DOCommunityChooserCodeEntryVC-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79E1C20117EA6285006C3C27 /* DOCommunityChooserCodeEntryVC-iPhone.xib */; };
+		79E1C20517EA62B1006C3C27 /* DOCommunityChooserCodeEntryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E1C20417EA62B1006C3C27 /* DOCommunityChooserCodeEntryVC.m */; };
+		79E1C20717EA80EB006C3C27 /* app-logo-57px.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E1C20617EA80EB006C3C27 /* app-logo-57px.png */; };
+		79E1C20917EA8101006C3C27 /* app-logo-57px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E1C20817EA8101006C3C27 /* app-logo-57px@2x.png */; };
 		79F70ACD17BC612600C32069 /* app-logo-57px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F70ACC17BC612600C32069 /* app-logo-57px@2x.png */; };
 /* End PBXBuildFile section */
 
@@ -396,6 +400,11 @@
 		79C3433A17AF057900410540 /* domoChoosebutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "domoChoosebutton@2x.png"; sourceTree = "<group>"; };
 		79C3433B17AF057900410540 /* domoDetailbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "domoDetailbutton@2x.png"; sourceTree = "<group>"; };
 		79C3433C17AF057900410540 /* domoInfobutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "domoInfobutton@2x.png"; sourceTree = "<group>"; };
+		79E1C20117EA6285006C3C27 /* DOCommunityChooserCodeEntryVC-iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DOCommunityChooserCodeEntryVC-iPhone.xib"; sourceTree = "<group>"; };
+		79E1C20317EA62B1006C3C27 /* DOCommunityChooserCodeEntryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOCommunityChooserCodeEntryVC.h; sourceTree = "<group>"; };
+		79E1C20417EA62B1006C3C27 /* DOCommunityChooserCodeEntryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOCommunityChooserCodeEntryVC.m; sourceTree = "<group>"; };
+		79E1C20617EA80EB006C3C27 /* app-logo-57px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app-logo-57px.png"; path = "../../app-logo-57px.png"; sourceTree = "<group>"; };
+		79E1C20817EA8101006C3C27 /* app-logo-57px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app-logo-57px@2x.png"; path = "../../app-logo-57px@2x.png"; sourceTree = "<group>"; };
 		79F70ACC17BC612600C32069 /* app-logo-57px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-logo-57px@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -479,6 +488,9 @@
 				792A8AE517BA6163004BA476 /* DOCommunityChooserVC-iPhone.xib */,
 				792A8AED17BAA30F004BA476 /* DOCommunityCell.h */,
 				792A8AEE17BAA30F004BA476 /* DOCommunityCell.m */,
+				79E1C20317EA62B1006C3C27 /* DOCommunityChooserCodeEntryVC.h */,
+				79E1C20417EA62B1006C3C27 /* DOCommunityChooserCodeEntryVC.m */,
+				79E1C20117EA6285006C3C27 /* DOCommunityChooserCodeEntryVC-iPhone.xib */,
 			);
 			name = DOCommunityChooser;
 			sourceTree = "<group>";
@@ -891,6 +903,8 @@
 		79C3433817AF056600410540 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				79E1C20817EA8101006C3C27 /* app-logo-57px@2x.png */,
+				79E1C20617EA80EB006C3C27 /* app-logo-57px.png */,
 				795EAD55177B293000EEC7AF /* patternsquare_green@2x.png */,
 				794FDD9217B3E06500624BC5 /* patternsquare_green.png */,
 				795EAD46177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png */,
@@ -1007,6 +1021,9 @@
 				79117F3517CC622B002F1506 /* DOMyQuestionsResponseCell-iPhone.xib in Resources */,
 				79117F3917CD6733002F1506 /* DOSupportAreaChooserVC-iPhone.xib in Resources */,
 				791FDB8117D3ADDA00AC8FF7 /* FormatterKit.strings in Resources */,
+				79E1C20217EA6285006C3C27 /* DOCommunityChooserCodeEntryVC-iPhone.xib in Resources */,
+				79E1C20717EA80EB006C3C27 /* app-logo-57px.png in Resources */,
+				79E1C20917EA8101006C3C27 /* app-logo-57px@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1138,6 +1155,7 @@
 				79117F3C17CD674B002F1506 /* DOSupportAreaChooserVC.m in Sources */,
 				79117F3F17CD6766002F1506 /* DOSupportAreaCell.m in Sources */,
 				791FDB6E17D3ADC700AC8FF7 /* TTTTimeIntervalFormatter.m in Sources */,
+				79E1C20517EA62B1006C3C27 /* DOCommunityChooserCodeEntryVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

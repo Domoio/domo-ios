@@ -121,13 +121,19 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
     [objectManager.router.routeSet addRoute:adviceUpdateRoute];
     [objectManager.router.routeSet addRoute:[RKRoute routeWithClass:[AdviceRequest class] pathPattern:@"advice" method:RKRequestMethodPOST]];
 
+    //add this class to a route for an organization
+    RKRoute * organizationUpdateRoute = [RKRoute routeWithClass:[Organization class] pathPattern:@"organizations/:urlFragment" method:RKRequestMethodGET];
+    [objectManager.router.routeSet addRoute:organizationUpdateRoute];
+    [objectManager.router.routeSet addRoute:[RKRoute routeWithClass:[Organization class] pathPattern:@"organizations" method:RKRequestMethodPOST]];
 
     
     NSIndexSet *successStatusCodes = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful); // Anything in 2xx
     RKResponseDescriptor *organizationResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[Organization entityMapping] method:RKRequestMethodAny pathPattern:nil keyPath:@"response.organizations" statusCodes:successStatusCodes]; //nil for all responses, adviceUpdateRoute.pathPattern
     [objectManager addResponseDescriptor:organizationResponseDescriptor];
-    RKResponseDescriptor *organizationNestedDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[Organization entityMapping] method:RKRequestMethodAny pathPattern:nil keyPath:@"organizations" statusCodes:successStatusCodes]; //nil for all responses, adviceUpdateRoute.pathPattern
+    RKResponseDescriptor *organizationNestedDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[Organization entityMapping] method:RKRequestMethodAny pathPattern:nil keyPath:@"organization" statusCodes:successStatusCodes]; //nil for all responses, adviceUpdateRoute.pathPattern
     [objectManager addResponseDescriptor:organizationNestedDescriptor];
+    RKResponseDescriptor *oneOrganizationResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[Organization entityMapping] method:RKRequestMethodAny pathPattern:nil keyPath:@"response.organization" statusCodes:successStatusCodes]; //nil for all responses, adviceUpdateRoute.pathPattern
+    [objectManager addResponseDescriptor:oneOrganizationResponseDescriptor];
 
 
     //create the RKResponseDescriptor connected to a mapping

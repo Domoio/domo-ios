@@ -16,8 +16,9 @@ static NSString * const activeOrganizationChangedNotification = @"activeOrganiza
 @class AdviceRequest;
 
 @interface Organization : NSManagedObject <NICellObject>
-
+@property (nonatomic, retain) NSString * accessToken;
 @property (nonatomic, retain) NSString * organizationID;
+@property (nonatomic, retain) NSString * urlFragment;
 @property (nonatomic, retain) NSString * displayName;
 @property (nonatomic, retain) NSNumber * isCurrentActive;
 @property (nonatomic, retain) NSSet *supportAreas;
