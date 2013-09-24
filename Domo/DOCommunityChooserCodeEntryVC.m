@@ -52,6 +52,19 @@
         
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"failed: %@", [error description]);
+        [self.codeEntryTextField setText:@""];
+        CGPoint codeEntryCenter = self.codeEntryTextField.center;
+        [UIView animateWithDuration:.1 animations:^{
+            self.codeEntryTextField.center =  CGPointMake(codeEntryCenter.x + 20, codeEntryCenter.y);
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:.1 animations:^{
+                self.codeEntryTextField.center = CGPointMake(codeEntryCenter.x- 20, codeEntryCenter.y);
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:.2 animations:^{
+                    self.codeEntryTextField.center = codeEntryCenter;
+                }];
+            }];
+        }];
     }];
     
 }
