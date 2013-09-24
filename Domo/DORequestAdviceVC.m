@@ -157,7 +157,40 @@
     [self validateAndOrSubmitQuestion];
 }
 
+-(void) wiggleView:(UIView*)wView{
+    
+    CGPoint codeEntryCenter = wView.center;
+    [UIView animateWithDuration:.1 animations:^{
+        wView.center =  CGPointMake(codeEntryCenter.x + 20, codeEntryCenter.y);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:.1 animations:^{
+            wView.center = CGPointMake(codeEntryCenter.x- 20, codeEntryCenter.y);
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:.2 animations:^{
+                wView.center = codeEntryCenter;
+            }];
+        }];
+    }];
+    
+}
+
 -(void) validateAndOrSubmitQuestion{
+    
+    
+    
+    RKObjectManager *objectManager = [RKObjectManager sharedManager];
+    
+    
+    [objectManager postObject:self.pendingAdviceRequest path:nil parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
+        
+        NSLog(@"Requested: %@", operation);
+        NSLog(@"Posted: %@", [result array]);
+        
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"Requested: %@", operation);
+        NSLog(@"failed: %@", [error description]);
+
+    }];
     
     //if ready to submit
     

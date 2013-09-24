@@ -113,19 +113,24 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
 
     
     //add this entity mapping for this class to a set of mappings for posting to a route
-    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:[AdviceRequest requestMapping] objectClass:[AdviceRequest class] rootKeyPath:@"adviceRequest" method:RKRequestMethodPOST];
+    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:[AdviceRequest requestMapping] objectClass:[AdviceRequest class] rootKeyPath:nil method:RKRequestMethodPOST];
     [objectManager addRequestDescriptor:requestDescriptor];
 
     //add this class to a route for a post
-    RKRoute * adviceUpdateRoute = [RKRoute routeWithClass:[AdviceRequest class] pathPattern:@"advice/:adviceRequestID" method:RKRequestMethodGET];
+    RKRoute * adviceUpdateRoute = [RKRoute routeWithClass:[AdviceRequest class] pathPattern:@"organizations/:organization.urlFragment/advicerequest/:adviceRequestID?code=:organization.usersAuthCode" method:RKRequestMethodGET];
     [objectManager.router.routeSet addRoute:adviceUpdateRoute];
-    [objectManager.router.routeSet addRoute:[RKRoute routeWithClass:[AdviceRequest class] pathPattern:@"advice" method:RKRequestMethodPOST]];
+    //add this class to a route for an organization
+    RKRoute * adviceRequestPostRoute = [RKRoute routeWithClass:[AdviceRequest class] pathPattern:@"organizations/:organization.urlFragment/advicerequest?code=:organization.usersAuthCode" method:RKRequestMethodPOST];
+    [objectManager.router.routeSet addRoute:adviceRequestPostRoute];
 
     //add this class to a route for an organization
     RKRoute * organizationUpdateRoute = [RKRoute routeWithClass:[Organization class] pathPattern:@"organizations/:urlFragment" method:RKRequestMethodGET];
     [objectManager.router.routeSet addRoute:organizationUpdateRoute];
     [objectManager.router.routeSet addRoute:[RKRoute routeWithClass:[Organization class] pathPattern:@"organizations" method:RKRequestMethodPOST]];
 
+
+
+    
     
     NSIndexSet *successStatusCodes = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful); // Anything in 2xx
     RKResponseDescriptor *organizationResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[Organization entityMapping] method:RKRequestMethodAny pathPattern:nil keyPath:@"response.organizations" statusCodes:successStatusCodes]; //nil for all responses, adviceUpdateRoute.pathPattern

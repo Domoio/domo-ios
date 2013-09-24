@@ -94,8 +94,9 @@
 
 +(RKObjectMapping*) requestMapping{
     RKObjectMapping *requestMapping = [RKObjectMapping requestMapping]; // objectClass == NSMutableDictionary
-    [requestMapping addAttributeMappingsFromArray:@[@"accessCode",@"adviceRequestID",@"createdDate",@"modifiedDate",@"requestContent",@"supportAreaIdentifier"]];
-    [requestMapping addRelationshipMappingWithSourceKeyPath:@"organization" mapping:[Organization requestMapping]];
+    [requestMapping addAttributeMappingsFromArray:@[@"accessCode",@"adviceRequestID",@"createdDate",@"modifiedDate",@"organizationID",@"supportAreaIdentifier"]];
+    [requestMapping addAttributeMappingsFromDictionary:@{@"requestContent": @"adviceRequest"}];//here're the meat and or potatoes
+//    [requestMapping addRelationshipMappingWithSourceKeyPath:@"organization" mapping:[Organization requestMapping]];
     [requestMapping addRelationshipMappingWithSourceKeyPath:@"responses" mapping:[Response requestMapping]];
     
     return requestMapping;
