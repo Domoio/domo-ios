@@ -30,10 +30,10 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
 
 
 @implementation DOAppDelegate
-
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound)];
+
     [self setupDatabases];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -98,7 +98,7 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
     [NSManagedObjectContext MR_setDefaultContext:managedObjectStore.mainQueueManagedObjectContext];
     
     
-    BOOL isLocalDev = TRUE;
+    BOOL isLocalDev = FALSE;
     NSString * apiHome = @"https://domoapis.herokuapp.com/api/v1/";
     if (isLocalDev)
         apiHome = @"http://localhost:3000/api/v1/";
@@ -184,10 +184,33 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
     if (success) {
         [importer logSeedingInfo];
     }
-        
+    
 }
 
+#pragma mark push it, boy
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    const unsigned *tokenBytes = [deviceToken bytes];
+    NSString *hexToken = [NSString stringWithFormat:@"%08x%08x%08x%08x%08x%08x%08x%08x",
+                          ntohl(tokenBytes[0]), ntohl(tokenBytes[1]), ntohl(tokenBytes[2]),
+                          ntohl(tokenBytes[3]), ntohl(tokenBytes[4]), ntohl(tokenBytes[5]),
+                          ntohl(tokenBytes[6]), ntohl(tokenBytes[7])];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:hexToken forKey:pushNotificationTokenUserConstant];
+    
+}
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+    NSLog(@"Darn, push failed with error %@", error);
+}
 
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [[[UIAlertView alloc] initWithTitle:@"PUSH IT BOY" message:[userInfo description] delegate:nil cancelButtonTitle:@"C" otherButtonTitles:nil] show];
+}
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
+    
+}
+
+#pragma mark app life cycle
 - (void)applicationWillResignActive:(UIApplication *)application{
 }
 

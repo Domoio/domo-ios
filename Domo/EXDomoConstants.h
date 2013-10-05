@@ -7,6 +7,9 @@
 //
 
 
+static NSString * const pushNotificationTokenUserConstant = @"pushNotificationTokenUserConstant";
+
+
 #define IS_SHIPPING 0
 #define DEV_MUTE 0
 #define DEV_STATE_RESET 0
@@ -21,6 +24,7 @@
 #error "mute mode defined: DEV_MUTE"
 #endif
 #endif
+
 
 #define deviceIsIPhone5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 #define deviceIsPad ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)

@@ -158,7 +158,6 @@
             //unset "active" community, set "active" community
             
             SupportArea * currentActive = [SupportArea activeSupportAreaForActiveOrganization];
-            
 
             [currentActive setIsCurrentActive:@(NO)];
             
