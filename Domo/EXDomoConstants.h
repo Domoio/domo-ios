@@ -16,6 +16,7 @@ static NSString * const pushNotificationTokenUserConstant = @"pushNotificationTo
 #define DEV_MAKE_DB_SEED 0
 
 
+
 #ifdef RELEASE
 #ifdef DEV_STATE_RESET
 #error "reset mode defined: DEV_STATE_RESET"

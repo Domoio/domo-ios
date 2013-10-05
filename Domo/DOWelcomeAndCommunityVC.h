@@ -17,8 +17,10 @@
 
 @interface DOWelcomeAndCommunityVC : UIViewController
 - (IBAction)chooseCommunityButtonPressed:(id)sender;
+- (IBAction)communityLabelTapped:(id)sender;
 
 @property (weak, nonatomic) id<DOWelcomeAndCommunityVCDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UILabel *communityLabel;
+
 
 @end

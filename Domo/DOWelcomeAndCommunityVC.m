@@ -52,6 +52,10 @@
     [self.delegate welcomeAndCommunityVCWantsDisplayCommunityChooser:self];
 }
 
+- (IBAction)communityLabelTapped:(id)sender {
+    [self.delegate welcomeAndCommunityVCWantsDisplayCommunityChooser:self];
+}
+
 -(void) dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

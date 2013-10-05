@@ -29,6 +29,7 @@
 
 @property (nonatomic, strong) IBOutlet NoteView * adviceRequestNoteView;
 
+- (IBAction)supportAreaLabelTapped:(id)sender;
 - (IBAction)supportAreaChooserButtonPressed:(id)sender;
 - (IBAction)askButtonPressed:(id)sender;
 @end

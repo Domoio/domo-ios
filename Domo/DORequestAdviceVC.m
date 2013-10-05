@@ -149,6 +149,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)supportAreaLabelTapped:(id)sender {
+    [self.delegate requestAdviceVCWantsDisplaySupportAreaChooser:self];
+}
+
 - (IBAction)supportAreaChooserButtonPressed:(id)sender {
     [self.delegate requestAdviceVCWantsDisplaySupportAreaChooser:self];
 }
