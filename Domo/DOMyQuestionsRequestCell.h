@@ -28,5 +28,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeAgoSubmittedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *toWithSkillsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *requestTextLabel;
+@property (weak, nonatomic) IBOutlet UIView *contentDisplayView;
 
 @end

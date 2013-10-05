@@ -36,11 +36,15 @@ static const double defaultRequestTextHeight = 125;
     [self insertSubview:subview atIndex:0];
     self.styleView = subview;
     
+
+    [self setBackgroundColor:[UIColor clearColor]];
     self.styleView.userInteractionEnabled = FALSE;
     self.styleView.backgroundColor = [UIColor whiteColor];
     
     UITapGestureRecognizer * tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellTappedWithRecognizer:)];
-    [self addGestureRecognizer:tapRecognizer];
+    [self.requestTextLabel addGestureRecognizer:tapRecognizer];
+    [self.requestTextLabel setUserInteractionEnabled:TRUE];
+
 }
 
 -(UINib*) viewNib{
@@ -57,11 +61,15 @@ static const double defaultRequestTextHeight = 125;
     [self.requestTextLabel setText:[request requestContent]];
     [self.styleView setHeight:[DOMyQuestionsRequestCell heightForObject:request atIndexPath:nil tableView:nil]];
     
-    CGFloat textfieldReqHeight = [DOMyQuestionsRequestCell sizeForRequestText:request.requestContent].height;
+    CGSize requestDisplaySize = [DOMyQuestionsRequestCell sizeForRequestText:request.requestContent];
+    CGFloat textfieldReqHeight = ceilf(requestDisplaySize.height);
     if (request.isExpanded.boolValue == FALSE){
         textfieldReqHeight = MIN(defaultRequestTextHeight, textfieldReqHeight);
     }
     [self.requestTextLabel setHeight:textfieldReqHeight];
+    
+    CGFloat viewHeight = [[self class] heightForObject:request atIndexPath:nil tableView:nil];
+    [self.styleView setHeight:viewHeight];
     
     NSDate * relevantDate = [request createdDate];
     
@@ -115,11 +123,12 @@ static const double defaultRequestTextHeight = 125;
     
     if ([request isExpanded].boolValue){
         
-        return cellHeight + sizeOfRequestText.height - defaultRequestTextHeight;
+        double expandedHeight = ceilf(cellHeight + sizeOfRequestText.height - defaultRequestTextHeight);
+        return expandedHeight;
         
     }else {
         if (sizeOfRequestText.height < defaultRequestTextHeight){
-            CGFloat newHeight = cellHeight + sizeOfRequestText.height - defaultRequestTextHeight;
+            CGFloat newHeight = ceilf(cellHeight + sizeOfRequestText.height - defaultRequestTextHeight);
             return newHeight;
         }else{
             return cellHeight;
