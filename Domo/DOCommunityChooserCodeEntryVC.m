@@ -9,6 +9,11 @@
 #import "DOCommunityChooserCodeEntryVC.h"
 #import <QuartzCore/QuartzCore.h>
 
+@interface DOCommunityChooserCodeEntryVC(){
+    BOOL canSubmit;
+}
+@end
+
 @implementation DOCommunityChooserCodeEntryVC
 
 -(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
@@ -19,6 +24,14 @@
     return self;
 }
 
+
+-(void)updateUIForOrg{
+    NSString * orgPrompt = [NSString stringWithFormat:NSLocalizedString(@"Enter the Domo code for %@", @"domo code entry prompt"), self.evaluatingOrganization.displayName];
+    
+    [self.domoCodePromptLabel setText:orgPrompt];
+    [self.codeEntryTextField setText:self.evaluatingOrganization.usersAuthCode];
+    
+}
 
 - (IBAction)codeEntryTextFieldContentChanged:(id)sender {
 }
@@ -36,7 +49,28 @@
     return FALSE;
 }
 
+-(void) setEvaluatingOrganization:(Organization *)evaluatingOrganization{
+    _evaluatingOrganization = evaluatingOrganization;
+    [self updateUIForOrg];
+}
+
+-(void)enableSubmit{
+    [self.sendButton setEnabled:TRUE];
+    [self.sendButton setAlpha:1];
+    canSubmit = TRUE;
+}
+
+-(void)disableSubmit{
+    [self.sendButton setEnabled:FALSE];
+    [self.sendButton setAlpha:.7];
+    canSubmit = FALSE;
+}
+
 -(void) beginEnteredCodeValidation{
+    if (canSubmit == FALSE)
+        return;
+    
+    [self disableSubmit];
 
     NSString * code = [self.codeEntryTextField text];
     
@@ -48,11 +82,11 @@
         if ([[self.evaluatingOrganization usersAuthCode] isEqualToString:code]) {
             NSLog(@"SUCCESS %@", @"YO");
             [weakSelf.delegate codeEntryVCDidCompleteSuccesfull:self];
+            [self enableSubmit];
         }
         
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"failed: %@", [error description]);
-        [self.codeEntryTextField setText:@""];
         CGPoint codeEntryCenter = self.codeEntryTextField.center;
         [UIView animateWithDuration:.1 animations:^{
             self.codeEntryTextField.center =  CGPointMake(codeEntryCenter.x + 20, codeEntryCenter.y);
@@ -62,7 +96,9 @@
             } completion:^(BOOL finished) {
                 [UIView animateWithDuration:.2 animations:^{
                     self.codeEntryTextField.center = codeEntryCenter;
-                }];
+                    
+                    [self enableSubmit]; //only after the animation ;)
+                } completion:NULL];
             }];
         }];
     }];
@@ -80,6 +116,7 @@
     self.codeEntryTextField.layer.cornerRadius = 10;
     [self.codeEntryTextField setTextColor:[UIColor darkGrayColor]];
     
+    [self enableSubmit];
 }
 
 @end

@@ -108,7 +108,7 @@
     NSString * searchQuery = self.communityNameTextField.text;
     
     NSMutableArray * preds = [@[] mutableCopy];
-    
+
     NSPredicate * searchQueryPredicate = nil;
     if (StringHasText(searchQuery)){
         searchQueryPredicate = [NSPredicate predicateWithFormat:@"displayName contains[cd] %@", searchQuery];
@@ -131,7 +131,7 @@
         //compound predicate by name or if is current is true
         //sort by first is active then by name
 		self.fetchController = [Organization fetchAllGroupedBy:nil withPredicate:[self searchPredicate] sortedBy:nil ascending:FALSE delegate:self];
-        [self.fetchController.fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:TRUE]]];
+        [self.fetchController.fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"isCurrentActive" ascending:FALSE],[NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:TRUE]]];
 		[self.fetchController performFetch:nil];
 		_displayedObjects = [self.fetchController fetchedObjects];
 	}
@@ -166,10 +166,11 @@
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         Organization * selectedOrganization = [[self displayedObjects] objectAtIndex:indexPath.row];
-        if ([[selectedOrganization isCurrentActive] boolValue] == FALSE){
+//        if ([[selectedOrganization isCurrentActive] boolValue] == FALSE){
             //unset "active" community, set "active" community
             
-            void (^updateAndDismiss)(void) = ^ {
+            __block DOCommunityChooserVC * bself = self;
+            updateAndDismissBlock = ^ {
                 Organization * currentActive = [Organization findFirstByAttribute:@"isCurrentActive" withValue:@(YES)];
                 [currentActive setIsCurrentActive:@(NO)];
                 
@@ -181,28 +182,23 @@
                 }];
                 
                 
-                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:TRUE];
+                [bself.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:TRUE];
                 
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:activeOrganizationChangedNotification object:selectedOrganization];
-                [self.delegate communityChooserDidFinish:self];
+                [bself.delegate communityChooserDidFinish:bself];
             };
             
-            if (StringHasText([selectedOrganization usersAuthCode]) == FALSE){
-
-                [self.codeEntryVC setEvaluatingOrganization:selectedOrganization];
-                [UIView beginAnimations:@"flip" context:nil];
-                
-                [self.communityChooserView addSubview:self.codeEntryVC.view];
-                
-                [UIView setAnimationDuration:.5];
-                [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.communityChooserView cache:FALSE];
-                [UIView commitAnimations];
-                
-            }else{
-                updateAndDismiss();
-            }
-        }
+            [self.codeEntryVC setEvaluatingOrganization:selectedOrganization];
+            [UIView beginAnimations:@"flip" context:nil];
+            
+            [self.communityChooserView addSubview:self.codeEntryVC.view];
+            
+            [UIView setAnimationDuration:.5];
+            [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.communityChooserView cache:FALSE];
+            [UIView commitAnimations];
+            
+//        }
 
     });
     
@@ -262,10 +258,19 @@
     [UIView setAnimationDuration:.5];
     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.communityChooserView cache:FALSE];
     [UIView commitAnimations];
+    
 
 }
 -(void) codeEntryVCDidCompleteSuccesfull:(DOCommunityChooserCodeEntryVC*)vc{
     [self codeEntryVCDidCancel:vc];
+    
+    double delayInSeconds = .5;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        updateAndDismissBlock();
+        updateAndDismissBlock = nil;
+    });
+    
 }
 
 

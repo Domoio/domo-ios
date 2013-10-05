@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *domoCodePromptLabel;
 @property (weak, nonatomic) IBOutlet UILabel *codeLocationHintLabel;
 @property (weak, nonatomic) IBOutlet UITextField *codeEntryTextField;
+@property (weak, nonatomic) IBOutlet UIButton *sendButton;
 @property (nonatomic, weak) id<DOCommunityChooserCodeEntryVCDelegate> delegate;
 
 @property (nonatomic, strong) Organization * evaluatingOrganization;

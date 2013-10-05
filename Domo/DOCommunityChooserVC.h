@@ -20,7 +20,9 @@
 
 @end
 
-@interface DOCommunityChooserVC : UIViewController <NITableViewModelDelegate, UITableViewDelegate,NSFetchedResultsControllerDelegate, DOCommunityChooserCodeEntryVCDelegate>
+@interface DOCommunityChooserVC : UIViewController <NITableViewModelDelegate, UITableViewDelegate,NSFetchedResultsControllerDelegate, DOCommunityChooserCodeEntryVCDelegate>{
+    void (^updateAndDismissBlock)(void);
+}
 @property (weak, nonatomic) IBOutlet UITextField *communityNameTextField;
 @property (weak, nonatomic) IBOutlet UIView *communityChooserView;
 @property (weak, nonatomic) IBOutlet UIView *communityChooserBackgroundView;

@@ -98,7 +98,12 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
     [NSManagedObjectContext MR_setDefaultContext:managedObjectStore.mainQueueManagedObjectContext];
     
     
-    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://domoapis.herokuapp.com/api/v1/"]];
+    BOOL isLocalDev = TRUE;
+    NSString * apiHome = @"https://domoapis.herokuapp.com/api/v1/";
+    if (isLocalDev)
+        apiHome = @"http://localhost:3000/api/v1/";
+    
+    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:apiHome]];
     objectManager.managedObjectStore = managedObjectStore;
     
     [RKObjectManager setSharedManager:objectManager];
