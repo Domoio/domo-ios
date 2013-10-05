@@ -158,11 +158,17 @@
             //unset "active" community, set "active" community
             
             SupportArea * currentActive = [SupportArea activeSupportAreaForActiveOrganization];
+            
 
             [currentActive setIsCurrentActive:@(NO)];
             
             [selectedSupportArea setIsCurrentActive:@(YES)];
-            
+            [[NSManagedObjectContext defaultContext] saveToPersistentStoreWithCompletion:^(BOOL success, NSError *saveError) {
+                if (saveError){
+                    NSLog(@"darn, a save error. %@",saveError);
+                }
+            }];
+
             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:TRUE];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:activeSupportAreaChangedNotification object:selectedSupportArea];

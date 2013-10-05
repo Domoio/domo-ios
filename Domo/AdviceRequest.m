@@ -61,6 +61,17 @@
     [self setOrganizationID:orgID];
 }
 
+-(void)setSupportArea:(SupportArea *)supportArea{
+    NSString * key = @"supportArea";
+    
+    [self willChangeValueForKey:key];
+    [self setPrimitiveValue:supportArea forKey:key];
+    [self didChangeValueForKey:key];
+    
+    NSString * supportAreaID = [supportArea identifier];
+    [self setSupportAreaIdentifier:supportAreaID];
+}
+
 +(AdviceRequest*) currentEditingAdviceRequestForActiveOrganization{
     Organization * activeOrg = [Organization activeOrganization];
     return [self currentEditingAdviceRequestForOrganization:activeOrg];
