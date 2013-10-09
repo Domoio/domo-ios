@@ -62,6 +62,8 @@
 		795EAD63177B4E8C00EEC7AF /* app-logo-57px.png in Resources */ = {isa = PBXBuildFile; fileRef = 795EAD5F177B4E8B00EEC7AF /* app-logo-57px.png */; };
 		795EAD65177B4E8C00EEC7AF /* app-logo-72px.png in Resources */ = {isa = PBXBuildFile; fileRef = 795EAD61177B4E8B00EEC7AF /* app-logo-72px.png */; };
 		795EAD66177B4E8C00EEC7AF /* app-logo-72px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 795EAD62177B4E8B00EEC7AF /* app-logo-72px@2x.png */; };
+		796EC359180608BE00E212DC /* CSNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 796EC357180608BE00E212DC /* CSNotificationView.m */; };
+		796EC35A180608BE00E212DC /* CSNotificationView.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 796EC358180608BE00E212DC /* CSNotificationView.xcassets */; };
 		7977BACB17AB1606005A28AF /* AdviceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7977BACA17AB1606005A28AF /* AdviceRequest.m */; };
 		7977BACE17AB1753005A28AF /* Organization.m in Sources */ = {isa = PBXBuildFile; fileRef = 7977BACD17AB1753005A28AF /* Organization.m */; };
 		7977BAD117AB176C005A28AF /* Response.m in Sources */ = {isa = PBXBuildFile; fileRef = 7977BAD017AB176C005A28AF /* Response.m */; };
@@ -251,6 +253,9 @@
 		795EAD5F177B4E8B00EEC7AF /* app-logo-57px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-logo-57px.png"; sourceTree = "<group>"; };
 		795EAD61177B4E8B00EEC7AF /* app-logo-72px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-logo-72px.png"; sourceTree = "<group>"; };
 		795EAD62177B4E8B00EEC7AF /* app-logo-72px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-logo-72px@2x.png"; sourceTree = "<group>"; };
+		796EC356180608BE00E212DC /* CSNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSNotificationView.h; path = CSNotificationView/CSNotificationView/CSNotificationView.h; sourceTree = SOURCE_ROOT; };
+		796EC357180608BE00E212DC /* CSNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CSNotificationView.m; path = CSNotificationView/CSNotificationView/CSNotificationView.m; sourceTree = SOURCE_ROOT; };
+		796EC358180608BE00E212DC /* CSNotificationView.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = CSNotificationView.xcassets; path = CSNotificationView/CSNotificationView/CSNotificationView.xcassets; sourceTree = SOURCE_ROOT; };
 		7977BAC917AB1606005A28AF /* AdviceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdviceRequest.h; sourceTree = "<group>"; };
 		7977BACA17AB1606005A28AF /* AdviceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdviceRequest.m; sourceTree = "<group>"; };
 		7977BACC17AB1753005A28AF /* Organization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Organization.h; sourceTree = "<group>"; };
@@ -583,6 +588,7 @@
 		795EAD67177B761800EEC7AF /* External */ = {
 			isa = PBXGroup;
 			children = (
+				796EC35B180608DA00E212DC /* CSNotificationView */,
 				791FDB5B17D3ADC700AC8FF7 /* FormatterKit */,
 				799DD40F17A6CE3400225815 /* Nimbus */,
 				799DD3B917A6CDE800225815 /* MagicalRecord */,
@@ -591,6 +597,16 @@
 				790B0812177B7EC3005C6308 /* NoteView.m */,
 			);
 			name = External;
+			sourceTree = "<group>";
+		};
+		796EC35B180608DA00E212DC /* CSNotificationView */ = {
+			isa = PBXGroup;
+			children = (
+				796EC356180608BE00E212DC /* CSNotificationView.h */,
+				796EC357180608BE00E212DC /* CSNotificationView.m */,
+				796EC358180608BE00E212DC /* CSNotificationView.xcassets */,
+			);
+			name = CSNotificationView;
 			sourceTree = "<group>";
 		};
 		7977BAC817AB15CD005A28AF /* Model */ = {
@@ -994,6 +1010,7 @@
 				798A52371779FF8300939FB8 /* Arimo-Regular-Latin.ttf in Resources */,
 				798A52381779FF8300939FB8 /* Default-568h@2x.png in Resources */,
 				798A52391779FF8300939FB8 /* Default.png in Resources */,
+				796EC35A180608BE00E212DC /* CSNotificationView.xcassets in Resources */,
 				798A523A1779FF8300939FB8 /* Default@2x.png in Resources */,
 				795EAD42177A62DD00EEC7AF /* DOWelcomeAndCommunityVC-iPhone.xib in Resources */,
 				795EAD47177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png in Resources */,
@@ -1142,6 +1159,7 @@
 				799DD40A17A6CDE800225815 /* MagicalRecord+iCloud.m in Sources */,
 				799DD40B17A6CDE800225815 /* MagicalRecord+Options.m in Sources */,
 				799DD40C17A6CDE800225815 /* MagicalRecord+Setup.m in Sources */,
+				796EC359180608BE00E212DC /* CSNotificationView.m in Sources */,
 				799DD40D17A6CDE800225815 /* MagicalRecord+ShorthandSupport.m in Sources */,
 				799DD40E17A6CDE800225815 /* MagicalRecord.m in Sources */,
 				7977BACB17AB1606005A28AF /* AdviceRequest.m in Sources */,

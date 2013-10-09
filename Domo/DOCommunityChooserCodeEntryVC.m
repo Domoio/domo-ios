@@ -86,6 +86,11 @@
         }
         
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        
+        if (error.domain == NSURLErrorDomain){
+            [CSNotificationView showInViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController] style:CSNotificationViewStyleError message:NSLocalizedString(@"Server connection failed!", @"serverConnectionFailed")];
+        }
+        
         NSLog(@"failed: %@", [error description]);
         CGPoint codeEntryCenter = self.codeEntryTextField.center;
         [UIView animateWithDuration:.1 animations:^{

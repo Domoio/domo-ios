@@ -17,3 +17,6 @@
 [submodule "FormatterKit"]
 	path = FormatterKit
 	url = git@github.com:alist/FormatterKit.git
+[submodule "CSNotificationView"]
+	path = CSNotificationView
+	url = git@github.com:alist/CSNotificationView.git

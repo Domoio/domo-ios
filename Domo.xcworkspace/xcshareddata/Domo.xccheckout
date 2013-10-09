@@ -20,6 +20,8 @@
 		<string>ssh://github.com/alist/FormatterKit.git</string>
 		<key>418E3739-1C42-48C4-9D6C-0D961BD809CF</key>
 		<string>ssh://github.com/alist/domo-ios.git</string>
+		<key>4F57F984-52C8-4A04-99A8-2963327E42B0</key>
+		<string>ssh://github.com/alist/CSNotificationView.git</string>
 		<key>70F47E3A-C2DF-4825-8B57-0DDDE9566144</key>
 		<string>ssh://github.com/alist/MGBox2.git</string>
 	</dict>
@@ -37,6 +39,8 @@
 		<string>../FormatterKit</string>
 		<key>418E3739-1C42-48C4-9D6C-0D961BD809CF</key>
 		<string>..</string>
+		<key>4F57F984-52C8-4A04-99A8-2963327E42B0</key>
+		<string>../CSNotificationView</string>
 		<key>70F47E3A-C2DF-4825-8B57-0DDDE9566144</key>
 		<string>../MGBox2</string>
 	</dict>
@@ -48,6 +52,14 @@
 	<string>418E3739-1C42-48C4-9D6C-0D961BD809CF</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4F57F984-52C8-4A04-99A8-2963327E42B0</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CSNotificationView</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

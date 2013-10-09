@@ -190,9 +190,20 @@
         NSLog(@"Requested: %@", operation);
         NSLog(@"Posted: %@", [result array]);
         
+        [CSNotificationView showInViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController] style:CSNotificationViewStyleSuccess message:NSLocalizedString(@"Your advice request was posted!\nCheck back for responses soon!", @"serverConnectionFailedButDataSaved")];
+        
+        
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"Requested: %@", operation);
         NSLog(@"failed: %@", [error description]);
+        
+        if (error.domain == NSURLErrorDomain){
+            [CSNotificationView showInViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController] style:CSNotificationViewStyleError message:NSLocalizedString(@"The server connection failed.\nYour request is safe here!", @"serverConnectionFailedButDataSaved")];
+        }
+        
+        if ([error.domain isEqualToString:@"org.restkit.RestKit.ErrorDomain"] && error.code == 1001){
+            [CSNotificationView showInViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController] style:CSNotificationViewStyleSuccess message:NSLocalizedString(@"Posted (but still need to implement response handler)!\nCheck back for responses soon!", @"serverConnectionFailedButDataSaved")];
+        }
 
     }];
     

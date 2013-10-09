@@ -42,7 +42,12 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
 	self.homeScreenVC = [[DOHomeScreenRootVC alloc] init];
 	[self.window setRootViewController:self.homeScreenVC];
 	
+    if ([[UIDevice currentDevice] systemVersion].doubleValue >= 7){
+        [self.window setValue:[UIColor colorWithRed:22.0/255.0 green:154.0/255.0 blue:96.0/255.0 alpha:1] forKey:@"tintColor"];
+    }
+    
     [self.window makeKeyAndVisible];
+    
     
     
     [self callInToServer];
@@ -200,6 +205,7 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
     
 }
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+    [CSNotificationView showInViewController:self.window.rootViewController style:CSNotificationViewStyleError message:NSLocalizedString(@"Enabling push notifications failed, check your settings!", @"pushNotificationsFailed")];
     NSLog(@"Darn, push failed with error %@", error);
 }
 

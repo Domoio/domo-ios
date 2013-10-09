@@ -39,6 +39,7 @@ static NSString * const pushNotificationTokenUserConstant = @"pushNotificationTo
 #import "MagicalRecord.h"
 #import "CoreData+MagicalRecord.h"
 #import "RestKit.h"
+#import "CSNotificationView.h"
 
 
 #import "UIViewAdditions+EX.h"
