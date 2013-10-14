@@ -42,6 +42,8 @@
 		792A8AE617BA6163004BA476 /* DOCommunityChooserVC-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 792A8AE517BA6163004BA476 /* DOCommunityChooserVC-iPhone.xib */; };
 		792A8AEC17BA78DD004BA476 /* DOCommunityChooserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A8AEB17BA78DD004BA476 /* DOCommunityChooserVC.m */; };
 		792A8AEF17BAA30F004BA476 /* DOCommunityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A8AEE17BAA30F004BA476 /* DOCommunityCell.m */; };
+		792FF1EE180C674400154F78 /* DOUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 792FF1ED180C674400154F78 /* DOUpdater.m */; };
+		792FF1F1180C905400154F78 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 792FF1F0180C905400154F78 /* UIDevice+Hardware.m */; };
 		794FDD8A17B3DB4700624BC5 /* domoChoosebutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 794FDD8817B3DB4700624BC5 /* domoChoosebutton.png */; };
 		794FDD8B17B3DB4700624BC5 /* domoDetailbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 794FDD8917B3DB4700624BC5 /* domoDetailbutton.png */; };
 		794FDD8E17B3DC9600624BC5 /* domoBackbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 794FDD8C17B3DC9600624BC5 /* domoBackbutton.png */; };
@@ -224,6 +226,10 @@
 		792A8AEB17BA78DD004BA476 /* DOCommunityChooserVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOCommunityChooserVC.m; sourceTree = "<group>"; };
 		792A8AED17BAA30F004BA476 /* DOCommunityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOCommunityCell.h; sourceTree = "<group>"; };
 		792A8AEE17BAA30F004BA476 /* DOCommunityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOCommunityCell.m; sourceTree = "<group>"; };
+		792FF1EC180C674400154F78 /* DOUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOUpdater.h; sourceTree = "<group>"; };
+		792FF1ED180C674400154F78 /* DOUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOUpdater.m; sourceTree = "<group>"; };
+		792FF1EF180C905400154F78 /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+Hardware.h"; path = "UIDevice-Hardware/UIDevice+Hardware.h"; sourceTree = SOURCE_ROOT; };
+		792FF1F0180C905400154F78 /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+Hardware.m"; path = "UIDevice-Hardware/UIDevice+Hardware.m"; sourceTree = SOURCE_ROOT; };
 		794FDD8817B3DB4700624BC5 /* domoChoosebutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = domoChoosebutton.png; sourceTree = "<group>"; };
 		794FDD8917B3DB4700624BC5 /* domoDetailbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = domoDetailbutton.png; sourceTree = "<group>"; };
 		794FDD8C17B3DC9600624BC5 /* domoBackbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = domoBackbutton.png; sourceTree = "<group>"; };
@@ -557,6 +563,8 @@
 		795EAD58177B410C00EEC7AF /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				792FF1EF180C905400154F78 /* UIDevice+Hardware.h */,
+				792FF1F0180C905400154F78 /* UIDevice+Hardware.m */,
 				795EAD59177B411A00EEC7AF /* UIViewAdditions+EX.h */,
 				795EAD5A177B411A00EEC7AF /* UIViewAdditions+EX.m */,
 				795EAD5B177B411A00EEC7AF /* NSDateAdditions+EX.h */,
@@ -568,6 +576,8 @@
 		795EAD5D177B411D00EEC7AF /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				792FF1EC180C674400154F78 /* DOUpdater.h */,
+				792FF1ED180C674400154F78 /* DOUpdater.m */,
 				7977BAC817AB15CD005A28AF /* Model */,
 				795EAD58177B410C00EEC7AF /* Additions */,
 			);
@@ -1117,6 +1127,7 @@
 				799DD39117A6CDD500225815 /* NIInMemoryCache.m in Sources */,
 				799DD39217A6CDD500225815 /* NINavigationAppearance.m in Sources */,
 				799DD39317A6CDD500225815 /* NINetworkActivity.m in Sources */,
+				792FF1F1180C905400154F78 /* UIDevice+Hardware.m in Sources */,
 				799DD39417A6CDD500225815 /* NINonEmptyCollectionTesting.m in Sources */,
 				799DD39517A6CDD500225815 /* NINonRetainingCollections.m in Sources */,
 				799DD39617A6CDD500225815 /* NIOperations.m in Sources */,
@@ -1155,6 +1166,7 @@
 				799DD40617A6CDE800225815 /* NSPersistentStore+MagicalRecord.m in Sources */,
 				799DD40717A6CDE800225815 /* NSPersistentStoreCoordinator+MagicalRecord.m in Sources */,
 				799DD40817A6CDE800225815 /* MagicalRecord+Actions.m in Sources */,
+				792FF1EE180C674400154F78 /* DOUpdater.m in Sources */,
 				799DD40917A6CDE800225815 /* MagicalRecord+ErrorHandling.m in Sources */,
 				799DD40A17A6CDE800225815 /* MagicalRecord+iCloud.m in Sources */,
 				799DD40B17A6CDE800225815 /* MagicalRecord+Options.m in Sources */,

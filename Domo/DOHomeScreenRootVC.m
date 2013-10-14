@@ -431,9 +431,19 @@ const float askAdviceHandleHeight = 48;
 }
 
 -(void) communityChooserDidSelectOrganization:(Organization*)organization withChooser:(DOCommunityChooserVC*)chooser{
-    
+    if ([DOUpdater pushNotificationsActive] == false){
+        [DOUpdater registerForNotificationsAndAskPermission];
+    }
+    [self.updater registerForSubscriberID];
 }
 
+#pragma mark - data
+-(DOUpdater*) updater{
+    if (_updater == nil){
+        _updater = [[DOUpdater alloc] init];
+    }
+    return _updater;
+}
 
 #pragma mark - addenda
 - (void)didReceiveMemoryWarning

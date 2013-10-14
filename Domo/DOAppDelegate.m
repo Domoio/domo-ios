@@ -11,6 +11,7 @@
 #import "AdviceRequest.h"
 #import "Organization.h"
 #import "Response.h"
+#import "DOUpdater.h"
 
 @interface DOAppDelegate (){
     
@@ -32,8 +33,8 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
 @implementation DOAppDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound)];
-
+    [DOUpdater registerForNotificationsIfPushNotificationsActive];
+    
     [self setupDatabases];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -201,7 +202,7 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
                           ntohl(tokenBytes[3]), ntohl(tokenBytes[4]), ntohl(tokenBytes[5]),
                           ntohl(tokenBytes[6]), ntohl(tokenBytes[7])];
     
-    [[NSUserDefaults standardUserDefaults] setValue:hexToken forKey:pushNotificationTokenUserConstant];
+    [self.homeScreenVC.updater updateSubscriberIDWithPushNotificationID:hexToken];
     
 }
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{

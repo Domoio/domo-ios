@@ -18,6 +18,7 @@
 @dynamic modifiedDate;
 @dynamic requestContent;
 @dynamic createdDate;
+@dynamic subscriberID;
 @dynamic accessCode;
 @dynamic responses;
 @dynamic statusCode;
@@ -105,11 +106,11 @@
 
 +(RKObjectMapping*) requestMapping{
     RKObjectMapping *requestMapping = [RKObjectMapping requestMapping]; // objectClass == NSMutableDictionary
-    [requestMapping addAttributeMappingsFromArray:@[@"accessCode",@"adviceRequestID",@"createdDate",@"modifiedDate",@"organizationID",@"supportAreaIdentifier"]];
+    [requestMapping addAttributeMappingsFromArray:@[@"accessCode",@"adviceRequestID",@"createdDate",@"subscriberID",@"modifiedDate",@"organizationID",@"supportAreaIdentifier"]];
     [requestMapping addAttributeMappingsFromDictionary:@{@"requestContent": @"adviceRequest"}];//here're the meat and or potatoes
 //    [requestMapping addRelationshipMappingWithSourceKeyPath:@"organization" mapping:[Organization requestMapping]];
     [requestMapping addRelationshipMappingWithSourceKeyPath:@"responses" mapping:[Response requestMapping]];
-    
+
     return requestMapping;
 }
 

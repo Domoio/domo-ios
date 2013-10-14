@@ -20,3 +20,6 @@
 [submodule "CSNotificationView"]
 	path = CSNotificationView
 	url = git@github.com:alist/CSNotificationView.git
+[submodule "UIDevice-Hardware"]
+	path = UIDevice-Hardware
+	url = git@github.com:alist/UIDevice-Hardware.git

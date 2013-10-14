@@ -8,6 +8,8 @@
 
 
 static NSString * const pushNotificationTokenUserConstant = @"pushNotificationTokenUserConstant";
+static NSString * const subscriberTokenUserConstant = @"subscriberTokenUserConstant";
+static NSString * const deviceIdUserConstant = @"deviceIdUserConstant";
 
 
 #define IS_SHIPPING 0

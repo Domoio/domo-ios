@@ -28,6 +28,7 @@ static NSString * const AdviceRequestStatusCodePendingResponse = @"PRES";
 @property (nonatomic, retain) NSDate * modifiedDate;
 @property (nonatomic, retain) NSString * requestContent;
 @property (nonatomic, retain) NSDate * createdDate;
+@property (nonatomic, retain) NSString * subscriberID;
 @property (nonatomic, retain) NSNumber * isExpanded;
 @property (nonatomic, retain) NSSet *responses;
 @property (nonatomic, retain) NSString * statusCode; //AdviceRequestStatusCode NSString
@@ -35,6 +36,7 @@ static NSString * const AdviceRequestStatusCodePendingResponse = @"PRES";
 @property (nonatomic, retain) Organization *organization;
 @property (nonatomic, retain) SupportArea *supportArea;
 @property (nonatomic, retain) NSString * organizationID;
+
 
 
 +(AdviceRequest*) currentEditingAdviceRequestForOrganization:(Organization*)organization;

@@ -186,6 +186,7 @@
                 
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:activeOrganizationChangedNotification object:selectedOrganization];
+                [bself.delegate communityChooserDidSelectOrganization:selectedOrganization withChooser:bself];
                 [bself.delegate communityChooserDidFinish:bself];
             };
             

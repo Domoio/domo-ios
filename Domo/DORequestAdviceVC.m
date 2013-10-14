@@ -8,6 +8,7 @@
 
 #import "DORequestAdviceVC.h"
 #import <QuartzCore/QuartzCore.h>
+#import "DOUpdater.h"
 @interface DORequestAdviceVC ()
 -(void) activeOrganizationUpdated:(id)sender;
 -(void) activeSupportAreaUpdated:(id)sender;
@@ -184,6 +185,7 @@
     
     RKObjectManager *objectManager = [RKObjectManager sharedManager];
     
+    [self.pendingAdviceRequest setSubscriberID:[DOUpdater localSubscriberID]];
     
     [objectManager postObject:self.pendingAdviceRequest path:nil parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
         

@@ -13,6 +13,7 @@
 #import "DOMyQuestionsVC.h"
 #import "DOCommunityChooserVC.h"
 #import "DOSupportAreaChooserVC.h"
+#import "DOUpdater.h"
 
 @interface DOHomeScreenRootVC : UIViewController <UIScrollViewDelegate,DOWelcomeAndCommunityVCDelegate,DOCommunityChooserVCDelegate, DORequestAdviceVCDelegate,DOSupportAreaChooserVCDelegate>
 
@@ -25,6 +26,8 @@
 
 @property (nonatomic, strong) IBOutlet MGScrollView * mainContentScrollView;
 @property (nonatomic, strong) IBOutlet UIView * myQuestionsPeakView;
+
+@property (nonatomic, strong) DOUpdater * updater;
 
 
 -(BOOL) mainGetAdviceTrayIsScrolledToTop;//if on top 'page' of view
