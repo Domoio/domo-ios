@@ -112,8 +112,8 @@
         NSMutableArray * requestBodyArray = [@[] mutableCopy];
         
         for (AdviceRequest * adviceRequest in sectionObjects){
-            //accessCode is often nil
-            [requestBodyArray addObject:@{@"adviceRequestId": adviceRequest.adviceRequestID, @"accessToken":adviceRequest.accessCode}];
+            //accessToken is often nil
+            [requestBodyArray addObject:@{@"adviceRequestId": adviceRequest.adviceRequestID, @"accessToken":adviceRequest.accessToken}];
         }
         
         

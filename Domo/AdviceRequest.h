@@ -23,7 +23,7 @@ static NSString * const AdviceRequestStatusCodePendingResponse = @"PRES";
 
 @interface AdviceRequest : NSManagedObject <NICellObject>
 
-@property (nonatomic, retain) NSString * accessCode; //the access code given to users for future access
+@property (nonatomic, retain) NSString * accessToken; //the access code given to users for future access
 @property (nonatomic, retain) NSString * adviceRequestID;
 @property (nonatomic, retain) NSDate * modifiedDate;
 @property (nonatomic, retain) NSString * requestContent;

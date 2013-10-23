@@ -153,8 +153,10 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
 
 
     //create the RKResponseDescriptor connected to a mapping
-    RKResponseDescriptor *adviceResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[AdviceRequest entityMapping] method:RKRequestMethodAny pathPattern:nil keyPath:@"adviceRequest" statusCodes:successStatusCodes]; //nil for all responses, adviceUpdateRoute.pathPattern
+    RKResponseDescriptor *adviceResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[AdviceRequest entityMapping] method:RKRequestMethodAny pathPattern:nil keyPath:@"advicerequest" statusCodes:successStatusCodes]; //nil for all responses, adviceUpdateRoute.pathPattern
     [objectManager addResponseDescriptor:adviceResponseDescriptor];
+    RKResponseDescriptor *adviceNestedResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[AdviceRequest entityMapping] method:RKRequestMethodAny pathPattern:nil keyPath:@"response.advicerequest" statusCodes:successStatusCodes]; //nil for all responses, adviceUpdateRoute.pathPattern
+    [objectManager addResponseDescriptor:adviceNestedResponseDescriptor];
     
 }
 

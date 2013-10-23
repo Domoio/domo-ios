@@ -19,7 +19,7 @@
 @dynamic requestContent;
 @dynamic createdDate;
 @dynamic subscriberID;
-@dynamic accessCode;
+@dynamic accessToken;
 @dynamic responses;
 @dynamic statusCode;
 @dynamic lastUpdatedDate;
@@ -90,7 +90,7 @@
 
 +(RKEntityMapping*) entityMapping{
     RKEntityMapping* mapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass(AdviceRequest.class) inManagedObjectStore:[RKObjectManager sharedManager].managedObjectStore];
-    [mapping addAttributeMappingsFromArray:@[@"accessCode",@"adviceRequestID",@"createdDate",@"modifiedDate",@"organizationID",@"requestContent",@"supportAreaIdentifier"]];
+    [mapping addAttributeMappingsFromArray:@[@"accessToken",@"adviceRequestID",@"createdDate",@"modifiedDate",@"organizationID",@"requestContent",@"supportAreaIdentifier"]];
     [mapping addAttributeMappingsFromDictionary:@{@"status": @"statusCode"}];
     mapping.identificationAttributes = @[ @"adviceRequestID" ];
 
@@ -107,7 +107,7 @@
 
 +(RKObjectMapping*) requestMapping{
     RKObjectMapping *requestMapping = [RKObjectMapping requestMapping]; // objectClass == NSMutableDictionary
-    [requestMapping addAttributeMappingsFromArray:@[@"accessCode",@"adviceRequestID",@"createdDate",@"subscriberID",@"modifiedDate",@"organizationID",@"supportAreaIdentifier"]];
+    [requestMapping addAttributeMappingsFromArray:@[@"accessToken",@"adviceRequestID",@"createdDate",@"subscriberID",@"modifiedDate",@"organizationID",@"supportAreaIdentifier"]];
     [requestMapping addAttributeMappingsFromDictionary:@{@"requestContent": @"adviceRequest"}];//here're the meat and or potatoes
 //    [requestMapping addRelationshipMappingWithSourceKeyPath:@"organization" mapping:[Organization requestMapping]];
     [requestMapping addRelationshipMappingWithSourceKeyPath:@"responses" mapping:[Response requestMapping]];
