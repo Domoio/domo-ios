@@ -22,6 +22,7 @@
 @dynamic accessCode;
 @dynamic responses;
 @dynamic statusCode;
+@dynamic lastUpdatedDate;
 @dynamic organization;
 @dynamic supportArea;
 @dynamic organizationID;

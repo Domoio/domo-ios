@@ -228,6 +228,7 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application{
+    [self.homeScreenVC.updater updateFromServer:FALSE];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application{

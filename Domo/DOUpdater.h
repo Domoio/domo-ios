@@ -8,17 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DOUpdater : NSObject{
+@interface DOUpdater : NSObject <NSFetchedResultsControllerDelegate>{
     
 }
 
 @property (nonatomic, strong) NSString * subscriberId;
 @property (nonatomic, strong) NSString * deviceId;
 @property (nonatomic, strong) NSString * pushNotificationID;
+@property (nonatomic, strong) NSFetchedResultsController * adviceRequestUpdateController;
 
 
 -(void) updateSubscriberIDWithPushNotificationID:(NSString*)pushNotificationID;
 -(void) registerForSubscriberID; //registers for a SubscriberID if one is needed
+
+-(void)updateFromServer:(BOOL)force; //forces update if
+//array of adviceRequestsToUpdateByOrganization
+-(NSArray*) adviceRequestsToUpdateByOrganization;
+
 
 +(BOOL) pushNotificationsActive;
 +(void) registerForNotificationsIfPushNotificationsActive;

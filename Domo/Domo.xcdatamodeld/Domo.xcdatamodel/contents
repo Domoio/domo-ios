@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F37" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12F37" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="AdviceRequest" representedClassName="AdviceRequest" syncable="YES">
         <attribute name="accessCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="adviceRequestID" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="createdDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="isExpanded" optional="YES" transient="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="lastUpdatedDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="modifiedDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="organizationID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="requestContent" optional="YES" attributeType="String" syncable="YES"/>
@@ -44,9 +45,9 @@
         <relationship name="organization" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" inverseName="supportAreas" inverseEntity="Organization" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AdviceRequest" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Organization" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Response" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="SupportArea" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="AdviceRequest" positionX="0" positionY="0" width="128" height="253"/>
+        <element name="Organization" positionX="-171" positionY="-234" width="128" height="180"/>
+        <element name="Response" positionX="-414" positionY="294" width="128" height="165"/>
+        <element name="SupportArea" positionX="-407" positionY="-48" width="128" height="120"/>
     </elements>
 </model>
