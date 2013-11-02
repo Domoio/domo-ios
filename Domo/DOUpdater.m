@@ -77,9 +77,9 @@
 -(NSArray*) adviceRequestsToUpdateByOrganization{
     if (_adviceRequestUpdateController == nil){
         NSDate * beforeDate = [NSDate dateWithTimeIntervalSinceNow:-60];
-        NSPredicate * updatedBeforePredicate = [NSPredicate predicateWithFormat:@"lastUpdatedDate < %@",beforeDate];
-#warning not updating before date
-        _adviceRequestUpdateController = [AdviceRequest fetchAllSortedBy:@"lastUpdatedDate" ascending:TRUE withPredicate:nil groupBy:@"organization" delegate:self];
+        NSPredicate * updatedBeforePredicate = [NSPredicate predicateWithFormat:@"(lastUpdatedDate < %@ OR lastUpdatedDate == nil)",beforeDate];
+        NSPredicate * notLocalPredicate = [NSPredicate predicateWithFormat:@"accessToken != nil" argumentArray:nil];
+        _adviceRequestUpdateController = [AdviceRequest fetchAllSortedBy:@"lastUpdatedDate" ascending:TRUE withPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:@[updatedBeforePredicate,notLocalPredicate]] groupBy:@"organization" delegate:self];
         NSError * error = nil;
         [_adviceRequestUpdateController performFetch:&error];
         if (error){
@@ -101,26 +101,39 @@
 }
 
 -(void) updateFromServer:(BOOL)force{
-    return;
-    
-    NSMutableArray * serverRequestArray = [@[] mutableCopy];
-    
+
     NSArray * objectsBySection = [self adviceRequestsToUpdateByOrganization];
     for (NSArray * sectionObjects in objectsBySection){
         Organization * orgForSection = [[sectionObjects firstObject] organization];
         
-        NSMutableArray * requestBodyArray = [@[] mutableCopy];
+        NSMutableArray * requestsToUpdate = [@[] mutableCopy];
         
         for (AdviceRequest * adviceRequest in sectionObjects){
             //accessToken is often nil
-            [requestBodyArray addObject:@{@"adviceRequestId": adviceRequest.adviceRequestID, @"accessToken":adviceRequest.accessToken}];
+            [requestsToUpdate addObject:@{@"adviceRequestId": adviceRequest.adviceRequestID, @"accessToken":adviceRequest.accessToken}];
         }
         
         
         NSString* requestPath = [NSString stringWithFormat:@"/api/v1/organizations/%@/advicerequest/getall?code=%@", orgForSection.urlFragment, orgForSection.usersAuthCode];
 
         RKObjectManager *objectManager = [RKObjectManager sharedManager];
-        [objectManager postObject:requestBodyArray path:requestPath parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
+
+        NSDictionary * requestBody = @{@"adviceRequestList": requestsToUpdate};
+        NSLog(@"requestBody %@", requestBody);
+        //{
+        //    "adviceRequestList": [
+        //                          {
+        //                              "adviceRequestId": "5250aa0da40cef0400000009",
+        //                              "accessToken": "ee926aa943ab45b283cc3bbe0cc76944"
+        //                          },
+        //                          {
+        //                              "adviceRequestId": "5250a21558cbef9a80000006",
+        //                              "accessToken": "4c1bdb849b0d41408d0c79819e2d0445"
+        //                          }
+        //                          ]
+        //}
+        
+        [objectManager postObject:nil path:requestPath parameters:requestBody success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
             
             NSLog(@"Requested: %@", operation);
             NSLog(@"Posted: %@", [result array]);
@@ -143,32 +156,8 @@
         }];
 
         
-        /*
-        AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[[RKObjectManager sharedManager] baseURL]];
-        NSMutableURLRequest * registerSubscriberURLRequest =  [httpClient requestWithMethod:@"POST" path:requestPath parameters:@{@"subscriberId": self.subscriberId, @"deviceId": self.deviceId, @"deviceToken": self.pushNotificationID }];
-        
-        
-
-        NSOperation * requestOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:registerSubscriberURLRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSDictionary* JSON) {
-
-            self.deviceId = [[JSON valueForKey:@"response"] valueForKey:@"deviceId"];
-            
-            [[[UIAlertView alloc] initWithTitle:nil message:@"Updated your push notification endpoint! \nEmail the developer at domo@domo.io, this means something to them :-)" delegate:nil cancelButtonTitle:@"okay" otherButtonTitles:nil] show];
-            
-            
-        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-            NSLog(@"JSON fail subscriberID response: %@ with error: %@", [JSON description], error);
-            
-            [[[UIAlertView alloc] initWithTitle:nil message:@"failed updating push endpoint! Sorry :/ \nEmail the developer at domo@domo.io, this means something to them :-)" delegate:nil cancelButtonTitle:@"okay" otherButtonTitles:nil] show];
-            
-        }];
-        
-        [serverRequestArray addObject:requestOperation];
-         */
-        
     }
-    
-//    [[NSOperationQueue mainQueue] addOperations:serverRequestArray waitUntilFinished:FALSE];
+
 }
 
 -(void) updateSubscriberIDWithPushNotificationID:(NSString*)pushNotificationID{

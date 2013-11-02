@@ -90,7 +90,8 @@
 
 +(RKEntityMapping*) entityMapping{
     RKEntityMapping* mapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass(AdviceRequest.class) inManagedObjectStore:[RKObjectManager sharedManager].managedObjectStore];
-    [mapping addAttributeMappingsFromArray:@[@"accessToken",@"adviceRequestID",@"createdDate",@"modifiedDate",@"organizationID",@"requestContent",@"supportAreaIdentifier"]];
+    [mapping addAttributeMappingsFromDictionary:@{@"_id": @"adviceRequestID"}];
+    [mapping addAttributeMappingsFromArray:@[@"accessToken",@"createdDate",@"modifiedDate",@"organizationID",@"requestContent",@"supportAreaIdentifier"]];
     [mapping addAttributeMappingsFromDictionary:@{@"status": @"statusCode"}];
     mapping.identificationAttributes = @[ @"adviceRequestID" ];
 

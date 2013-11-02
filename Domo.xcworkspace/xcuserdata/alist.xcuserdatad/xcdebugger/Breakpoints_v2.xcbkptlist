@@ -35,28 +35,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Domo/DORequestAdviceVC.m"
-            timestampString = "403478508.929023"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
-            landmarkName = "-validateAndOrSubmitQuestion"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Domo/DOUpdater.m"
-            timestampString = "404258535.68518"
+            timestampString = "404611719.912678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "-updateSubscriberIDWithPushNotificationID:"
             landmarkType = "5">
          </BreakpointContent>
@@ -67,29 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Domo/DOUpdater.m"
-            timestampString = "404258535.68518"
+            filePath = "Domo/DORequestAdviceVC.m"
+            timestampString = "404260681.054336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "-updateFromServer:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Domo/DOUpdater.m"
-            timestampString = "404183414.232388"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "-adviceRequestsToUpdateByOrganization"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
+            landmarkName = "-validateAndOrSubmitQuestion"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -100,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Domo/DORequestAdviceVC.m"
-            timestampString = "404258515.918919"
+            timestampString = "404260936.043646"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
             landmarkName = "-validateAndOrSubmitQuestion"
             landmarkType = "5">
          </BreakpointContent>

@@ -104,15 +104,17 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
     [NSManagedObjectContext MR_setDefaultContext:managedObjectStore.mainQueueManagedObjectContext];
     
     
-    BOOL isLocalDev = FALSE;
+    BOOL isLocalDev = TRUE;
     NSString * apiHome = @"https://domoapis.herokuapp.com/api/v1/";
     if (isLocalDev)
         apiHome = @"http://localhost:3000/api/v1/";
     
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:apiHome]];
     objectManager.managedObjectStore = managedObjectStore;
-    
+    [objectManager setRequestSerializationMIMEType:RKMIMETypeJSON]; //every request body is json
+
     [RKObjectManager setSharedManager:objectManager];
+    
     
     [self setObjectMappings];
     
@@ -157,6 +159,8 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
     [objectManager addResponseDescriptor:adviceResponseDescriptor];
     RKResponseDescriptor *adviceNestedResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[AdviceRequest entityMapping] method:RKRequestMethodAny pathPattern:nil keyPath:@"response.advicerequest" statusCodes:successStatusCodes]; //nil for all responses, adviceUpdateRoute.pathPattern
     [objectManager addResponseDescriptor:adviceNestedResponseDescriptor];
+    RKResponseDescriptor *adviceNestedPluralResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[AdviceRequest entityMapping] method:RKRequestMethodAny pathPattern:nil keyPath:@"response.advicerequests" statusCodes:successStatusCodes];
+    [objectManager addResponseDescriptor:adviceNestedPluralResponseDescriptor];
     
 }
 

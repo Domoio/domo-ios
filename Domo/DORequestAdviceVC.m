@@ -186,9 +186,10 @@
     RKObjectManager *objectManager = [RKObjectManager sharedManager];
     
     [self.pendingAdviceRequest setSubscriberID:[DOUpdater localSubscriberID]];
+    [self.pendingAdviceRequest setStatusCode:AdviceRequestStatusCodePendingSubmission];
     
+    __block AdviceRequest * pending = self.pendingAdviceRequest;
     [objectManager postObject:self.pendingAdviceRequest path:nil parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
-        
         NSLog(@"Requested: %@", operation);
         NSLog(@"Posted: %@", [result array]);
         
@@ -198,6 +199,8 @@
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"Requested: %@", operation);
         NSLog(@"failed: %@", [error description]);
+        
+        [pending setStatusCode:AdviceRequestStatusCodeEditing];
         
         if (error.domain == NSURLErrorDomain){
             [CSNotificationView showInViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController] style:CSNotificationViewStyleError message:NSLocalizedString(@"The server connection failed.\nYour request is safe here!", @"serverConnectionFailedButDataSaved")];
