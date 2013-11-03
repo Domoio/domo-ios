@@ -88,11 +88,14 @@
     return ar;
 }
 
+//coming in
 +(RKEntityMapping*) entityMapping{
     RKEntityMapping* mapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass(AdviceRequest.class) inManagedObjectStore:[RKObjectManager sharedManager].managedObjectStore];
+    //theirs:ours
     [mapping addAttributeMappingsFromDictionary:@{@"_id": @"adviceRequestID"}];
-    [mapping addAttributeMappingsFromArray:@[@"accessToken",@"createdDate",@"modifiedDate",@"organizationID",@"requestContent",@"supportAreaIdentifier"]];
+    [mapping addAttributeMappingsFromArray:@[@"accessToken",@"modifiedDate",@"organizationID",@"requestContent",@"supportAreaIdentifier"]];
     [mapping addAttributeMappingsFromDictionary:@{@"status": @"statusCode"}];
+    [mapping addAttributeMappingsFromDictionary:@{@"createdOn": @"createdDate"}];
     mapping.identificationAttributes = @[ @"adviceRequestID" ];
 
     RKConnectionDescription *organizationConnection = [[RKConnectionDescription alloc] initWithRelationship:([mapping.entity relationshipsByName][@"organization"]) attributes:@{ @"organizationID": @"organizationID" }];
@@ -106,9 +109,13 @@
     return mapping;
 }
 
+
+//going out
 +(RKObjectMapping*) requestMapping{
     RKObjectMapping *requestMapping = [RKObjectMapping requestMapping]; // objectClass == NSMutableDictionary
-    [requestMapping addAttributeMappingsFromArray:@[@"accessToken",@"adviceRequestID",@"createdDate",@"subscriberID",@"modifiedDate",@"organizationID",@"supportAreaIdentifier"]];
+    //ours,theirs
+    [requestMapping addAttributeMappingsFromArray:@[@"accessToken",@"adviceRequestID",@"createdDate",@"modifiedDate",@"organizationID",@"supportAreaIdentifier"]];
+    [requestMapping addAttributeMappingsFromDictionary:@{@"subscriberID": @"subscriberId"}];//here're the meat and or potatoes
     [requestMapping addAttributeMappingsFromDictionary:@{@"requestContent": @"adviceRequest"}];//here're the meat and or potatoes
 //    [requestMapping addRelationshipMappingWithSourceKeyPath:@"organization" mapping:[Organization requestMapping]];
     [requestMapping addRelationshipMappingWithSourceKeyPath:@"responses" mapping:[Response requestMapping]];

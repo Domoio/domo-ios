@@ -46,20 +46,28 @@
 	[self.adviceRequestNoteView setDelegate:self];
 
     
-    [self activeOrganizationUpdated:nil];
-    [self activeSupportAreaUpdated:nil];
-    
     //respond to notification about org change
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(activeOrganizationUpdated:) name:activeOrganizationChangedNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(activeSupportAreaUpdated:) name:activeSupportAreaChangedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(activeSupportAreaUpdated:) name:activeSupportAreaChangedViaPickerNotification object:nil];
     
     [self loadFromAdviceRequest:self.pendingAdviceRequest];
 }
 
 -(void)loadFromAdviceRequest:(AdviceRequest*)request{
     
-    if ([request.requestContent length] > 0)
+    if ([request.requestContent length] > 0){
         [self.adviceRequestNoteView setText:request.requestContent];
+
+		[self.adviceRequestNoteView setTextColor:UIColor.blackColor];
+    }else{
+        //treat it like it's not editing right now-- it's not
+        self.adviceRequestNoteView.text = placeholderText;
+        self.adviceRequestNoteView.textColor = placeholderTextColor;
+
+    }
+    
+    [self activeSupportAreaUpdated:nil];
+    [self activeOrganizationUpdated:nil];
 }
 
 -(void)updateAdviceRequest:(AdviceRequest*)request{
@@ -181,7 +189,9 @@
 
 -(void) validateAndOrSubmitQuestion{
     
-    
+    //if ready to submit
+    //we gotta do more validation here
+
     
     RKObjectManager *objectManager = [RKObjectManager sharedManager];
     
@@ -194,6 +204,10 @@
         NSLog(@"Posted: %@", [result array]);
         
         [CSNotificationView showInViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController] style:CSNotificationViewStyleSuccess message:NSLocalizedString(@"Your advice request was posted!\nCheck back for responses!", @"postSuccessfulNotification")];
+        
+        self.pendingAdviceRequest = nil; //load new advice request
+        [self loadFromAdviceRequest:self.pendingAdviceRequest];
+        //TODO: should also only fade in after fail or success
         
         
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
@@ -213,12 +227,8 @@
         
     }];
     
-    //if ready to submit
     
     [self performSubmitRequestAnimation];
-    
-    self.pendingAdviceRequest = nil; //load new advice request
-    [self loadFromAdviceRequest:self.pendingAdviceRequest];
     
     [self.questionRequestContainerView setAlpha:0];
     [self.view addSubview:self.questionRequestContainerView];

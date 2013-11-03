@@ -12,7 +12,7 @@
 
 
 
-static NSString * const activeSupportAreaChangedNotification = @"activeSupportAreaChangedNotification";
+static NSString * const activeSupportAreaChangedViaPickerNotification = @"activeSupportAreaChangedViaPickerNotification";
 
 @class Organization;
 

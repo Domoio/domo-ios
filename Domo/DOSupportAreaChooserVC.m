@@ -170,7 +170,7 @@
 
             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:TRUE];
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:activeSupportAreaChangedNotification object:selectedSupportArea];
+            [[NSNotificationCenter defaultCenter] postNotificationName:activeSupportAreaChangedViaPickerNotification object:selectedSupportArea];
             
             [_delegate supportAreaChooserDidFinish:nil];
         }

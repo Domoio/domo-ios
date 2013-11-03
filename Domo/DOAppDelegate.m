@@ -83,7 +83,7 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
     NSString *seedPath = [[NSBundle mainBundle] pathForResource:seedDatabaseName ofType:nil];
     
     //so if the seed was created dynamically let's use it
-    if ([[NSFileManager defaultManager] fileExistsAtPath:seedPath] == TRUE){
+    if ([[NSFileManager defaultManager] fileExistsAtPath:seedPath] == FALSE){
         seedPath = [RKApplicationDataDirectory() stringByAppendingPathComponent:seedDatabaseName];
         #if IS_SHIPPING == 1
         #warning make sure that this isn't printed out!
@@ -104,7 +104,7 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
     [NSManagedObjectContext MR_setDefaultContext:managedObjectStore.mainQueueManagedObjectContext];
     
     
-    BOOL isLocalDev = TRUE;
+    BOOL isLocalDev = FALSE;
     NSString * apiHome = @"https://domoapis.herokuapp.com/api/v1/";
     if (isLocalDev)
         apiHome = @"http://localhost:3000/api/v1/";
@@ -197,6 +197,7 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
         [importer logSeedingInfo];
     }
     
+    NSLog(@"SeedDB dropped at %@",seedPath);
 }
 
 #pragma mark push it, boy
