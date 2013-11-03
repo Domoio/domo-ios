@@ -8,6 +8,9 @@
 
 #import "DOMyQuestionsResponseCell.h"
 #import <QuartzCore/QuartzCore.h>
+#import "TTTTimeIntervalFormatter.h"
+
+static const double defaultResponseTextHeight = 69;
 
 @implementation DOMyQuestionsResponseCell
 
@@ -32,6 +35,8 @@
     [self insertSubview:subview atIndex:0];
     self.styleView = subview;
 	
+    [self setBackgroundColor:[UIColor clearColor]];
+    self.styleView.userInteractionEnabled = FALSE;
     self.styleView.backgroundColor = [UIColor whiteColor];
     
     UITapGestureRecognizer * tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellTappedWithRecognizer:)];
@@ -51,31 +56,85 @@
     
     [self.responseTextLabel setText:[response responseContent]];
     
-    //	[self.conversationLabel setText:[conversation subject]];
-    //
-    //	NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    //	[dateFormatter setDateStyle:NSDateFormatterFullStyle];
-    //	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    //	[dateFormatter setLocale:[NSLocale currentLocale]];
-    //	[dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-    //
-    //	NSString * partnerName = @"someone";
-    //	if ([conversation.partnerName length] >0){
-    //		partnerName = conversation.partnerName;
-    //	}
-    //	else if ([conversation.partnerTwitter length] >0){
-    //		partnerName = conversation.partnerTwitter;
-    //	}
-    //
-    //	NSString * detailString = [NSString stringWithFormat:@"with %@ on %@", partnerName, [dateFormatter stringFromDate:conversation.modifiedDate]];
-    //	[self.detailsLabel setText:detailString];
-    //
+    const CGFloat dnTaMargin = 8;
+    CGSize sizeOfDisplayNameText = [DOMyQuestionsResponseCell sizeForDisplayNameText:[response responderDisplayName]];
+    [self.responderDisplayNameLabel setWidth:sizeOfDisplayNameText.width];
+    [self.responderDisplayNameLabel setText:[response responderDisplayName]];
+    
+    
+    CGSize responseDisplaySize = [DOMyQuestionsResponseCell sizeForResponseText:response.responseContent];
+    CGFloat textfieldReqHeight = ceilf(responseDisplaySize.height);
+    if (response.isExpanded.boolValue == FALSE){
+        textfieldReqHeight = MIN(defaultResponseTextHeight, textfieldReqHeight);
+    }
+    [self.responseTextLabel setHeight:textfieldReqHeight];
+    
+    CGFloat viewHeight = [[self class] heightForObject:response atIndexPath:nil tableView:nil];
+    [self.styleView setHeight:viewHeight];
+    
+    NSDate * relevantDate = [response modifiedDate];
+    
+    NSString * agoString = nil;
+    
+    if ([relevantDate timeIntervalSinceNow] > (-1*60*60*24*3)){
+        TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
+        [timeIntervalFormatter setUsesIdiomaticDeicticExpressions:NO];
+        agoString = [timeIntervalFormatter stringForTimeInterval:[relevantDate timeIntervalSinceNow]];
+    }else {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setLocale:[NSLocale currentLocale]];
+        [dateFormatter setDoesRelativeDateFormatting:YES];
+        
+        agoString = [dateFormatter stringFromDate:relevantDate];
+    }
+    
+    //set from above stuff
+    [self.responseTimeAgoLabel setOrigin:CGPointMake(self.responderDisplayNameLabel.origin.x + self.responderDisplayNameLabel.size.width + dnTaMargin , self.responseTimeAgoLabel.origin.y)];
+    [self.responseTimeAgoLabel setText:agoString];
+
 	
 	return TRUE;
 }
 
-+ (CGFloat)heightForObject:(Response*)Response atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView{
-	return 117;
++(CGSize)sizeForDisplayNameText:(NSString*)displayNameText{
+    UIFont * responseFont = [UIFont fontWithName:@"Helvetica-Light" size:14];
+    CGSize displayNameMaxSize = CGSizeMake(120, 20);
+    CGSize sizeOfDisplayNameText = CGSizeMake(ceil([displayNameText sizeWithFont:responseFont constrainedToSize:displayNameMaxSize lineBreakMode:NSLineBreakByTruncatingTail].width), displayNameMaxSize.height);
+    
+    return sizeOfDisplayNameText;
+    
+}
+
++(CGSize)sizeForResponseText:(NSString*)responseContentText{
+    UIFont * responseFont = [UIFont fontWithName:@"HelveticaNeue" size:13];
+    CGSize responseMaxSize = CGSizeMake(272, DBL_MAX);
+    CGSize sizeOfResponseText = [responseContentText sizeWithFont:responseFont constrainedToSize:responseMaxSize lineBreakMode:NSLineBreakByTruncatingTail];
+    
+    return sizeOfResponseText;
+    
+}
+
++ (CGFloat)heightForObject:(Response*)response atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView{
+    const double cellHeight = 117;
+    
+    CGSize sizeOfResponseText = [self sizeForResponseText:[response responseContent]];
+    
+    if ([response isExpanded].boolValue){
+        
+        double expandedHeight = ceilf(cellHeight + sizeOfResponseText.height - defaultResponseTextHeight);
+        return expandedHeight;
+        
+    }else {
+        if (sizeOfResponseText.height < defaultResponseTextHeight){
+            CGFloat newHeight = ceilf(cellHeight + sizeOfResponseText.height - defaultResponseTextHeight);
+            return newHeight;
+        }else{
+            return cellHeight;
+        }
+        
+    }
 }
 
 @end
