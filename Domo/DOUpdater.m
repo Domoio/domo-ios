@@ -101,7 +101,22 @@
 }
 
 -(void) updateFromServer:(BOOL)force{
-
+    
+    NSDate * lastUpdateDate = [[NSUserDefaults standardUserDefaults] objectForKey:lastUpdateDateUserDefault];
+    if (abs([lastUpdateDate timeIntervalSinceNow]) < 60  && lastUpdateDate != nil){
+        if (force == FALSE){
+            return;
+        }else{ //forcing, but make sure it didn't JUST happen
+            if (abs([lastUpdateDate timeIntervalSinceNow]) < 3 ){
+                return;
+            }else{
+                //force but greater 5 secs, so perhaps not incidental
+            }
+        }
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:lastUpdateDateUserDefault];
+    
+    
     NSArray * objectsBySection = [self adviceRequestsToUpdateByOrganization];
     for (NSArray * sectionObjects in objectsBySection){
         Organization * orgForSection = [[sectionObjects firstObject] organization];

@@ -218,7 +218,8 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [[[UIAlertView alloc] initWithTitle:@"PUSH IT BOY" message:[userInfo description] delegate:nil cancelButtonTitle:@"C" otherButtonTitles:nil] show];
+    [[[UIAlertView alloc] initWithTitle:@"New Response" message:[NSString stringWithFormat:@"Checkout 'My Questions' to see more about: %@", [userInfo description]] delegate:nil cancelButtonTitle:@"Thanks Domo!" otherButtonTitles:nil] show];
+    [self.homeScreenVC.updater updateFromServer:TRUE];
 }
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
     
