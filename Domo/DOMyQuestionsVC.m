@@ -57,7 +57,7 @@
         //now grab responses for each and place in here
         for (AdviceRequest * request in [self.fetchController fetchedObjects]){
             [displayArray addObject:request];
-            [displayArray addObjectsFromArray:[[request responses] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"modifiedDate" ascending:FALSE]]]];
+            [displayArray addObjectsFromArray:[[request responses] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"modifiedDate" ascending:TRUE]]]];
         }
         
 		_displayedObjects = displayArray;
@@ -142,7 +142,13 @@
 
 #pragma mark - cells delegation
 -(void) myQuestionsResponseCellCellWasTappedWithCell:(DOMyQuestionsResponseCell*)cell{
+    
     NSLog(@"%@",@"myQuestionsResponseCellCellWasTappedWithCell");
+    NSIndexPath * tappedIndexPath = [self.tableView indexPathForCell:cell];
+    Response * response = [self.displayedObjects objectAtIndex:tappedIndexPath.row]; //not using any sections
+    [response setIsExpanded:@(!response.isExpanded.boolValue)];
+    
+    [self.tableView reloadRowsAtIndexPaths:[self animationPartnerIndexPathsToIndexPath:tappedIndexPath] withRowAnimation:UITableViewRowAnimationFade];
 
 }
 
