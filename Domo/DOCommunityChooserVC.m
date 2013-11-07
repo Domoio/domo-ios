@@ -53,6 +53,10 @@
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self.tvModel];
     
+    if ([self.tableView respondsToSelector:@selector(separatorInset)]) {
+        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
     //wait till we know the onboarding pathway to jump to conclusions like this..
 //    [self.communityNameTextField becomeFirstResponder];
 }
@@ -110,16 +114,21 @@
     NSMutableArray * preds = [@[] mutableCopy];
 
     NSPredicate * searchQueryPredicate = nil;
-    if (StringHasText(searchQuery)){
-        searchQueryPredicate = [NSPredicate predicateWithFormat:@"displayName contains[cd] %@", searchQuery];
+    if (StringHasText(searchQuery) && [searchQuery length] > 0){
+        searchQueryPredicate = [NSPredicate predicateWithFormat:@"( displayName contains[cd] %@ OR urlFragment contains[cd] %@ )", searchQuery,searchQuery];
         [preds addObject:searchQueryPredicate];
-    }else{
+    }
+    
+    else{
         searchQueryPredicate = [NSPredicate predicateWithFormat:@"displayName.length > 0"];
         [preds addObject:searchQueryPredicate];
     }
     
     NSPredicate * isActivePredicate = [NSPredicate predicateWithFormat:@"(isCurrentActive == TRUE)"];
     [preds addObject:isActivePredicate];
+    
+    NSPredicate * hasCodeEnteredPredicate = [NSPredicate predicateWithFormat:@"(usersAuthCode != nil)"];
+    [preds addObject:hasCodeEnteredPredicate];
     
     NSPredicate * pred = [NSCompoundPredicate orPredicateWithSubpredicates:preds];
     
@@ -131,7 +140,7 @@
         //compound predicate by name or if is current is true
         //sort by first is active then by name
 		self.fetchController = [Organization fetchAllGroupedBy:nil withPredicate:[self searchPredicate] sortedBy:nil ascending:FALSE delegate:self];
-        [self.fetchController.fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"isCurrentActive" ascending:FALSE],[NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:TRUE]]];
+        [self.fetchController.fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"isCurrentActive" ascending:FALSE],[NSSortDescriptor sortDescriptorWithKey:@"usersAuthCode" ascending:FALSE],[NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:TRUE]]];
 		[self.fetchController performFetch:nil];
 		_displayedObjects = [self.fetchController fetchedObjects];
 	}

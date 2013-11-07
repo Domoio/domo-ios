@@ -53,6 +53,10 @@
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self.tvModel];
     
+    if ([self.tableView respondsToSelector:@selector(separatorInset)]) {
+        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(activeOrganizationUpdated:) name:activeOrganizationChangedNotification object:nil];
     
 }
