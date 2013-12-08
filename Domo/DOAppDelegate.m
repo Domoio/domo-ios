@@ -112,7 +112,8 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:apiHome]];
     objectManager.managedObjectStore = managedObjectStore;
     [objectManager setRequestSerializationMIMEType:RKMIMETypeJSON]; //every request body is json
-
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+    
     [RKObjectManager setSharedManager:objectManager];
     
     
