@@ -208,8 +208,6 @@
         self.pendingAdviceRequest = nil; //load new advice request
         [self loadFromAdviceRequest:self.pendingAdviceRequest];
         //TODO: should also only fade in after fail or success
-        
-        
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"Requested: %@", operation);
         NSLog(@"failed: %@", [error description]);
@@ -220,11 +218,7 @@
             [CSNotificationView showInViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController] style:CSNotificationViewStyleError message:NSLocalizedString(@"The server connection failed.\nYour request is safe here!", @"serverConnectionFailedButDataSaved")];
         }else{
             [CSNotificationView showInViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController] style:CSNotificationViewStyleError message:NSLocalizedString(@"Something in the app went wrong!\nYour data is safe here, though!", @"somethingInTheAppWentWrong")];
-
         }
-        
-
-        
     }];
     
     

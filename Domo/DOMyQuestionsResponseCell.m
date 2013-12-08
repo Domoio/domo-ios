@@ -105,6 +105,9 @@ static const double defaultResponseTextHeight = 69;
     }else{
         [self.thankYouButton setImage:[UIImage imageNamed:@"thank-you-button-deactivated.png"] forState:UIControlStateNormal];
     }
+    
+    [self.helpfullButton setEnabled:TRUE];
+    [self.thankYouButton setEnabled:TRUE];
 
     
 	return TRUE;
@@ -130,10 +133,12 @@ static const double defaultResponseTextHeight = 69;
 
 - (IBAction)helpfullButtonPressed:(id)sender {
     [self.delegate helpfullButtonWasTappedWithMyQuestionsResponseCell:self];
+    [self.helpfullButton setEnabled:FALSE];//disabled while server loading
 }
 
 - (IBAction)thankYouButtonPressed:(id)sender {
     [self.delegate thankYouButtonWasTappedWithMyQuestionsResponseCell:self];
+    [self.thankYouButton setEnabled:FALSE];//disabled while server loading
 }
 
 + (CGFloat)heightForObject:(Response*)response atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView{

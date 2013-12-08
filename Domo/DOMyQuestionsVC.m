@@ -9,6 +9,7 @@
 #import "DOMyQuestionsVC.h"
 #import "AdviceRequest.h"
 #import "Response.h"
+#import "Organization.h"
 
 @interface DOMyQuestionsVC ()
 @end
@@ -155,17 +156,69 @@
 -(void) helpfullButtonWasTappedWithMyQuestionsResponseCell:(DOMyQuestionsResponseCell*)cell{
     NSIndexPath * tappedIndexPath = [self.tableView indexPathForCell:cell];
     Response * response = [self.displayedObjects objectAtIndex:tappedIndexPath.row]; //not using any sections
-    [response setIsHelpful:@(!response.isHelpful.boolValue)];
     
     [self.tableView reloadRowsAtIndexPaths:[self animationPartnerIndexPathsToIndexPath:tappedIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+    NSNumber * newHelpfulValue = @(!response.isHelpful.boolValue);
+    __block DOMyQuestionsVC * thisVC = self;
+    
+    RKObjectManager *objectManager = [RKObjectManager sharedManager];
+    
+    NSString * postPath = RKPathFromPatternWithObject(@"/api/v1/organizations/:adviceRequest.organization.urlFragment/advicerequest/:adviceRequest.adviceRequestID/advice/:responseID/advicehelpful?code=:adviceRequest.organization.usersAuthCode&token=:adviceRequest.accessToken", response);
+    
+    NSDictionary * params = @{@"helpful": @(newHelpfulValue.intValue)};
+    [objectManager postObject:nil path:postPath parameters:params success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
+        NSLog(@"Requested: %@", operation);
+        NSLog(@"Posted: %@", [result array]);
+        [response setIsHelpful:newHelpfulValue];
+        [thisVC.tableView reloadRowsAtIndexPaths:[self animationPartnerIndexPathsToIndexPath:tappedIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"Requested: %@", operation);
+        NSLog(@"failed: %@", [error description]);
+        [thisVC.tableView reloadRowsAtIndexPaths:[self animationPartnerIndexPathsToIndexPath:tappedIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        if (error.domain == NSURLErrorDomain){
+            [CSNotificationView showInViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController] style:CSNotificationViewStyleError message:NSLocalizedString(@"The server connection failed.\nIt'd be great if you'd try again later!", @"serverConnectionFailedNotSaved")];
+        }else{
+            [CSNotificationView showInViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController] style:CSNotificationViewStyleError message:NSLocalizedString(@"Something in the app went wrong!\nIt'd be great if you'd try again later!", @"somethingInTheAppWentWrongNotSaved")];
+        }
+    }];
+    
 }
+
+
 
 -(void) thankYouButtonWasTappedWithMyQuestionsResponseCell:(DOMyQuestionsResponseCell*)cell{
     NSIndexPath * tappedIndexPath = [self.tableView indexPathForCell:cell];
     Response * response = [self.displayedObjects objectAtIndex:tappedIndexPath.row]; //not using any sections
-    [response setResponderThanked:@(!response.responderThanked.boolValue)];
     
-    [self.tableView reloadRowsAtIndexPaths:[self animationPartnerIndexPathsToIndexPath:tappedIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+    NSNumber * newThankedValue = @(!response.responderThanked.boolValue);
+    __block DOMyQuestionsVC * thisVC = self;
+    
+    RKObjectManager *objectManager = [RKObjectManager sharedManager];
+    
+    NSString * postPath = RKPathFromPatternWithObject(@"/api/v1/organizations/:adviceRequest.organization.urlFragment/advicerequest/:adviceRequest.adviceRequestID/advice/:responseID/advicethankyou?code=:adviceRequest.organization.usersAuthCode&token=:adviceRequest.accessToken", response);
+    
+    NSDictionary * params = @{@"thankyou": @(newThankedValue.intValue)};
+    [objectManager postObject:nil path:postPath parameters:params success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
+        NSLog(@"Requested: %@", operation);
+        NSLog(@"Posted: %@", [result array]);
+        [response setResponderThanked:newThankedValue];
+        [thisVC.tableView reloadRowsAtIndexPaths:[self animationPartnerIndexPathsToIndexPath:tappedIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"Requested: %@", operation);
+        NSLog(@"failed: %@", [error description]);
+        [thisVC.tableView reloadRowsAtIndexPaths:[self animationPartnerIndexPathsToIndexPath:tappedIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        if (error.domain == NSURLErrorDomain){
+            [CSNotificationView showInViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController] style:CSNotificationViewStyleError message:NSLocalizedString(@"The server connection failed.\nIt'd be great if you'd try again later!", @"serverConnectionFailedNotSaved")];
+        }else{
+            [CSNotificationView showInViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController] style:CSNotificationViewStyleError message:NSLocalizedString(@"Something in the app went wrong!\nIt'd be great if you'd try again later!", @"somethingInTheAppWentWrongNotSaved")];
+        }
+    }];
 }
 
 -(void) myQuestionsRequestCellWasTappedWithCell:(DOMyQuestionsRequestCell *)cell{
