@@ -162,11 +162,13 @@
     NSNumber * newHelpfulValue = @(!response.isHelpful.boolValue);
     __block DOMyQuestionsVC * thisVC = self;
     
+    
+    
     RKObjectManager *objectManager = [RKObjectManager sharedManager];
     
     NSString * postPath = RKPathFromPatternWithObject(@"/api/v1/organizations/:adviceRequest.organization.urlFragment/advicerequest/:adviceRequest.adviceRequestID/advice/:responseID/advicehelpful?code=:adviceRequest.organization.usersAuthCode&token=:adviceRequest.accessToken", response);
     
-    NSDictionary * params = @{@"helpful": @(newHelpfulValue.intValue)};
+    NSDictionary * params = @{@"helpful": newHelpfulValue.stringValue };
     [objectManager postObject:nil path:postPath parameters:params success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
         NSLog(@"Requested: %@", operation);
         NSLog(@"Posted: %@", [result array]);
@@ -201,7 +203,7 @@
     
     NSString * postPath = RKPathFromPatternWithObject(@"/api/v1/organizations/:adviceRequest.organization.urlFragment/advicerequest/:adviceRequest.adviceRequestID/advice/:responseID/advicethankyou?code=:adviceRequest.organization.usersAuthCode&token=:adviceRequest.accessToken", response);
     
-    NSDictionary * params = @{@"thankyou": @(newThankedValue.intValue)};
+    NSDictionary * params = @{@"thankyou": newThankedValue.stringValue};
     [objectManager postObject:nil path:postPath parameters:params success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
         NSLog(@"Requested: %@", operation);
         NSLog(@"Posted: %@", [result array]);
