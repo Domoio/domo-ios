@@ -94,7 +94,19 @@ static const double defaultResponseTextHeight = 69;
     [self.responseTimeAgoLabel setOrigin:CGPointMake(self.responderDisplayNameLabel.origin.x + self.responderDisplayNameLabel.size.width + dnTaMargin , self.responseTimeAgoLabel.origin.y)];
     [self.responseTimeAgoLabel setText:agoString];
 
-	
+    if (response.isHelpful.boolValue == TRUE){
+        [self.helpfullButton setImage:[UIImage imageNamed:@"this-helps-button-activated.png"] forState:UIControlStateNormal];
+    }else{
+        [self.helpfullButton setImage:[UIImage imageNamed:@"this-helps-button-deactivated.png"] forState:UIControlStateNormal];
+    }
+
+    if (response.responderThanked.boolValue == TRUE){
+        [self.thankYouButton setImage:[UIImage imageNamed:@"thank-you-button-activated.png"] forState:UIControlStateNormal];
+    }else{
+        [self.thankYouButton setImage:[UIImage imageNamed:@"thank-you-button-deactivated.png"] forState:UIControlStateNormal];
+    }
+
+    
 	return TRUE;
 }
 
@@ -114,6 +126,14 @@ static const double defaultResponseTextHeight = 69;
     
     return sizeOfResponseText;
     
+}
+
+- (IBAction)helpfullButtonPressed:(id)sender {
+    [self.delegate helpfullButtonWasTappedWithMyQuestionsResponseCell:self];
+}
+
+- (IBAction)thankYouButtonPressed:(id)sender {
+    [self.delegate thankYouButtonWasTappedWithMyQuestionsResponseCell:self];
 }
 
 + (CGFloat)heightForObject:(Response*)response atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView{

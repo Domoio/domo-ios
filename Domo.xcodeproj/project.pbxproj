@@ -143,6 +143,14 @@
 		79C3434017AF057900410540 /* domoInfobutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79C3433C17AF057900410540 /* domoInfobutton@2x.png */; };
 		79E1C20217EA6285006C3C27 /* DOCommunityChooserCodeEntryVC-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79E1C20117EA6285006C3C27 /* DOCommunityChooserCodeEntryVC-iPhone.xib */; };
 		79E1C20517EA62B1006C3C27 /* DOCommunityChooserCodeEntryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E1C20417EA62B1006C3C27 /* DOCommunityChooserCodeEntryVC.m */; };
+		79F4D0851837EC4A00CC5060 /* thank-you-button-activated.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F4D0811837EC4A00CC5060 /* thank-you-button-activated.png */; };
+		79F4D0861837EC4A00CC5060 /* thank-you-button-activated@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F4D0821837EC4A00CC5060 /* thank-you-button-activated@2x.png */; };
+		79F4D0871837EC4A00CC5060 /* thank-you-button-deactivated.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F4D0831837EC4A00CC5060 /* thank-you-button-deactivated.png */; };
+		79F4D0881837EC4A00CC5060 /* thank-you-button-deactivated@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F4D0841837EC4A00CC5060 /* thank-you-button-deactivated@2x.png */; };
+		79F4D08D1837ED4800CC5060 /* this-helps-button-activated.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F4D0891837ED4800CC5060 /* this-helps-button-activated.png */; };
+		79F4D08E1837ED4800CC5060 /* this-helps-button-activated@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F4D08A1837ED4800CC5060 /* this-helps-button-activated@2x.png */; };
+		79F4D08F1837ED4800CC5060 /* this-helps-button-deactivated.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F4D08B1837ED4800CC5060 /* this-helps-button-deactivated.png */; };
+		79F4D0901837ED4800CC5060 /* this-helps-button-deactivated@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F4D08C1837ED4800CC5060 /* this-helps-button-deactivated@2x.png */; };
 		79F70ACD17BC612600C32069 /* app-logo-57px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F70ACC17BC612600C32069 /* app-logo-57px@2x.png */; };
 		79FCD0E4182616EF0004CDED /* app-icon-60px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79FCD0E3182616EF0004CDED /* app-icon-60px@2x.png */; };
 		79FCD0E6182617860004CDED /* app-icon-60px.png in Resources */ = {isa = PBXBuildFile; fileRef = 79FCD0E5182617860004CDED /* app-icon-60px.png */; };
@@ -410,6 +418,14 @@
 		79E1C20117EA6285006C3C27 /* DOCommunityChooserCodeEntryVC-iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DOCommunityChooserCodeEntryVC-iPhone.xib"; sourceTree = "<group>"; };
 		79E1C20317EA62B1006C3C27 /* DOCommunityChooserCodeEntryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOCommunityChooserCodeEntryVC.h; sourceTree = "<group>"; };
 		79E1C20417EA62B1006C3C27 /* DOCommunityChooserCodeEntryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOCommunityChooserCodeEntryVC.m; sourceTree = "<group>"; };
+		79F4D0811837EC4A00CC5060 /* thank-you-button-activated.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thank-you-button-activated.png"; sourceTree = "<group>"; };
+		79F4D0821837EC4A00CC5060 /* thank-you-button-activated@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thank-you-button-activated@2x.png"; sourceTree = "<group>"; };
+		79F4D0831837EC4A00CC5060 /* thank-you-button-deactivated.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thank-you-button-deactivated.png"; sourceTree = "<group>"; };
+		79F4D0841837EC4A00CC5060 /* thank-you-button-deactivated@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thank-you-button-deactivated@2x.png"; sourceTree = "<group>"; };
+		79F4D0891837ED4800CC5060 /* this-helps-button-activated.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "this-helps-button-activated.png"; sourceTree = "<group>"; };
+		79F4D08A1837ED4800CC5060 /* this-helps-button-activated@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "this-helps-button-activated@2x.png"; sourceTree = "<group>"; };
+		79F4D08B1837ED4800CC5060 /* this-helps-button-deactivated.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "this-helps-button-deactivated.png"; sourceTree = "<group>"; };
+		79F4D08C1837ED4800CC5060 /* this-helps-button-deactivated@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "this-helps-button-deactivated@2x.png"; sourceTree = "<group>"; };
 		79F70ACC17BC612600C32069 /* app-logo-57px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-logo-57px@2x.png"; sourceTree = "<group>"; };
 		79FCD0E3182616EF0004CDED /* app-icon-60px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon-60px@2x.png"; sourceTree = "<group>"; };
 		79FCD0E5182617860004CDED /* app-icon-60px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon-60px.png"; sourceTree = "<group>"; };
@@ -936,6 +952,14 @@
 				79C3433A17AF057900410540 /* domoChoosebutton@2x.png */,
 				79C3433B17AF057900410540 /* domoDetailbutton@2x.png */,
 				79C3433C17AF057900410540 /* domoInfobutton@2x.png */,
+				79F4D0811837EC4A00CC5060 /* thank-you-button-activated.png */,
+				79F4D0821837EC4A00CC5060 /* thank-you-button-activated@2x.png */,
+				79F4D0831837EC4A00CC5060 /* thank-you-button-deactivated.png */,
+				79F4D0841837EC4A00CC5060 /* thank-you-button-deactivated@2x.png */,
+				79F4D0891837ED4800CC5060 /* this-helps-button-activated.png */,
+				79F4D08A1837ED4800CC5060 /* this-helps-button-activated@2x.png */,
+				79F4D08B1837ED4800CC5060 /* this-helps-button-deactivated.png */,
+				79F4D08C1837ED4800CC5060 /* this-helps-button-deactivated@2x.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -1011,16 +1035,19 @@
 				798A52341779FF8300939FB8 /* Arimo-Bold-Latin.ttf in Resources */,
 				798A52351779FF8300939FB8 /* Arimo-BoldItalic-Latin.ttf in Resources */,
 				798A52361779FF8300939FB8 /* Arimo-Italic-Latin.ttf in Resources */,
+				79F4D0881837EC4A00CC5060 /* thank-you-button-deactivated@2x.png in Resources */,
 				798A52371779FF8300939FB8 /* Arimo-Regular-Latin.ttf in Resources */,
 				798A52381779FF8300939FB8 /* Default-568h@2x.png in Resources */,
 				798A52391779FF8300939FB8 /* Default.png in Resources */,
 				796EC35A180608BE00E212DC /* CSNotificationView.xcassets in Resources */,
 				798A523A1779FF8300939FB8 /* Default@2x.png in Resources */,
+				79F4D0871837EC4A00CC5060 /* thank-you-button-deactivated.png in Resources */,
 				795EAD42177A62DD00EEC7AF /* DOWelcomeAndCommunityVC-iPhone.xib in Resources */,
 				795EAD47177A69FF00EEC7AF /* DomoLogo-header-iphone@2x.png in Resources */,
 				795EAD4C177A836600EEC7AF /* DORequestAdviceVC-iPhone.xib in Resources */,
 				795EAD51177B276D00EEC7AF /* DOHomeScreenRootVC-iPhone.xib in Resources */,
 				795EAD56177B293000EEC7AF /* patternsquare_green@2x.png in Resources */,
+				79F4D0851837EC4A00CC5060 /* thank-you-button-activated.png in Resources */,
 				79FCD0E6182617860004CDED /* app-icon-60px.png in Resources */,
 				795EAD63177B4E8C00EEC7AF /* app-logo-57px.png in Resources */,
 				79C21113177C8CE800D7F984 /* DOMyQuestionsVC-iPhone.xib in Resources */,
@@ -1030,18 +1057,23 @@
 				79C3434017AF057900410540 /* domoInfobutton@2x.png in Resources */,
 				794FDD8A17B3DB4700624BC5 /* domoChoosebutton.png in Resources */,
 				79FCD0E4182616EF0004CDED /* app-icon-60px@2x.png in Resources */,
+				79F4D0901837ED4800CC5060 /* this-helps-button-deactivated@2x.png in Resources */,
 				794FDD8B17B3DB4700624BC5 /* domoDetailbutton.png in Resources */,
 				794FDD8E17B3DC9600624BC5 /* domoBackbutton.png in Resources */,
 				794FDD8F17B3DC9600624BC5 /* domoInfobutton.png in Resources */,
 				794FDD9317B3E06500624BC5 /* patternsquare_green.png in Resources */,
 				794FDD9A17B439F400624BC5 /* domoDemoData.json in Resources */,
+				79F4D08E1837ED4800CC5060 /* this-helps-button-activated@2x.png in Resources */,
+				79F4D08D1837ED4800CC5060 /* this-helps-button-activated.png in Resources */,
 				792A8AE617BA6163004BA476 /* DOCommunityChooserVC-iPhone.xib in Resources */,
 				79F70ACD17BC612600C32069 /* app-logo-57px@2x.png in Resources */,
+				79F4D0861837EC4A00CC5060 /* thank-you-button-activated@2x.png in Resources */,
 				79117F2A17C82050002F1506 /* seedDatabase.sqlite in Resources */,
 				79117F3317CC6121002F1506 /* DOMyQuestionsRequestCell-iPhone.xib in Resources */,
 				79117F3517CC622B002F1506 /* DOMyQuestionsResponseCell-iPhone.xib in Resources */,
 				79117F3917CD6733002F1506 /* DOSupportAreaChooserVC-iPhone.xib in Resources */,
 				791FDB8117D3ADDA00AC8FF7 /* FormatterKit.strings in Resources */,
+				79F4D08F1837ED4800CC5060 /* this-helps-button-deactivated.png in Resources */,
 				79E1C20217EA6285006C3C27 /* DOCommunityChooserCodeEntryVC-iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1284,6 +1316,7 @@
 				INFOPLIST_FILE = "Domo/Domo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "5C36261B-46F0-44B4-BCB0-0126B824AD01";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1292,10 +1325,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2896700E1507495AB9D81278 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Alexander List";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Domo/Domo-Prefix.pch";
 				INFOPLIST_FILE = "Domo/Domo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "A8FD39A8-AFDF-4769-9B54-C1AF2B65EC44";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

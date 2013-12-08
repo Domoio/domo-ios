@@ -195,13 +195,13 @@
                 NSLog(@"JSON update subscriberID response: %@", [JSON description]);
                 self.deviceId = [[JSON valueForKey:@"response"] valueForKey:@"deviceId"];
                 
-                [[[UIAlertView alloc] initWithTitle:nil message:@"Updated your push notification endpoint! \nEmail the developer at domo@domo.io, this means something to them :-)" delegate:nil cancelButtonTitle:@"okay" otherButtonTitles:nil] show];
+                //[[[UIAlertView alloc] initWithTitle:nil message:@"Updated your push notification endpoint! \nEmail the developer at domo@domo.io, this means something to them :-)" delegate:nil cancelButtonTitle:@"okay" otherButtonTitles:nil] show];
 
                 
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                 NSLog(@"JSON fail subscriberID response: %@ with error: %@", [JSON description], error);
 
-                [[[UIAlertView alloc] initWithTitle:nil message:@"failed updating push endpoint! Sorry :/ \nEmail the developer at domo@domo.io, this means something to them :-)" delegate:nil cancelButtonTitle:@"okay" otherButtonTitles:nil] show];
+                [[[UIAlertView alloc] initWithTitle:nil message:@"failed updating push endpoint! Sorry :/\nEmail the developer at domo@domo.io, this means something to them :-)" delegate:nil cancelButtonTitle:@"okay" otherButtonTitles:nil] show];
                 
             }]];
         }

@@ -152,6 +152,22 @@
 
 }
 
+-(void) helpfullButtonWasTappedWithMyQuestionsResponseCell:(DOMyQuestionsResponseCell*)cell{
+    NSIndexPath * tappedIndexPath = [self.tableView indexPathForCell:cell];
+    Response * response = [self.displayedObjects objectAtIndex:tappedIndexPath.row]; //not using any sections
+    [response setIsHelpful:@(!response.isHelpful.boolValue)];
+    
+    [self.tableView reloadRowsAtIndexPaths:[self animationPartnerIndexPathsToIndexPath:tappedIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+-(void) thankYouButtonWasTappedWithMyQuestionsResponseCell:(DOMyQuestionsResponseCell*)cell{
+    NSIndexPath * tappedIndexPath = [self.tableView indexPathForCell:cell];
+    Response * response = [self.displayedObjects objectAtIndex:tappedIndexPath.row]; //not using any sections
+    [response setResponderThanked:@(!response.responderThanked.boolValue)];
+    
+    [self.tableView reloadRowsAtIndexPaths:[self animationPartnerIndexPathsToIndexPath:tappedIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
+
 -(void) myQuestionsRequestCellWasTappedWithCell:(DOMyQuestionsRequestCell *)cell{
     NSLog(@"%@",@"myQuestionsRequestCellWasTappedWithCell");
     NSIndexPath * tappedIndexPath = [self.tableView indexPathForCell:cell];
