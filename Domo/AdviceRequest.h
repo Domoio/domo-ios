@@ -39,6 +39,11 @@ static NSString * const AdviceRequestStatusCodePendingResponse = @"PRES";
 @property (nonatomic, retain) NSString * organizationID;
 
 
+//If AdviceRequestStatusCodeEditing
+//& requestContent 
+//& organization & supportArea all set
+-(BOOL) isSubmissionWorthy;
+
 
 +(AdviceRequest*) currentEditingAdviceRequestForOrganization:(Organization*)organization;
 +(AdviceRequest*) currentEditingAdviceRequestForActiveOrganization;

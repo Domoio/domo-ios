@@ -80,6 +80,8 @@
     Organization * activeOrganization = [Organization activeOrganization];
     
     [self.pendingAdviceRequest setOrganization:activeOrganization];
+    [self updateUISubmissionWorthiness];
+
     
     if (activeOrganization){
         self.supportAreaLabel.textColor = [UIColor blackColor];
@@ -100,6 +102,7 @@
     SupportArea * activeSupportArea = [SupportArea activeSupportAreaForActiveOrganization];
     
     [self.pendingAdviceRequest setSupportArea:activeSupportArea];
+    [self updateUISubmissionWorthiness];
 
     if (activeSupportArea){
         self.supportAreaLabel.text = [[SupportArea activeSupportAreaForActiveOrganization] name];
@@ -130,6 +133,7 @@
 
 -(void) textViewDidChange:(UITextView *)textView{
     [self updateAdviceRequest:self.pendingAdviceRequest];
+    [self updateUISubmissionWorthiness];
 }
 
 - (void) textViewDidBeginEditing:(UITextView *)textView{
@@ -172,12 +176,18 @@
 
 -(void) wiggleView:(UIView*)wView{
     
+    
+    srand(time(0));
+    int leftFirst = (BOOL)(rand() % 2); //0 or 1
+    int dirMultiplier = leftFirst? -1: 1;
+    
     CGPoint codeEntryCenter = wView.center;
     [UIView animateWithDuration:.1 animations:^{
-        wView.center =  CGPointMake(codeEntryCenter.x + 20, codeEntryCenter.y);
+        
+        wView.center =  CGPointMake(codeEntryCenter.x + dirMultiplier* 20, codeEntryCenter.y);
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:.1 animations:^{
-            wView.center = CGPointMake(codeEntryCenter.x- 20, codeEntryCenter.y);
+            wView.center = CGPointMake(codeEntryCenter.x + -1*dirMultiplier*20, codeEntryCenter.y);
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:.2 animations:^{
                 wView.center = codeEntryCenter;
@@ -187,16 +197,35 @@
     
 }
 
+-(void) updateUISubmissionWorthiness{
+    if ([self.pendingAdviceRequest isSubmissionWorthy] == FALSE){
+        [UIView animateWithDuration:.4 animations:^{
+            self.askButton.alpha = .6;
+        }];
+    }else{
+        [UIView animateWithDuration:.4 animations:^{
+            self.askButton.alpha = 1;
+        }];
+    }
+}
+
 -(void) validateAndOrSubmitQuestion{
     
     //if ready to submit
     //we gotta do more validation here
+    if ([self.pendingAdviceRequest isSubmissionWorthy] == FALSE){
+        NSLog(@"Pending advice request isSubmissionWorthy: %@", self.pendingAdviceRequest);
+        [self wiggleView:self.askButton];
+        return;
+    }
 
     
     RKObjectManager *objectManager = [RKObjectManager sharedManager];
     
     [self.pendingAdviceRequest setSubscriberID:[DOUpdater localSubscriberID]];
     [self.pendingAdviceRequest setStatusCode:AdviceRequestStatusCodePendingSubmission];
+
+    [self updateUISubmissionWorthiness];
     
     __block AdviceRequest * pending = self.pendingAdviceRequest;
     [objectManager postObject:self.pendingAdviceRequest path:nil parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {

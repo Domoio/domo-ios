@@ -28,8 +28,11 @@
 @property (weak, nonatomic) id<DORequestAdviceVCDelegate> delegate;
 
 @property (nonatomic, strong) IBOutlet NoteView * adviceRequestNoteView;
+@property (weak, nonatomic) IBOutlet UIButton *askButton;
 
 - (IBAction)supportAreaLabelTapped:(id)sender;
 - (IBAction)supportAreaChooserButtonPressed:(id)sender;
 - (IBAction)askButtonPressed:(id)sender;
+
+-(void) updateUISubmissionWorthiness;
 @end

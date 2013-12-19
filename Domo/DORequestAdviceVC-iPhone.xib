@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DORequestAdviceVC">
             <connections>
                 <outlet property="adviceRequestNoteView" destination="172" id="224"/>
+                <outlet property="askButton" destination="103" id="gOV-Qh-Q5i"/>
                 <outlet property="communityLabel" destination="217" id="225"/>
                 <outlet property="questionRequestContainerView" destination="171" id="223"/>
                 <outlet property="supportAreaLabel" destination="218" id="227"/>

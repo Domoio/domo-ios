@@ -30,6 +30,29 @@
 @dynamic isExpanded;
 
 
+//& requestContent
+//& organization & supportArea all set
+-(BOOL) isSubmissionWorthy{
+    BOOL submissionWorthy = TRUE;
+    if ([self.statusCode isEqualToString:AdviceRequestStatusCodeEditing] == FALSE){
+        submissionWorthy = FALSE;
+    }
+    
+    if ([self.requestContent length] == 0){
+        submissionWorthy = FALSE;
+    }
+    
+    if (self.organizationID == nil){
+        submissionWorthy = FALSE;
+    }
+    
+    if (self.supportAreaIdentifier == nil){
+        submissionWorthy = FALSE;
+    }
+
+    return submissionWorthy;
+}
+
 
 - (Class)cellClass{
 	return [DOMyQuestionsRequestCell class];
@@ -87,6 +110,7 @@
     
     return ar;
 }
+
 
 //coming in
 +(RKEntityMapping*) entityMapping{
