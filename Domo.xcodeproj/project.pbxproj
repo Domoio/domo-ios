@@ -143,6 +143,8 @@
 		79C3434017AF057900410540 /* domoInfobutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79C3433C17AF057900410540 /* domoInfobutton@2x.png */; };
 		79E1C20217EA6285006C3C27 /* DOCommunityChooserCodeEntryVC-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79E1C20117EA6285006C3C27 /* DOCommunityChooserCodeEntryVC-iPhone.xib */; };
 		79E1C20517EA62B1006C3C27 /* DOCommunityChooserCodeEntryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E1C20417EA62B1006C3C27 /* DOCommunityChooserCodeEntryVC.m */; };
+		79F198C01863B16600059F2C /* UIViewAdditions+EX.m in Sources */ = {isa = PBXBuildFile; fileRef = 795EAD5A177B411A00EEC7AF /* UIViewAdditions+EX.m */; };
+		79F198C11863B16A00059F2C /* NSDateAdditions+EX.m in Sources */ = {isa = PBXBuildFile; fileRef = 795EAD5C177B411A00EEC7AF /* NSDateAdditions+EX.m */; };
 		79F4D0851837EC4A00CC5060 /* thank-you-button-activated.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F4D0811837EC4A00CC5060 /* thank-you-button-activated.png */; };
 		79F4D0861837EC4A00CC5060 /* thank-you-button-activated@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F4D0821837EC4A00CC5060 /* thank-you-button-activated@2x.png */; };
 		79F4D0871837EC4A00CC5060 /* thank-you-button-deactivated.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F4D0831837EC4A00CC5060 /* thank-you-button-deactivated.png */; };
@@ -1165,6 +1167,7 @@
 				799DD39E17A6CDD500225815 /* UIView+NimbusCore.m in Sources */,
 				799DD3B017A6CDD500225815 /* NICellCatalog.m in Sources */,
 				799DD3B117A6CDD500225815 /* NICellFactory.m in Sources */,
+				79F198C11863B16A00059F2C /* NSDateAdditions+EX.m in Sources */,
 				799DD3B217A6CDD500225815 /* NIFormCellCatalog.m in Sources */,
 				799DD3B317A6CDD500225815 /* NIRadioGroup.m in Sources */,
 				799DD3B417A6CDD500225815 /* NIRadioGroupController.m in Sources */,
@@ -1182,6 +1185,7 @@
 				799DD3FE17A6CDE800225815 /* NSManagedObject+MagicalFinders.m in Sources */,
 				799DD3FF17A6CDE800225815 /* NSManagedObject+MagicalRecord.m in Sources */,
 				799DD40017A6CDE800225815 /* NSManagedObject+MagicalRequests.m in Sources */,
+				79F198C01863B16600059F2C /* UIViewAdditions+EX.m in Sources */,
 				799DD40117A6CDE800225815 /* NSManagedObjectContext+MagicalObserving.m in Sources */,
 				799DD40217A6CDE800225815 /* NSManagedObjectContext+MagicalRecord.m in Sources */,
 				799DD40317A6CDE800225815 /* NSManagedObjectContext+MagicalSaves.m in Sources */,

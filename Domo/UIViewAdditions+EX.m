@@ -66,6 +66,33 @@
 }
 
 
++(void) wiggleView:(UIView*)wView{
+    [UIView wiggleView:wView completion:nil];
+}
+
++(void)wiggleView:(UIView*)wView completion:(void (^)(BOOL finished))completion{
+    srand(time(0));
+    int leftFirst = (BOOL)(rand() % 2); //0 or 1
+    int dirMultiplier = leftFirst? -1: 1;
+    
+    CGPoint codeEntryCenter = wView.center;
+    [UIView animateWithDuration:.1 animations:^{
+        
+        wView.center =  CGPointMake(codeEntryCenter.x + dirMultiplier* 20, codeEntryCenter.y);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:.1 animations:^{
+            wView.center = CGPointMake(codeEntryCenter.x + -1*dirMultiplier*20, codeEntryCenter.y);
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:.2 animations:^{
+                wView.center = codeEntryCenter;
+                if (completion != nil)
+                    completion(TRUE);
+            }];
+        }];
+    }];
+}
+
+/*
 +(void)performPageSwitchAnimationWithExistingView:(UIView*)existingView viewUpdateBlock:(void (^)(void))updateBlock nextViewGrabBlock:(UIView* (^)(void))nextViewGrabBlockOrNil direction:(UIViewPageAnimationDirection)animationDirection{
 	
 	CGPoint previousOrigin = existingView.frame.origin;
@@ -142,6 +169,7 @@
 	
 }
 
-
+*/
+ 
 
 @end

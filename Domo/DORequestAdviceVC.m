@@ -174,28 +174,6 @@
     [self validateAndOrSubmitQuestion];
 }
 
--(void) wiggleView:(UIView*)wView{
-    
-    
-    srand(time(0));
-    int leftFirst = (BOOL)(rand() % 2); //0 or 1
-    int dirMultiplier = leftFirst? -1: 1;
-    
-    CGPoint codeEntryCenter = wView.center;
-    [UIView animateWithDuration:.1 animations:^{
-        
-        wView.center =  CGPointMake(codeEntryCenter.x + dirMultiplier* 20, codeEntryCenter.y);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:.1 animations:^{
-            wView.center = CGPointMake(codeEntryCenter.x + -1*dirMultiplier*20, codeEntryCenter.y);
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:.2 animations:^{
-                wView.center = codeEntryCenter;
-            }];
-        }];
-    }];
-    
-}
 
 -(void) updateUISubmissionWorthiness{
     if ([self.pendingAdviceRequest isSubmissionWorthy] == FALSE){
@@ -215,7 +193,7 @@
     //we gotta do more validation here
     if ([self.pendingAdviceRequest isSubmissionWorthy] == FALSE){
         NSLog(@"Pending advice request isSubmissionWorthy: %@", self.pendingAdviceRequest);
-        [self wiggleView:self.askButton];
+        [UIView wiggleView:self.askButton];
         return;
     }
 

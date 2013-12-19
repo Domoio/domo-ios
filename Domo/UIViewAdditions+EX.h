@@ -35,7 +35,11 @@ typedef enum {
  
  finally, it moves the views in the direction that you set in "animationDirection" to make the screenshot of the "existingView" look like it's being pushed
  */
-+(void)performPageSwitchAnimationWithExistingView:(UIView*)existingView viewUpdateBlock:(void (^)(void))updateBlock nextViewGrabBlock:(UIView* (^)(void))nextViewGrabBlockOrNil direction:(UIViewPageAnimationDirection)animationDirection;
+//+(void)performPageSwitchAnimationWithExistingView:(UIView*)existingView viewUpdateBlock:(void (^)(void))updateBlock nextViewGrabBlock:(UIView* (^)(void))nextViewGrabBlockOrNil direction:(UIViewPageAnimationDirection)animationDirection;
 
+
+
++(void)wiggleView:(UIView*)wiggleView;
++(void)wiggleView:(UIView*)wiggleView completion:(void (^)(BOOL finished))completion;
 
 @end

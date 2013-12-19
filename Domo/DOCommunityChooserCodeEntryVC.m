@@ -79,10 +79,10 @@
     DOCommunityChooserCodeEntryVC * __weak weakSelf = self;
     [objectManager getObject:self.evaluatingOrganization path:RKPathFromPatternWithObject(@"/api/v1/organizations/:urlFragment/codecheck", self.evaluatingOrganization)  parameters:@{@"code": code} success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
         NSLog(@"Retreived: %@", [result array]);
-        if ([[self.evaluatingOrganization usersAuthCode] isEqualToString:code]) {
+        if ([[weakSelf.evaluatingOrganization usersAuthCode] isEqualToString:code]) {
             NSLog(@"SUCCESS %@", @"YO");
-            [weakSelf.delegate codeEntryVCDidCompleteSuccesfull:self];
-            [self enableSubmit];
+            [weakSelf.delegate codeEntryVCDidCompleteSuccesfull:weakSelf];
+            [weakSelf enableSubmit];
         }
         
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
@@ -92,20 +92,11 @@
         }
         
         NSLog(@"failed: %@", [error description]);
-        CGPoint codeEntryCenter = self.codeEntryTextField.center;
-        [UIView animateWithDuration:.1 animations:^{
-            self.codeEntryTextField.center =  CGPointMake(codeEntryCenter.x + 20, codeEntryCenter.y);
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:.1 animations:^{
-                self.codeEntryTextField.center = CGPointMake(codeEntryCenter.x- 20, codeEntryCenter.y);
-            } completion:^(BOOL finished) {
-                [UIView animateWithDuration:.2 animations:^{
-                    self.codeEntryTextField.center = codeEntryCenter;
-                    
-                    [self enableSubmit]; //only after the animation ;)
-                } completion:NULL];
-            }];
+        
+        [UIView wiggleView:weakSelf.codeEntryTextField completion:^(BOOL finished) {
+            [weakSelf enableSubmit];
         }];
+        
     }];
     
 }
