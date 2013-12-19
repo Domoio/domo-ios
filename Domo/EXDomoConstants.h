@@ -19,8 +19,25 @@ static NSString * const lastUpdateDateUserDefault = @"lastUpdateDateUserDefault"
 #define DEV_MAKE_DB_SEED 0
 
 
+#define DEBUG_MODE_ENABLED 1
+
+#if DEBUG_MODE_ENABLED == 1
+#if IS_SHIPPING == 0
+
+#else
+#error verbose outputs, eg EXOLog, enabled-- exoLib DEBUG_MODE_ENABLED == 1
+#endif
+#define EXLog NSLog
+#else
+#define EXOLog(format, ...)
+#endif
+
+
 
 #ifdef RELEASE
+#ifdef DEBUG_MODE_ENABLED
+#error "debug mode defined: DEBUG_MODE_ENABLED"
+#endif
 #ifdef DEV_STATE_RESET
 #error "reset mode defined: DEV_STATE_RESET"
 #endif

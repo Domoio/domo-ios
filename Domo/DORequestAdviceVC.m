@@ -151,7 +151,7 @@
     
     [[NSManagedObjectContext contextForCurrentThread] saveToPersistentStoreWithCompletion:^(BOOL success, NSError *saveError) {
         if (saveError){
-            NSLog(@"darn, a save error. %@",saveError);
+            EXLog(@"darn, a save error. %@",saveError);
         }
     }];
 }
@@ -192,7 +192,7 @@
     //if ready to submit
     //we gotta do more validation here
     if ([self.pendingAdviceRequest isSubmissionWorthy] == FALSE){
-        NSLog(@"Pending advice request isSubmissionWorthy: %@", self.pendingAdviceRequest);
+        EXLog(@"Pending advice request isSubmissionWorthy: %@", self.pendingAdviceRequest);
         [UIView wiggleView:self.askButton];
         return;
     }
@@ -207,8 +207,8 @@
     
     __block AdviceRequest * pending = self.pendingAdviceRequest;
     [objectManager postObject:self.pendingAdviceRequest path:nil parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
-        NSLog(@"Requested: %@", operation);
-        NSLog(@"Posted: %@", [result array]);
+        EXLog(@"Requested: %@", operation);
+        EXLog(@"Posted: %@", [result array]);
         
         [CSNotificationView showInViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController] style:CSNotificationViewStyleSuccess message:NSLocalizedString(@"Your advice request was posted!\nCheck back for responses!", @"postSuccessfulNotification")];
         
@@ -216,8 +216,8 @@
         [self loadFromAdviceRequest:self.pendingAdviceRequest];
         //TODO: should also only fade in after fail or success
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        NSLog(@"Requested: %@", operation);
-        NSLog(@"failed: %@", [error description]);
+        EXLog(@"Requested: %@", operation);
+        EXLog(@"failed: %@", [error description]);
         
         [pending setStatusCode:AdviceRequestStatusCodeEditing];
         

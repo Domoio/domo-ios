@@ -118,7 +118,7 @@
 }
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%@",@"didSelectRowAtIndexPath");
+    EXLog(@"%@",@"didSelectRowAtIndexPath");
 
     id object = [(NITableViewModel *)tableView.dataSource objectAtIndexPath:indexPath];
     
@@ -131,11 +131,11 @@
 }
 
 -(void) tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%@",@"accessoryButtonTappedForRowWithIndexPath");
+    EXLog(@"%@",@"accessoryButtonTappedForRowWithIndexPath");
 }
 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath  *)indexPath{
-    NSLog(@"%@",@"shouldHighlightRowAtIndexPath");
+    EXLog(@"%@",@"shouldHighlightRowAtIndexPath");
 
     return TRUE;
 }
@@ -144,7 +144,7 @@
 #pragma mark - cells delegation
 -(void) myQuestionsResponseCellCellWasTappedWithCell:(DOMyQuestionsResponseCell*)cell{
     
-    NSLog(@"%@",@"myQuestionsResponseCellCellWasTappedWithCell");
+    EXLog(@"%@",@"myQuestionsResponseCellCellWasTappedWithCell");
     NSIndexPath * tappedIndexPath = [self.tableView indexPathForCell:cell];
     Response * response = [self.displayedObjects objectAtIndex:tappedIndexPath.row]; //not using any sections
     [response setIsExpanded:@(!response.isExpanded.boolValue)];
@@ -170,14 +170,14 @@
     
     NSDictionary * params = @{@"helpful": newHelpfulValue.stringValue };
     [objectManager postObject:nil path:postPath parameters:params success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
-        NSLog(@"Requested: %@", operation);
-        NSLog(@"Posted: %@", [result array]);
+        EXLog(@"Requested: %@", operation);
+        EXLog(@"Posted: %@", [result array]);
         [response setIsHelpful:newHelpfulValue];
         [thisVC.tableView reloadRowsAtIndexPaths:[self animationPartnerIndexPathsToIndexPath:tappedIndexPath] withRowAnimation:UITableViewRowAnimationFade];
         
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        NSLog(@"Requested: %@", operation);
-        NSLog(@"failed: %@", [error description]);
+        EXLog(@"Requested: %@", operation);
+        EXLog(@"failed: %@", [error description]);
         [thisVC.tableView reloadRowsAtIndexPaths:[self animationPartnerIndexPathsToIndexPath:tappedIndexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         if (error.domain == NSURLErrorDomain){
@@ -205,14 +205,14 @@
     
     NSDictionary * params = @{@"thankyou": newThankedValue.stringValue};
     [objectManager postObject:nil path:postPath parameters:params success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
-        NSLog(@"Requested: %@", operation);
-        NSLog(@"Posted: %@", [result array]);
+        EXLog(@"Requested: %@", operation);
+        EXLog(@"Posted: %@", [result array]);
         [response setResponderThanked:newThankedValue];
         [thisVC.tableView reloadRowsAtIndexPaths:[self animationPartnerIndexPathsToIndexPath:tappedIndexPath] withRowAnimation:UITableViewRowAnimationFade];
         
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        NSLog(@"Requested: %@", operation);
-        NSLog(@"failed: %@", [error description]);
+        EXLog(@"Requested: %@", operation);
+        EXLog(@"failed: %@", [error description]);
         [thisVC.tableView reloadRowsAtIndexPaths:[self animationPartnerIndexPathsToIndexPath:tappedIndexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         if (error.domain == NSURLErrorDomain){
@@ -224,7 +224,7 @@
 }
 
 -(void) myQuestionsRequestCellWasTappedWithCell:(DOMyQuestionsRequestCell *)cell{
-    NSLog(@"%@",@"myQuestionsRequestCellWasTappedWithCell");
+    EXLog(@"%@",@"myQuestionsRequestCellWasTappedWithCell");
     NSIndexPath * tappedIndexPath = [self.tableView indexPathForCell:cell];
     AdviceRequest * request = [self.displayedObjects objectAtIndex:tappedIndexPath.row]; //not using any sections
     [request setIsExpanded:@(!request.isExpanded.boolValue)];

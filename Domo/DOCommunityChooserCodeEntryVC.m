@@ -78,9 +78,9 @@
 
     DOCommunityChooserCodeEntryVC * __weak weakSelf = self;
     [objectManager getObject:self.evaluatingOrganization path:RKPathFromPatternWithObject(@"/api/v1/organizations/:urlFragment/codecheck", self.evaluatingOrganization)  parameters:@{@"code": code} success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
-        NSLog(@"Retreived: %@", [result array]);
+        EXLog(@"Retreived: %@", [result array]);
         if ([[weakSelf.evaluatingOrganization usersAuthCode] isEqualToString:code]) {
-            NSLog(@"SUCCESS %@", @"YO");
+            EXLog(@"SUCCESS %@", @"YO");
             [weakSelf.delegate codeEntryVCDidCompleteSuccesfull:weakSelf];
             [weakSelf enableSubmit];
         }
@@ -91,7 +91,7 @@
             [CSNotificationView showInViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController] style:CSNotificationViewStyleError message:NSLocalizedString(@"Server connection failed!", @"serverConnectionFailed")];
         }
         
-        NSLog(@"failed: %@", [error description]);
+        EXLog(@"failed: %@", [error description]);
         
         [UIView wiggleView:weakSelf.codeEntryTextField completion:^(BOOL finished) {
             [weakSelf enableSubmit];

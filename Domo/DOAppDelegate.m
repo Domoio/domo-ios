@@ -59,9 +59,9 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
     RKObjectManager *manager = [RKObjectManager sharedManager];
                                 
     [manager getObjectsAtPath:@"organizations" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
-        NSLog(@"The public call-in: %@", [result array]);
+        EXLog(@"The public call-in: %@", [result array]);
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        NSLog(@"Whoops call-in failed: %@", [error description]);
+        EXLog(@"Whoops call-in failed: %@", [error description]);
     }];
     
 }
@@ -87,7 +87,7 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
         seedPath = [RKApplicationDataDirectory() stringByAppendingPathComponent:seedDatabaseName];
         #if IS_SHIPPING == 1
         #warning make sure that this isn't printed out!
-        NSLog(@"Warning, dynamic seed at path used - compile and bundle b4 ship: %@", seedPath);
+        EXLog(@"Warning, dynamic seed at path used - compile and bundle b4 ship: %@", seedPath);
         #endif
     }
     
@@ -198,7 +198,7 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
         [importer logSeedingInfo];
     }
     
-    NSLog(@"SeedDB dropped at %@",seedPath);
+    EXLog(@"SeedDB dropped at %@",seedPath);
 }
 
 #pragma mark push it, boy
@@ -215,7 +215,7 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
 }
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
     [CSNotificationView showInViewController:self.window.rootViewController style:CSNotificationViewStyleError message:NSLocalizedString(@"Enabling push notifications failed, check your settings!", @"pushNotificationsFailed")];
-    NSLog(@"Darn, push failed with error %@", error);
+    EXLog(@"Darn, push failed with error %@", error);
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {

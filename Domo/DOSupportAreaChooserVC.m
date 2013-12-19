@@ -168,7 +168,7 @@
             [selectedSupportArea setIsCurrentActive:@(YES)];
             [[NSManagedObjectContext defaultContext] saveToPersistentStoreWithCompletion:^(BOOL success, NSError *saveError) {
                 if (saveError){
-                    NSLog(@"darn, a save error. %@",saveError);
+                    EXLog(@"darn, a save error. %@",saveError);
                 }
             }];
 

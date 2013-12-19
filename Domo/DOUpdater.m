@@ -83,7 +83,7 @@
         NSError * error = nil;
         [_adviceRequestUpdateController performFetch:&error];
         if (error){
-            NSLog(@"Fetch error %@",error);
+            EXLog(@"Fetch error %@",error);
         }
     }
     
@@ -149,15 +149,15 @@
         
         [objectManager postObject:nil path:requestPath parameters:requestBody success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
             
-//            NSLog(@"Requested: %@", operation);
-//            NSLog(@"Posted: %@", [result array]);
+//            EXLog(@"Requested: %@", operation);
+//            EXLog(@"Posted: %@", [result array]);
             
             [CSNotificationView showInViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController] style:CSNotificationViewStyleSuccess message:NSLocalizedString(@"Updated advice requests!", @"serverConnectionFailedButDataSaved")];
             
             
         } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-//            NSLog(@"Requested: %@", operation);
-//            NSLog(@"failed: %@", [error description]);
+//            EXLog(@"Requested: %@", operation);
+//            EXLog(@"failed: %@", [error description]);
             
             if (error.domain == NSURLErrorDomain){
                 [CSNotificationView showInViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController] style:CSNotificationViewStyleError message:NSLocalizedString(@"The server connection failed.\nYour request is safe here!", @"serverConnectionFailedButDataSaved")];
@@ -182,7 +182,7 @@
             [self registerForSubscriberID];
         }else{
             if (self.subscriberId == nil || self.deviceId == nil || self.pushNotificationID == nil){
-                NSLog(@"pushNotificationID, deviceId, or subscriberId == nil! (re-regging for subscriber id): %@,%@,%@" , self.subscriberId,self.deviceId,self.pushNotificationID);
+                EXLog(@"pushNotificationID, deviceId, or subscriberId == nil! (re-regging for subscriber id): %@,%@,%@" , self.subscriberId,self.deviceId,self.pushNotificationID);
                 
                 [self registerForSubscriberID];
             }
@@ -192,14 +192,14 @@
             NSMutableURLRequest * registerSubscriberURLRequest =  [httpClient requestWithMethod:@"POST" path:requestPath parameters:@{@"subscriberId": self.subscriberId, @"deviceId": self.deviceId, @"deviceToken": self.pushNotificationID }];
             
             [[NSOperationQueue mainQueue] addOperation:[AFJSONRequestOperation JSONRequestOperationWithRequest:registerSubscriberURLRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSDictionary* JSON) {
-                NSLog(@"JSON update subscriberID response: %@", [JSON description]);
+                EXLog(@"JSON update subscriberID response: %@", [JSON description]);
                 self.deviceId = [[JSON valueForKey:@"response"] valueForKey:@"deviceId"];
                 
                 //[[[UIAlertView alloc] initWithTitle:nil message:@"Updated your push notification endpoint! \nEmail the developer at domo@domo.io, this means something to them :-)" delegate:nil cancelButtonTitle:@"okay" otherButtonTitles:nil] show];
 
                 
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                NSLog(@"JSON fail subscriberID response: %@ with error: %@", [JSON description], error);
+                EXLog(@"JSON fail subscriberID response: %@ with error: %@", [JSON description], error);
 
                 [[[UIAlertView alloc] initWithTitle:nil message:@"failed updating push endpoint! Sorry :/\nEmail the developer at domo@domo.io, this means something to them :-)" delegate:nil cancelButtonTitle:@"okay" otherButtonTitles:nil] show];
                 
@@ -219,11 +219,11 @@
 
 -(void) registerForSubscriberID{
     if (self.subscriberId != nil){
-        NSLog(@"Exiting, subscriber Id != nil! %@", self.subscriberId);
+        EXLog(@"Exiting, subscriber Id != nil! %@", self.subscriberId);
         return;
     }
     if (self.pushNotificationID == nil){
-        NSLog(@"pushNotificationID == nil! %@", @"ARG");
+        EXLog(@"pushNotificationID == nil! %@", @"ARG");
         return;
     }
     
@@ -240,12 +240,12 @@
     NSMutableURLRequest * registerSubscriberURLRequest =  [httpClient requestWithMethod:@"POST" path:requestPath parameters:@{@"deviceType": @"ios", @"deviceMeta": @{ @"model": [[UIDevice currentDevice] hardwareDescription] }, @"deviceToken": self.pushNotificationID }];
     
     [[NSOperationQueue mainQueue] addOperation:[AFJSONRequestOperation JSONRequestOperationWithRequest:registerSubscriberURLRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSDictionary* JSON) {
-        NSLog(@"JSON register response: %@", [JSON description]);
+        EXLog(@"JSON register response: %@", [JSON description]);
         self.subscriberId = [[JSON valueForKey:@"response"] valueForKey:@"subscriberId"];
         self.deviceId = [[JSON valueForKey:@"response"] valueForKey:@"deviceId"];
         
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-        NSLog(@"JSON fail register response: %@ with error: %@", [JSON description], error);
+        EXLog(@"JSON fail register response: %@ with error: %@", [JSON description], error);
     }]];
     
 }
