@@ -165,6 +165,12 @@ const float askAdviceHandleHeight = 48;
     CGPoint viewTargetPoint = CGPointZero;
     // if it's closer to the requestAdvice
     
+    if ([scrollView isDecelerating] == TRUE && scrollView.dragging == FALSE){
+        //this workaround prevents the scroll view from jumping up when we're already scrolling down on the view and the text box is activated
+        return;
+    }
+
+    
     if (velocity.y > 0){
         if (abs(self.welcomeCommunityHeader.view.origin.y - (*targetContentOffset).y) > abs(self.requestAdviceVC.view.origin.y - self.mainContentScrollView.height/1.75 - (*targetContentOffset).y)){
             viewTargetPoint = [self displayOriginForRequestAdviceView];
@@ -194,6 +200,7 @@ const float askAdviceHandleHeight = 48;
         });
 
     }else{
+        
         (*targetContentOffset) = viewTargetPoint;
     }
     
