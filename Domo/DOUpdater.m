@@ -134,31 +134,17 @@
         RKObjectManager *objectManager = [RKObjectManager sharedManager];
 
         NSDictionary * requestBody = @{@"adviceRequestList": requestsToUpdate};
-        //{
-        //    "adviceRequestList": [
-        //                          {
-        //                              "adviceRequestId": "5250aa0da40cef0400000009",
-        //                              "accessToken": "ee926aa943ab45b283cc3bbe0cc76944"
-        //                          },
-        //                          {
-        //                              "adviceRequestId": "5250a21558cbef9a80000006",
-        //                              "accessToken": "4c1bdb849b0d41408d0c79819e2d0445"
-        //                          }
-        //                          ]
-        //}
         
         [objectManager postObject:nil path:requestPath parameters:requestBody success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
             
-//            EXLog(@"Requested: %@", operation);
-//            EXLog(@"Posted: %@", [result array]);
             
             if (force)
                 [CSNotificationView showInViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController] style:CSNotificationViewStyleSuccess message:NSLocalizedString(@"Updated advice requests!", @"updatedAdviceRequestsSuccessfully")];
             
             
         } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-//            EXLog(@"Requested: %@", operation);
-//            EXLog(@"failed: %@", [error description]);
+            EXLog(@"Requested: %@", operation);
+            EXLog(@"failed: %@", [error description]);
             
             if (error.domain == NSURLErrorDomain){
                 [CSNotificationView showInViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController] style:CSNotificationViewStyleError message:NSLocalizedString(@"The server connection failed.\nYour request is safe here!", @"serverConnectionFailedButDataSaved")];
