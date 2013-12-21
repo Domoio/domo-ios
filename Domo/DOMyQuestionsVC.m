@@ -319,17 +319,31 @@
         //soo, if we determine whether the advice request comes right before another response, we can make the offset enormous
         indexPath = [self.tableView indexPathForRowAtPoint:CGPointMake((*targetContentOffset).x, (*targetContentOffset).y + scrollView.height/2)];
         NSIndexPath * fartherIndexPath = [self.tableView indexPathForRowAtPoint:CGPointMake((*targetContentOffset).x, (*targetContentOffset).y + scrollView.height/1.2)];
+        
         if ( [(NSObject*)[(NITableViewModel *)self.tableView.dataSource objectAtIndexPath:fartherIndexPath] isKindOfClass:[AdviceRequest class]]){
             indexPath = fartherIndexPath;
         }
         
         //we don't futz if we're already scrolled all the way down
         if ((self.tableView.contentSize.height - (*targetContentOffset).y) > scrollView.height){
-            (*targetContentOffset) = [self.tableView rectForRowAtIndexPath:indexPath].origin;
+
+            CGFloat cellHeight = [self tableView:self.tableView heightForRowAtIndexPath:fartherIndexPath];
+            if (cellHeight < scrollView.height){ //we don't kabitz with cells that are taller than our view
+
+                //this cell looks good!
+                (*targetContentOffset) = [self.tableView rectForRowAtIndexPath:indexPath].origin;
+            }
+            
         }
     }else if (velocity.y < -.3){
         indexPath = [self.tableView indexPathForRowAtPoint:(*targetContentOffset)];
-        (*targetContentOffset) = [self.tableView rectForRowAtIndexPath:indexPath].origin;
+        
+        CGFloat cellHeight = [self tableView:self.tableView heightForRowAtIndexPath:indexPath];
+        if (cellHeight < scrollView.height){ //we don't kabitz with cells that are taller than our view
+            //this cell looks good!
+            (*targetContentOffset) = [self.tableView rectForRowAtIndexPath:indexPath].origin;
+        }
+        
     }
 
 }
