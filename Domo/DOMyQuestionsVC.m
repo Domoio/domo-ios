@@ -168,8 +168,13 @@
     
     EXLog(@"%@",@"myQuestionsResponseCellCellWasTappedWithCell");
     NSIndexPath * tappedIndexPath = [self.tableView indexPathForCell:cell];
+    if (tappedIndexPath == nil){ //DEFENSIVE CODING
+        return;
+    }
+    
     Response * response = [self.displayedObjects objectAtIndex:tappedIndexPath.row]; //not using any sections
     [response setIsExpanded:@(!response.isExpanded.boolValue)];
+    
     
     [self.tableView reloadRowsAtIndexPaths:[self animationPartnerIndexPathsToIndexPath:tappedIndexPath] withRowAnimation:UITableViewRowAnimationFade];
 
@@ -177,6 +182,10 @@
 
 -(void) helpfullButtonWasTappedWithMyQuestionsResponseCell:(DOMyQuestionsResponseCell*)cell{
     NSIndexPath * tappedIndexPath = [self.tableView indexPathForCell:cell];
+    if (tappedIndexPath == nil){ //DEFENSIVE CODING AHHHH D_FENC
+        return;
+    }
+    
     Response * response = [self.displayedObjects objectAtIndex:tappedIndexPath.row]; //not using any sections
     
     [self.tableView reloadRowsAtIndexPaths:[self animationPartnerIndexPathsToIndexPath:tappedIndexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -215,6 +224,11 @@
 
 -(void) thankYouButtonWasTappedWithMyQuestionsResponseCell:(DOMyQuestionsResponseCell*)cell{
     NSIndexPath * tappedIndexPath = [self.tableView indexPathForCell:cell];
+    if (tappedIndexPath == nil){ //DEFENSE! DEFENSE! DEFENSE! _THE_CROWD_GOES_WILD_
+        return;
+    }
+    
+    
     Response * response = [self.displayedObjects objectAtIndex:tappedIndexPath.row]; //not using any sections
     
     
@@ -259,6 +273,7 @@
     // want to reload the cells beneath if necessary-- necessary to reload all cells underneath
     // need to 1) get index path of next cell 1.5) check if it's beyond array bounds 2) get object at that index path
     //    3)test cell as either AdviceRequest or AdviceResponse, if it's an AdviceResponse, add the index path to the array of animation partner, if it's an AdviceRequest, return the indexPath array
+    
     
     NSMutableArray * setOfRefresehers = [@[path] mutableCopy];
     
