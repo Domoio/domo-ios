@@ -176,9 +176,11 @@ const float askAdviceHandleHeight = 48;
     }
 
     
-    if (velocity.y > 0){
+    if (velocity.y >= 0){
         if (abs(self.welcomeCommunityHeader.view.origin.y - (*targetContentOffset).y) > abs(self.requestAdviceVC.view.origin.y - self.mainContentScrollView.height/1.75 - (*targetContentOffset).y)){
             viewTargetPoint = [self displayOriginForRequestAdviceView];
+
+            
         }else { //it's closer to welcome/header
             viewTargetPoint = self.welcomeCommunityHeader.view.origin;
         }
