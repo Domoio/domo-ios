@@ -11,6 +11,7 @@
 #import "NICellFactory.h"
 #import "DOMyQuestionsRequestCell.h"
 #import "DOMyQuestionsResponseCell.h"
+#import "DOMyQuestionsNoQuestionsCell.h"
 
 @interface DOMyQuestionsVC : UIViewController <NITableViewModelDelegate, UITableViewDelegate,NSFetchedResultsControllerDelegate, DOMyQuestionsRequestCellDelegate, DOMyQuestionsResponseCellDelegate >
 

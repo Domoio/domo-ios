@@ -74,6 +74,12 @@
             [displayArray addObjectsFromArray:[[request responses] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"createdDate" ascending:TRUE],[NSSortDescriptor sortDescriptorWithKey:@"modifiedDate" ascending:TRUE]]]];
         }
         
+        if ([displayArray count] == 0){
+            //NO Questions?? Mwuhahaha
+            [displayArray addObject:[DOMyQuestionsNoQuestionsCellObject new]];
+        }
+        
+        
 		_displayedObjects = displayArray;
 	}
 	return _displayedObjects;
@@ -120,8 +126,11 @@
 	id class = [object cellClass];
 	
 	double spacing = 0;
-    if ([[nextObject class] isEqual:[AdviceRequest class]] || nextObject == nil){
-        spacing = 280;
+    if ([[nextObject class] isEqual:[AdviceRequest class]] || nextObject == nil){ //if there's an advice request next, or if this is the last object in the array, then give it spacing
+
+        //but I don't want spacing when our object is the no objects object
+        if ([[object class] isEqual:[DOMyQuestionsNoQuestionsCellObject class]] == FALSE)
+            spacing = 280;
     }
 	
 	if ([class respondsToSelector:@selector(heightForObject:atIndexPath:tableView:)]) {

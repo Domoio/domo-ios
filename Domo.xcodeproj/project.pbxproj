@@ -145,6 +145,8 @@
 		79F198C01863B16600059F2C /* UIViewAdditions+EX.m in Sources */ = {isa = PBXBuildFile; fileRef = 795EAD5A177B411A00EEC7AF /* UIViewAdditions+EX.m */; };
 		79F198C11863B16A00059F2C /* NSDateAdditions+EX.m in Sources */ = {isa = PBXBuildFile; fileRef = 795EAD5C177B411A00EEC7AF /* NSDateAdditions+EX.m */; };
 		79F198C418657B7C00059F2C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F198C318657B7C00059F2C /* AudioToolbox.framework */; };
+		79F198C718663AD000059F2C /* DOMyQuestionsNoQuestionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F198C618663AD000059F2C /* DOMyQuestionsNoQuestionsCell.m */; };
+		79F198C918663AF100059F2C /* DOMyQuestionsNoQuestionsCell-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F198C818663AF100059F2C /* DOMyQuestionsNoQuestionsCell-iPhone.xib */; };
 		79F4D0851837EC4A00CC5060 /* thank-you-button-activated.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F4D0811837EC4A00CC5060 /* thank-you-button-activated.png */; };
 		79F4D0861837EC4A00CC5060 /* thank-you-button-activated@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F4D0821837EC4A00CC5060 /* thank-you-button-activated@2x.png */; };
 		79F4D0871837EC4A00CC5060 /* thank-you-button-deactivated.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F4D0831837EC4A00CC5060 /* thank-you-button-deactivated.png */; };
@@ -422,6 +424,9 @@
 		79E1C20417EA62B1006C3C27 /* DOCommunityChooserCodeEntryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOCommunityChooserCodeEntryVC.m; sourceTree = "<group>"; };
 		79F198C21865775C00059F2C /* Domob1.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = Domob1.2.xcdatamodel; sourceTree = "<group>"; };
 		79F198C318657B7C00059F2C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		79F198C518663AD000059F2C /* DOMyQuestionsNoQuestionsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMyQuestionsNoQuestionsCell.h; sourceTree = "<group>"; };
+		79F198C618663AD000059F2C /* DOMyQuestionsNoQuestionsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMyQuestionsNoQuestionsCell.m; sourceTree = "<group>"; };
+		79F198C818663AF100059F2C /* DOMyQuestionsNoQuestionsCell-iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DOMyQuestionsNoQuestionsCell-iPhone.xib"; sourceTree = "<group>"; };
 		79F4D0811837EC4A00CC5060 /* thank-you-button-activated.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thank-you-button-activated.png"; sourceTree = "<group>"; };
 		79F4D0821837EC4A00CC5060 /* thank-you-button-activated@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thank-you-button-activated@2x.png"; sourceTree = "<group>"; };
 		79F4D0831837EC4A00CC5060 /* thank-you-button-deactivated.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thank-you-button-deactivated.png"; sourceTree = "<group>"; };
@@ -563,6 +568,9 @@
 				79117F2F17CC5C55002F1506 /* DOMyQuestionsResponseCell.h */,
 				79117F3017CC5C55002F1506 /* DOMyQuestionsResponseCell.m */,
 				79117F3417CC622B002F1506 /* DOMyQuestionsResponseCell-iPhone.xib */,
+				79F198C518663AD000059F2C /* DOMyQuestionsNoQuestionsCell.h */,
+				79F198C618663AD000059F2C /* DOMyQuestionsNoQuestionsCell.m */,
+				79F198C818663AF100059F2C /* DOMyQuestionsNoQuestionsCell-iPhone.xib */,
 			);
 			name = "My Questions Cells";
 			sourceTree = "<group>";
@@ -1063,6 +1071,7 @@
 				79C21113177C8CE800D7F984 /* DOMyQuestionsVC-iPhone.xib in Resources */,
 				79C3433D17AF057900410540 /* domoBackbutton@2x.png in Resources */,
 				79C3433E17AF057900410540 /* domoChoosebutton@2x.png in Resources */,
+				79F198C918663AF100059F2C /* DOMyQuestionsNoQuestionsCell-iPhone.xib in Resources */,
 				79C3433F17AF057900410540 /* domoDetailbutton@2x.png in Resources */,
 				79C3434017AF057900410540 /* domoInfobutton@2x.png in Resources */,
 				794FDD8A17B3DB4700624BC5 /* domoChoosebutton.png in Resources */,
@@ -1222,6 +1231,7 @@
 				79117F3F17CD6766002F1506 /* DOSupportAreaCell.m in Sources */,
 				791FDB6E17D3ADC700AC8FF7 /* TTTTimeIntervalFormatter.m in Sources */,
 				79E1C20517EA62B1006C3C27 /* DOCommunityChooserCodeEntryVC.m in Sources */,
+				79F198C718663AD000059F2C /* DOMyQuestionsNoQuestionsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
