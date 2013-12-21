@@ -7,6 +7,7 @@
 //
 
 #import "DOAppDelegate.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 #import "AdviceRequest.h"
 #import "Organization.h"
@@ -225,6 +226,9 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
         application.applicationIconBadgeNumber = badgeNumber.integerValue;
         
         [[NSNotificationCenter defaultCenter] postNotificationName:shouldUpdateNewAdviceUINotification object:self];
+        
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+
     }
     [self.homeScreenVC.updater updateFromServer:TRUE];
 }

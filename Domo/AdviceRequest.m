@@ -72,7 +72,17 @@
     
     [self setStatusCode:AdviceRequestStatusCodeEditing];
     [self setCreatedDate:[NSDate date]];
-    [self setModifiedDate:[self createdDate]];
+}
+
+
+-(void)setCreatedDate:(NSDate *)createdDate{
+    NSString * key = @"createdDate";
+    
+    [self willChangeValueForKey:key];
+    [self setPrimitiveValue:createdDate forKey:key];
+    [self didChangeValueForKey:key];
+    
+    [self setModifiedDate:createdDate];
 }
 
 -(void)setOrganization:(Organization *)organization{

@@ -25,7 +25,6 @@
 		790B0863177B7F88005C6308 /* MGScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 790B0851177B7F88005C6308 /* MGScrollView.m */; };
 		790B0864177B7F88005C6308 /* MGTableBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 790B0853177B7F88005C6308 /* MGTableBox.m */; };
 		790B0865177B7F88005C6308 /* MGTableBoxStyled.m in Sources */ = {isa = PBXBuildFile; fileRef = 790B0855177B7F88005C6308 /* MGTableBoxStyled.m */; };
-		790B086A177B7FD1005C6308 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 790B0866177B7FD1005C6308 /* AVFoundation.framework */; };
 		790B086B177B7FD1005C6308 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 790B0867177B7FD1005C6308 /* CoreText.framework */; };
 		790B086C177B7FD1005C6308 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 790B0868177B7FD1005C6308 /* QuartzCore.framework */; };
 		790B086D177B7FD1005C6308 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 790B0869177B7FD1005C6308 /* CoreGraphics.framework */; };
@@ -145,6 +144,7 @@
 		79E1C20517EA62B1006C3C27 /* DOCommunityChooserCodeEntryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E1C20417EA62B1006C3C27 /* DOCommunityChooserCodeEntryVC.m */; };
 		79F198C01863B16600059F2C /* UIViewAdditions+EX.m in Sources */ = {isa = PBXBuildFile; fileRef = 795EAD5A177B411A00EEC7AF /* UIViewAdditions+EX.m */; };
 		79F198C11863B16A00059F2C /* NSDateAdditions+EX.m in Sources */ = {isa = PBXBuildFile; fileRef = 795EAD5C177B411A00EEC7AF /* NSDateAdditions+EX.m */; };
+		79F198C418657B7C00059F2C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F198C318657B7C00059F2C /* AudioToolbox.framework */; };
 		79F4D0851837EC4A00CC5060 /* thank-you-button-activated.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F4D0811837EC4A00CC5060 /* thank-you-button-activated.png */; };
 		79F4D0861837EC4A00CC5060 /* thank-you-button-activated@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F4D0821837EC4A00CC5060 /* thank-you-button-activated@2x.png */; };
 		79F4D0871837EC4A00CC5060 /* thank-you-button-deactivated.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F4D0831837EC4A00CC5060 /* thank-you-button-deactivated.png */; };
@@ -421,6 +421,7 @@
 		79E1C20317EA62B1006C3C27 /* DOCommunityChooserCodeEntryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOCommunityChooserCodeEntryVC.h; sourceTree = "<group>"; };
 		79E1C20417EA62B1006C3C27 /* DOCommunityChooserCodeEntryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOCommunityChooserCodeEntryVC.m; sourceTree = "<group>"; };
 		79F198C21865775C00059F2C /* Domob1.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = Domob1.2.xcdatamodel; sourceTree = "<group>"; };
+		79F198C318657B7C00059F2C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		79F4D0811837EC4A00CC5060 /* thank-you-button-activated.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thank-you-button-activated.png"; sourceTree = "<group>"; };
 		79F4D0821837EC4A00CC5060 /* thank-you-button-activated@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thank-you-button-activated@2x.png"; sourceTree = "<group>"; };
 		79F4D0831837EC4A00CC5060 /* thank-you-button-deactivated.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thank-you-button-deactivated.png"; sourceTree = "<group>"; };
@@ -439,13 +440,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79F198C418657B7C00059F2C /* AudioToolbox.framework in Frameworks */,
 				794FDDA217B93E1600624BC5 /* MobileCoreServices.framework in Frameworks */,
 				794FDDA317B93E1600624BC5 /* SystemConfiguration.framework in Frameworks */,
 				798A52061779FC7D00939FB8 /* UIKit.framework in Frameworks */,
 				798A52081779FC7D00939FB8 /* Foundation.framework in Frameworks */,
 				798A520A1779FC7D00939FB8 /* CoreGraphics.framework in Frameworks */,
 				798A520C1779FC7D00939FB8 /* CoreData.framework in Frameworks */,
-				790B086A177B7FD1005C6308 /* AVFoundation.framework in Frameworks */,
 				790B086B177B7FD1005C6308 /* CoreText.framework in Frameworks */,
 				790B086C177B7FD1005C6308 /* QuartzCore.framework in Frameworks */,
 				790B086D177B7FD1005C6308 /* CoreGraphics.framework in Frameworks */,
@@ -671,6 +672,7 @@
 		798A52041779FC7D00939FB8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				79F198C318657B7C00059F2C /* AudioToolbox.framework */,
 				794FDD9E17B93E0B00624BC5 /* MobileCoreServices.framework */,
 				794FDD9F17B93E0B00624BC5 /* SystemConfiguration.framework */,
 				790B0866177B7FD1005C6308 /* AVFoundation.framework */,

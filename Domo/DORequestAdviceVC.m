@@ -230,6 +230,7 @@
     
     [self.pendingAdviceRequest setSubscriberID:[DOUpdater localSubscriberID]];
     [self.pendingAdviceRequest setStatusCode:AdviceRequestStatusCodePendingSubmission];
+    [self.pendingAdviceRequest setCreatedDate:[NSDate date]];
 
     [self updateUISubmissionWorthiness];
     
