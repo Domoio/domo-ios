@@ -71,7 +71,7 @@
         //now grab responses for each and place in here
         for (AdviceRequest * request in [self.fetchController fetchedObjects]){
             [displayArray addObject:request];
-            [displayArray addObjectsFromArray:[[request responses] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"modifiedDate" ascending:TRUE]]]];
+            [displayArray addObjectsFromArray:[[request responses] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"createdDate" ascending:TRUE],[NSSortDescriptor sortDescriptorWithKey:@"modifiedDate" ascending:TRUE]]]];
         }
         
 		_displayedObjects = displayArray;

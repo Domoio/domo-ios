@@ -13,6 +13,7 @@
 
 @implementation Response
 
+@dynamic createdDate;
 @dynamic modifiedDate;
 @dynamic responseID;
 @dynamic responseContent;
@@ -34,6 +35,7 @@
     
     [mapping addAttributeMappingsFromArray:@[@"isHelpful",@"modifiedDate",@"responderThanked"]];
     [mapping addAttributeMappingsFromDictionary:@{@"adviceResponse": @"responseContent"}];
+    [mapping addAttributeMappingsFromDictionary:@{@"createdOn": @"createdDate"}];
     [mapping addAttributeMappingsFromDictionary:@{@"adviceGiverDisplayName": @"responderDisplayName"}];
     [mapping addAttributeMappingsFromDictionary:@{@"_id": @"responseID"}];
     
@@ -44,7 +46,7 @@
 
 +(RKObjectMapping*) requestMapping{
     RKObjectMapping *requestMapping = [RKObjectMapping requestMapping]; // objectClass == NSMutableDictionary
-    [requestMapping addAttributeMappingsFromArray:@[@"isHelpful",@"modifiedDate",@"responderDisplayName",@"responderThanked",@"responseContent",@"responseID"]];
+    [requestMapping addAttributeMappingsFromArray:@[@"isHelpful",@"modifiedDate",@"createdDate",@"responderDisplayName",@"responderThanked",@"responseContent",@"responseID"]];
     
     
     return requestMapping;

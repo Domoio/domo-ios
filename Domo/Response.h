@@ -14,6 +14,7 @@
 
 @interface Response : NSManagedObject <NICellObject>
 
+@property (nonatomic, retain) NSDate * createdDate;
 @property (nonatomic, retain) NSDate * modifiedDate;
 @property (nonatomic, retain) NSString * responseID;
 @property (nonatomic, retain) NSString * responseContent;

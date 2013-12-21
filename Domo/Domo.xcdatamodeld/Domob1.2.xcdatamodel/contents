@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13A603" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="AdviceRequest" representedClassName="AdviceRequest" syncable="YES">
+        <attribute name="accessToken" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="adviceRequestID" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="isExpanded" optional="YES" transient="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="lastUpdatedDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="modifiedDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="organizationID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="requestContent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="statusCode" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="subscriberID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="supportAreaIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="organization" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" inverseName="adviceRequests" inverseEntity="Organization" syncable="YES"/>
+        <relationship name="responses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Response" inverseName="adviceRequest" inverseEntity="Response" syncable="YES"/>
+        <relationship name="supportArea" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SupportArea" inverseName="adviceRequests" inverseEntity="SupportArea" syncable="YES"/>
+    </entity>
+    <entity name="Organization" representedClassName="Organization" syncable="YES">
+        <attribute name="accessToken" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isCurrentActive" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
+        <attribute name="organizationID" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="urlFragment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="usageDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="usersAuthCode" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="adviceRequests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AdviceRequest" inverseName="organization" inverseEntity="AdviceRequest" syncable="YES"/>
+        <relationship name="supportAreas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SupportArea" inverseName="organization" inverseEntity="SupportArea" syncable="YES"/>
+    </entity>
+    <entity name="Response" representedClassName="Response" syncable="YES">
+        <attribute name="createdDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="isExpanded" optional="YES" transient="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="isHelpful" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="modifiedDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="responderDisplayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="responderThanked" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="responseContent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="responseID" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="adviceRequest" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="AdviceRequest" inverseName="responses" inverseEntity="AdviceRequest" syncable="YES"/>
+    </entity>
+    <entity name="SupportArea" representedClassName="SupportArea" syncable="YES">
+        <attribute name="identifier" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="isCurrentActive" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="adviceRequests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AdviceRequest" inverseName="supportArea" inverseEntity="AdviceRequest" syncable="YES"/>
+        <relationship name="organization" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" inverseName="supportAreas" inverseEntity="Organization" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="AdviceRequest" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Organization" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Response" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="SupportArea" positionX="0" positionY="0" width="0" height="0"/>
+    </elements>
+</model>

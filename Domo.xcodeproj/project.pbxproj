@@ -420,6 +420,7 @@
 		79E1C20117EA6285006C3C27 /* DOCommunityChooserCodeEntryVC-iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DOCommunityChooserCodeEntryVC-iPhone.xib"; sourceTree = "<group>"; };
 		79E1C20317EA62B1006C3C27 /* DOCommunityChooserCodeEntryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOCommunityChooserCodeEntryVC.h; sourceTree = "<group>"; };
 		79E1C20417EA62B1006C3C27 /* DOCommunityChooserCodeEntryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOCommunityChooserCodeEntryVC.m; sourceTree = "<group>"; };
+		79F198C21865775C00059F2C /* Domob1.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = Domob1.2.xcdatamodel; sourceTree = "<group>"; };
 		79F4D0811837EC4A00CC5060 /* thank-you-button-activated.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thank-you-button-activated.png"; sourceTree = "<group>"; };
 		79F4D0821837EC4A00CC5060 /* thank-you-button-activated@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thank-you-button-activated@2x.png"; sourceTree = "<group>"; };
 		79F4D0831837EC4A00CC5060 /* thank-you-button-deactivated.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thank-you-button-deactivated.png"; sourceTree = "<group>"; };
@@ -1377,9 +1378,10 @@
 		798A521F1779FC7D00939FB8 /* Domo.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				79F198C21865775C00059F2C /* Domob1.2.xcdatamodel */,
 				798A52201779FC7D00939FB8 /* Domo.xcdatamodel */,
 			);
-			currentVersion = 798A52201779FC7D00939FB8 /* Domo.xcdatamodel */;
+			currentVersion = 79F198C21865775C00059F2C /* Domob1.2.xcdatamodel */;
 			path = Domo.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
