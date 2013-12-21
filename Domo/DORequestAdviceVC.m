@@ -191,11 +191,14 @@
 }
 
 - (IBAction)supportAreaLabelTapped:(id)sender {
-    [self.delegate requestAdviceVCWantsDisplaySupportAreaChooser:self];
+    
+    if ([Organization activeOrganization])
+        [self.delegate requestAdviceVCWantsDisplaySupportAreaChooser:self];
 }
 
 - (IBAction)supportAreaChooserButtonPressed:(id)sender {
-    [self.delegate requestAdviceVCWantsDisplaySupportAreaChooser:self];
+    if ([Organization activeOrganization])
+        [self.delegate requestAdviceVCWantsDisplaySupportAreaChooser:self];
 }
 
 - (IBAction)askButtonPressed:(id)sender {
