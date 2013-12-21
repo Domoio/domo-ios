@@ -72,7 +72,9 @@ static const double defaultResponseTextHeight = 69;
     CGFloat viewHeight = [[self class] heightForObject:response atIndexPath:nil tableView:nil];
     [self.styleView setHeight:viewHeight];
     
-    NSDate * relevantDate = [response modifiedDate];
+    NSDate * relevantDate = [response createdDate];
+    if (relevantDate == nil)
+        relevantDate = [response modifiedDate];
     
     NSString * agoString = nil;
     
