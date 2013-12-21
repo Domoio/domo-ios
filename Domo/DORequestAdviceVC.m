@@ -156,6 +156,34 @@
     }];
 }
 
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    UIView * sView = self.view;
+    
+    while ((sView = sView.superview)) {
+        if ([sView isKindOfClass:[UIScrollView class]]) {
+            UIScrollView* superScroll = (UIScrollView*)sView;
+            if ( [superScroll isDecelerating] == FALSE && superScroll.dragging == FALSE)
+                superScroll.scrollEnabled = NO;
+            return;
+        }
+    }
+    
+
+}
+
+-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
+    UIView * sView = self.view;
+    
+    while ((sView = sView.superview)) {
+        if ([sView isKindOfClass:[UIScrollView class]]) {
+            UIScrollView* superScroll = (UIScrollView*)sView;
+            superScroll.scrollEnabled = TRUE;
+            return;
+        }
+    }
+
+}
+
 - (void)didReceiveMemoryWarning{
     
     [super didReceiveMemoryWarning];

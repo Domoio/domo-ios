@@ -84,12 +84,15 @@ const float askAdviceHandleHeight = 48;
 	
 	//Gesture recognizers
 	UITapGestureRecognizer * adviceRequestTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(adviceRequestTapRecognizerDidTap:)];
-	[self.requestAdviceVC.view addGestureRecognizer:adviceRequestTapRecognizer];
+	[adviceRequestTapRecognizer setDelaysTouchesBegan:FALSE];
+    [adviceRequestTapRecognizer setDelaysTouchesEnded:FALSE];
+    [self.requestAdviceVC.view addGestureRecognizer:adviceRequestTapRecognizer];
 	
 	UIPanGestureRecognizer * myQuestionsPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(myQuestionsPanGestureRecognizerDidPan:)];
 	[self.myQuestionsPeakView addGestureRecognizer:myQuestionsPanGestureRecognizer];
 	UITapGestureRecognizer * myQuestionsTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(myQuestionsTapRecognizerDidTap:)];
 	[self.myQuestionsPeakView addGestureRecognizer:myQuestionsTapRecognizer];
+    
 
     //let's KVC for peak view, so we can set shadow radius based on origin
     [self.myQuestionsPeakView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
@@ -165,7 +168,7 @@ const float askAdviceHandleHeight = 48;
     CGPoint viewTargetPoint = CGPointZero;
     // if it's closer to the requestAdvice
     
-    if ([scrollView isDecelerating] == TRUE && scrollView.dragging == FALSE){
+    if ( [scrollView isDecelerating] == TRUE && scrollView.dragging == FALSE){
         //this workaround prevents the scroll view from jumping up when we're already scrolling down on the view and the text box is activated
         return;
     }
