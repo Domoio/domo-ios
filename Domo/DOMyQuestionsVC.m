@@ -32,6 +32,18 @@
     
     self.tableView.decelerationRate = UIScrollViewDecelerationRateFast;
     [self.tableView setDataSource:self.tvModel];
+    
+    [self updateUIForUnreadCount:[UIApplication sharedApplication].applicationIconBadgeNumber animate:FALSE];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_updateUnreadPostLaunch) name:UIApplicationWillEnterForegroundNotification object:nil];
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void) _updateUnreadPostLaunch{
+    [self updateUIForUnreadCount:[UIApplication sharedApplication].applicationIconBadgeNumber animate:TRUE];
 }
 
 
@@ -253,6 +265,45 @@
         }
     
     return setOfRefresehers;
+}
+
+
+#pragma mark - based on unread count
+-(void) updateUIForUnreadCount:(NSInteger)unreadCount animate:(BOOL)animated{
+    
+    
+    __block DOMyQuestionsVC * bself = self;
+    void (^updateBlock)(void) = ^{
+        if (unreadCount == 0){
+            bself.unreadResponsesLabel.alpha = 0;
+        }else if (unreadCount > 0){
+            bself.unreadResponsesLabel.alpha = 1;
+        }
+    };
+    
+    if (animated){
+        UIColor * currentBGColor = self.view.backgroundColor;
+        UIColor * flickerColor = [UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1];
+        
+        [UIView animateWithDuration:.5 delay:.3 options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionAllowAnimatedContent|UIViewAnimationCurveEaseOut animations:^{
+            updateBlock();
+            
+            if (unreadCount >0)
+                [self.view setBackgroundColor:flickerColor];
+            
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionAllowAnimatedContent||UIViewAnimationCurveEaseIn animations:^{
+                if (unreadCount >0)
+                    [self.view setBackgroundColor:currentBGColor];
+                
+            } completion:^(BOOL finished) {
+                
+            }];
+        }];
+    }else{
+        updateBlock();
+    }
+    
 }
 
 #pragma mark - custom paging tableview

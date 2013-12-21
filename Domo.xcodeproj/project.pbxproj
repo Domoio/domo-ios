@@ -997,6 +997,11 @@
 				CLASSPREFIX = DO;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = ExoMachina;
+				TargetAttributes = {
+					798A52011779FC7D00939FB8 = {
+						DevelopmentTeam = A7426L9B95;
+					};
+				};
 			};
 			buildConfigurationList = 798A51FD1779FC7D00939FB8 /* Build configuration list for PBXProject "Domo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1318,7 +1323,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2896700E1507495AB9D81278 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Alexander List (76TLAY9W6F)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Domo/Domo-Prefix.pch";
 				INFOPLIST_FILE = "Domo/Domo-Info.plist";
@@ -1334,7 +1339,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2896700E1507495AB9D81278 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Alexander List";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Domo/Domo-Prefix.pch";
 				INFOPLIST_FILE = "Domo/Domo-Info.plist";

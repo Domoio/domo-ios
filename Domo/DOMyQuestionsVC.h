@@ -18,5 +18,10 @@
 @property (nonatomic, strong) NITableViewModel*	tvModel;
 @property (nonatomic, strong) NSFetchedResultsController * fetchController;
 @property (nonatomic, strong) IBOutlet UITableView * tableView;
+@property (weak, nonatomic) IBOutlet UILabel *unreadResponsesLabel;
+
+
+// updates the UI and does whatever animation it wants for the unread count
+-(void) updateUIForUnreadCount:(NSInteger)unreadCount animate:(BOOL)animated;
 
 @end

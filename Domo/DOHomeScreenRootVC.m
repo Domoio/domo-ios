@@ -96,6 +96,8 @@ const float askAdviceHandleHeight = 48;
 
     //let's KVC for peak view, so we can set shadow radius based on origin
     [self.myQuestionsPeakView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
+    
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -316,6 +318,13 @@ const float askAdviceHandleHeight = 48;
 	[self.myQuestionsPeakView setOrigin:CGPointMake(finalX, finalY)];
 	[UIView commitAnimations];
 	[self updateMyQuestionsViewForScrollState];
+    
+    //now this might not always work
+    if (display){
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+        [self.myQuestionsVC updateUIForUnreadCount:0 animate:TRUE];
+    }
+    
 }
 
 -(BOOL) myQuestionsIsDisplayed{
