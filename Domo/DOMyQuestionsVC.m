@@ -62,7 +62,7 @@
 -(NSArray*)displayedObjects{
 	if (_displayedObjects == nil){
         
-		self.fetchController = [AdviceRequest fetchAllGroupedBy:nil withPredicate:[NSPredicate predicateWithFormat:@"(statusCode != %@)", AdviceRequestStatusCodeEditing] sortedBy:@"modifiedDate" ascending:FALSE delegate:self];
+		self.fetchController = [AdviceRequest fetchAllGroupedBy:nil withPredicate:[NSPredicate predicateWithFormat:@"(statusCode != %@)", AdviceRequestStatusCodeEditing] sortedBy:@"modifiedDate,createdDate" ascending:FALSE delegate:self];
 		[self.fetchController performFetch:nil];
         
         NSMutableArray * displayArray = [@[] mutableCopy];

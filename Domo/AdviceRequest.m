@@ -117,9 +117,10 @@
     RKEntityMapping* mapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass(AdviceRequest.class) inManagedObjectStore:[RKObjectManager sharedManager].managedObjectStore];
     //theirs:ours
     [mapping addAttributeMappingsFromDictionary:@{@"_id": @"adviceRequestID"}];
-    [mapping addAttributeMappingsFromArray:@[@"accessToken",@"modifiedDate",@"organizationID",@"requestContent",@"supportAreaIdentifier"]];
+    [mapping addAttributeMappingsFromArray:@[@"accessToken",@"organizationID",@"requestContent",@"supportAreaIdentifier"]];
     [mapping addAttributeMappingsFromDictionary:@{@"status": @"statusCode"}];
     [mapping addAttributeMappingsFromDictionary:@{@"createdOn": @"createdDate"}];
+    [mapping addAttributeMappingsFromDictionary:@{@"lastResponseDate": @"modifiedDate"}];
     mapping.identificationAttributes = @[ @"adviceRequestID" ];
 
     RKConnectionDescription *organizationConnection = [[RKConnectionDescription alloc] initWithRelationship:([mapping.entity relationshipsByName][@"organization"]) attributes:@{ @"organizationID": @"organizationID" }];
