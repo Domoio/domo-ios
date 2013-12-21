@@ -152,7 +152,8 @@
 //            EXLog(@"Requested: %@", operation);
 //            EXLog(@"Posted: %@", [result array]);
             
-            [CSNotificationView showInViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController] style:CSNotificationViewStyleSuccess message:NSLocalizedString(@"Updated advice requests!", @"serverConnectionFailedButDataSaved")];
+            if (force)
+                [CSNotificationView showInViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController] style:CSNotificationViewStyleSuccess message:NSLocalizedString(@"Updated advice requests!", @"updatedAdviceRequestsSuccessfully")];
             
             
         } failure:^(RKObjectRequestOperation *operation, NSError *error) {

@@ -35,8 +35,9 @@
     
     [self updateUIForUnreadCount:[UIApplication sharedApplication].applicationIconBadgeNumber animate:FALSE];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_updateUnreadPostLaunch) name:UIApplicationWillEnterForegroundNotification object:nil];
-}
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_updateUnreadPostLaunch) name:shouldUpdateNewAdviceUINotification object:nil];
+}    
+
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];

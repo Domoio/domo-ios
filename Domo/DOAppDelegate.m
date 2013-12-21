@@ -219,9 +219,17 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [[[UIAlertView alloc] initWithTitle:@"New Response" message:[NSString stringWithFormat:@"Checkout 'My Questions' to see more about: %@", [userInfo description]] delegate:nil cancelButtonTitle:@"Thanks Domo!" otherButtonTitles:nil] show];
+//    [[[UIAlertView alloc] initWithTitle:@"New Response" message:[NSString stringWithFormat:@"Checkout 'My Questions' to see more about: %@", [userInfo description]] delegate:nil cancelButtonTitle:@"Thanks Domo!" otherButtonTitles:nil] show];
+    if ([[userInfo objectForKey:@"aps"] objectForKey:@"badge"]){
+        NSNumber * badgeNumber = [[userInfo objectForKey:@"aps"] objectForKey:@"badge"];
+        application.applicationIconBadgeNumber = badgeNumber.integerValue;
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:shouldUpdateNewAdviceUINotification object:self];
+    }
     [self.homeScreenVC.updater updateFromServer:TRUE];
 }
+
+
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
     
 }
@@ -234,6 +242,7 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application{
+    [[NSNotificationCenter defaultCenter] postNotificationName:shouldUpdateNewAdviceUINotification object:self];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application{

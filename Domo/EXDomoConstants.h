@@ -13,6 +13,10 @@ static NSString * const deviceIdUserConstant = @"deviceIdUserConstant";
 static NSString * const lastUpdateDateUserDefault = @"lastUpdateDateUserDefault";
 
 
+static NSString * const shouldUpdateNewAdviceUINotification = @"shouldUpdateNewAdviceUINotification";
+
+
+
 #define IS_SHIPPING 0
 #define DEV_MUTE 0
 #define DEV_STATE_RESET 0
