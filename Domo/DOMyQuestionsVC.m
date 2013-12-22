@@ -310,6 +310,7 @@
         UIColor * currentBGColor = self.view.backgroundColor;
         UIColor * flickerColor = [UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1];
         
+        
         [UIView animateWithDuration:.5 delay:.3 options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionAllowAnimatedContent|UIViewAnimationCurveEaseOut animations:^{
             updateBlock();
             
@@ -317,13 +318,28 @@
                 [self.view setBackgroundColor:flickerColor];
             
         } completion:^(BOOL finished) {
-            [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionAllowAnimatedContent||UIViewAnimationCurveEaseIn animations:^{
-                if (unreadCount >0)
-                    [self.view setBackgroundColor:currentBGColor];
-                
-            } completion:^(BOOL finished) {
-                
-            }];
+            
+            if (unreadCount >0){
+
+                [UIView animateWithDuration:.4 delay:0 options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionAllowAnimatedContent||UIViewAnimationCurveEaseIn animations:^{
+                    if (unreadCount >0)
+                        [self.view setBackgroundColor:currentBGColor];
+                    
+                } completion:^(BOOL finished) {
+                    
+                        [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionAllowAnimatedContent|UIViewAnimationCurveEaseIn animations:^{
+                            [self.view setBackgroundColor:flickerColor];
+                            
+                        } completion:^(BOOL finished) {
+                            [UIView animateWithDuration:1.4 delay:0 options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionAllowAnimatedContent|UIViewAnimationCurveEaseOut animations:^{
+                                if (unreadCount >0)
+                                    [self.view setBackgroundColor:currentBGColor];
+                                
+                            } completion:nil];
+                        }];
+                    
+                }];
+            }
         }];
     }else{
         updateBlock();
