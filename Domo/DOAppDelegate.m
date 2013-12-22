@@ -35,6 +35,7 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [DOUpdater registerForNotificationsIfPushNotificationsActive];
+
     
     [self setupDatabases];
     

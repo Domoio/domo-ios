@@ -100,6 +100,11 @@ const float askAdviceHandleHeight = 48;
     
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 -(void)viewDidAppear:(BOOL)animated{
 	[super viewDidAppear:animated];
 	
