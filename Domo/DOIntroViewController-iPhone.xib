@@ -151,6 +151,10 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" id="xnf-Te-Hj8">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <gestureRecognizers/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="WWp-2T-MY5" appends="YES" id="9qO-GT-Jbj"/>
+                    </connections>
                 </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -160,6 +164,11 @@
         <tapGestureRecognizer id="8gH-8y-2BT">
             <connections>
                 <action selector="exitTapGestureRecognizerRecognized:" destination="-1" id="F64-vY-LtX"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="WWp-2T-MY5">
+            <connections>
+                <action selector="nextPageTapGestureRecognized:" destination="-1" id="o9M-L0-9OC"/>
             </connections>
         </tapGestureRecognizer>
     </objects>

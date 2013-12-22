@@ -20,7 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        self.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     }
     return self;
 }
@@ -134,6 +134,15 @@
 
 -(IBAction) exitTapGestureRecognizerRecognized:(UITapGestureRecognizer*)recognizer{
     [self dismissViewControllerAnimated:TRUE completion:nil];
+}
+
+- (IBAction)nextPageTapGestureRecognized:(id)sender {
+    CGRect nextPageFrame = self.mainContentScrollView.bounds;
+    nextPageFrame.origin = [self.mainContentScrollView contentOffset];
+    nextPageFrame.origin.y += nextPageFrame.size.height;
+    
+    if (nextPageFrame.origin.y < self.mainContentScrollView.contentSize.height)
+        [self.mainContentScrollView scrollRectToVisible:nextPageFrame animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

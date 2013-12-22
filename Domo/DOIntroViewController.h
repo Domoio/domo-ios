@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *mainContentScrollView;
 
 - (IBAction)exitTapGestureRecognizerRecognized:(UITapGestureRecognizer *)sender;
+- (IBAction)nextPageTapGestureRecognized:(id)sender;
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *cloud0;
