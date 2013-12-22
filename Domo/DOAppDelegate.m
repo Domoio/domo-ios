@@ -7,6 +7,8 @@
 //
 
 #import "DOAppDelegate.h"
+#import "Watchsend.h"
+
 #import <AudioToolbox/AudioToolbox.h>
 
 #import "AdviceRequest.h"
@@ -51,6 +53,14 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
     [self.window makeKeyAndVisible];
         
     [self callInToServer];
+    
+    
+    [Watchsend startWithAPIKey:@"38a8438c-36bc-4e32-b399-40c05b2bf298" options:@[@"disable_privacy"]];
+    
+    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+    NSString* version = [infoDict objectForKey:@"CFBundleVersion"];
+    [Watchsend addTagToCurrentDevice:[NSString stringWithFormat:@"APPV:%@",version]];
+    
     return YES;
 }
 

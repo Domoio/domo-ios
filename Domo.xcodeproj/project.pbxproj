@@ -69,6 +69,9 @@
 		7977BACB17AB1606005A28AF /* AdviceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7977BACA17AB1606005A28AF /* AdviceRequest.m */; };
 		7977BACE17AB1753005A28AF /* Organization.m in Sources */ = {isa = PBXBuildFile; fileRef = 7977BACD17AB1753005A28AF /* Organization.m */; };
 		7977BAD117AB176C005A28AF /* Response.m in Sources */ = {isa = PBXBuildFile; fileRef = 7977BAD017AB176C005A28AF /* Response.m */; };
+		797BB3D41867973F00C24BEC /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 797BB3D21867973F00C24BEC /* libicucore.dylib */; };
+		797BB3D51867973F00C24BEC /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797BB3D31867973F00C24BEC /* OpenGLES.framework */; };
+		797BB3D618679E7900C24BEC /* libWatchsend.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 797BB3CE186795D700C24BEC /* libWatchsend.a */; };
 		798A52061779FC7D00939FB8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798A52051779FC7D00939FB8 /* UIKit.framework */; };
 		798A52081779FC7D00939FB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798A52071779FC7D00939FB8 /* Foundation.framework */; };
 		798A520A1779FC7D00939FB8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798A52091779FC7D00939FB8 /* CoreGraphics.framework */; };
@@ -286,6 +289,11 @@
 		7977BACD17AB1753005A28AF /* Organization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Organization.m; sourceTree = "<group>"; };
 		7977BACF17AB176C005A28AF /* Response.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Response.h; sourceTree = "<group>"; };
 		7977BAD017AB176C005A28AF /* Response.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Response.m; sourceTree = "<group>"; };
+		797BB3CE186795D700C24BEC /* libWatchsend.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWatchsend.a; sourceTree = "<group>"; };
+		797BB3CF186795D700C24BEC /* Watchsend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Watchsend.h; sourceTree = "<group>"; };
+		797BB3D0186795D700C24BEC /* WatchsendApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchsendApplication.h; sourceTree = "<group>"; };
+		797BB3D21867973F00C24BEC /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		797BB3D31867973F00C24BEC /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		798A52021779FC7D00939FB8 /* Domo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Domo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		798A52051779FC7D00939FB8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		798A52071779FC7D00939FB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -460,6 +468,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				797BB3D618679E7900C24BEC /* libWatchsend.a in Frameworks */,
+				797BB3D41867973F00C24BEC /* libicucore.dylib in Frameworks */,
+				797BB3D51867973F00C24BEC /* OpenGLES.framework in Frameworks */,
 				79F198C418657B7C00059F2C /* AudioToolbox.framework in Frameworks */,
 				794FDDA217B93E1600624BC5 /* MobileCoreServices.framework in Frameworks */,
 				794FDDA317B93E1600624BC5 /* SystemConfiguration.framework in Frameworks */,
@@ -637,6 +648,7 @@
 		795EAD67177B761800EEC7AF /* External */ = {
 			isa = PBXGroup;
 			children = (
+				797BB3CD186795D700C24BEC /* Watchsend */,
 				796EC35B180608DA00E212DC /* CSNotificationView */,
 				791FDB5B17D3ADC700AC8FF7 /* FormatterKit */,
 				799DD40F17A6CE3400225815 /* Nimbus */,
@@ -674,6 +686,17 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		797BB3CD186795D700C24BEC /* Watchsend */ = {
+			isa = PBXGroup;
+			children = (
+				797BB3CE186795D700C24BEC /* libWatchsend.a */,
+				797BB3CF186795D700C24BEC /* Watchsend.h */,
+				797BB3D0186795D700C24BEC /* WatchsendApplication.h */,
+			);
+			name = Watchsend;
+			path = ../Watchsend;
+			sourceTree = "<group>";
+		};
 		798A51F91779FC7D00939FB8 = {
 			isa = PBXGroup;
 			children = (
@@ -695,6 +718,8 @@
 		798A52041779FC7D00939FB8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				797BB3D21867973F00C24BEC /* libicucore.dylib */,
+				797BB3D31867973F00C24BEC /* OpenGLES.framework */,
 				79F198C318657B7C00059F2C /* AudioToolbox.framework */,
 				794FDD9E17B93E0B00624BC5 /* MobileCoreServices.framework */,
 				794FDD9F17B93E0B00624BC5 /* SystemConfiguration.framework */,
@@ -1387,6 +1412,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Domo/Domo-Prefix.pch";
 				INFOPLIST_FILE = "Domo/Domo-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/alist/Documents/ExoMachina/dev/Domo-ios/Domo",
+					"/Users/alist/Documents/ExoMachina/dev/Domo-ios/Watchsend",
+				);
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "5C36261B-46F0-44B4-BCB0-0126B824AD01";
@@ -1403,6 +1433,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Domo/Domo-Prefix.pch";
 				INFOPLIST_FILE = "Domo/Domo-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/alist/Documents/ExoMachina/dev/Domo-ios/Domo",
+					"/Users/alist/Documents/ExoMachina/dev/Domo-ios/Watchsend",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "A8FD39A8-AFDF-4769-9B54-C1AF2B65EC44";
 				VALID_ARCHS = "armv7 armv7s";

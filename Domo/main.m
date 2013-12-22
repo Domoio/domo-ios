@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 
 #import "DOAppDelegate.h"
+#import "WatchsendApplication.h"
 
 int main(int argc, char *argv[])
 {
 	@autoreleasepool {
-	    return UIApplicationMain(argc, argv, nil, NSStringFromClass([DOAppDelegate class]));
+	    return UIApplicationMain(argc, argv, NSStringFromClass([WatchsendApplication class]), NSStringFromClass([DOAppDelegate class]));
 	}
 }
