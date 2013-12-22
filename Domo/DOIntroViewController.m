@@ -56,20 +56,56 @@
     
     //I Can't get motion working :/
     
-//    UIView *cloudView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width*2, 64)];
-//    cloudView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"cloud"]];
-//    cloudView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-//    [self.supporteeWithSolutionView addSubview:cloudView];
-//    UIView *extraCloudView = [[UIView alloc] initWithFrame:CGRectMake(-64, -10, self.view.width*2, 64)];
-//    extraCloudView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"cloud"]];
-//    extraCloudView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-//    [cloudView addSubview:extraCloudView];
-//    
-//    [UIView animateWithDuration:5 delay:0 options:(UIViewAnimationOptionRepeat|UIViewAnimationOptionAutoreverse) animations:^{
-//        cloudView.transform = CGAffineTransformMakeTranslation(-120, -5);
-//        extraCloudView.transform = CGAffineTransformMakeTranslation(120, 5);
-//    } completion:NULL];
+    
+    __block DOIntroViewController * bSelf = self;
+    double delayInSeconds = 0.1;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        
+        UIView *cloudView = [[UIView alloc] initWithFrame:CGRectMake(0, 100, bSelf.view.width*2, 64)];
+        cloudView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"cloud"]];
+        cloudView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        [bSelf.supporteeQuestionView addSubview:cloudView];
+        UIView *extraCloudView = [[UIView alloc] initWithFrame:CGRectMake(-64, 30, bSelf.view.width*2, 64)];
+        extraCloudView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"cloud"]];
+        extraCloudView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        [cloudView addSubview:extraCloudView];
+        //
+        [UIView animateWithDuration:5 delay:0 options:(UIViewAnimationOptionRepeat|UIViewAnimationOptionAutoreverse) animations:^{
+            cloudView.transform = CGAffineTransformMakeTranslation(-120, -5);
+            extraCloudView.transform = CGAffineTransformMakeTranslation(200, 5);
+        } completion:NULL];
 
+        [bSelf.cloud2 setOrigin:CGPointMake( 0-bSelf.cloud2.width, bSelf.cloud2.origin.y)];
+        [bSelf.cloud3 setOrigin:CGPointMake( 0-bSelf.cloud3.width, bSelf.cloud3.origin.y)];
+        [UIView animateWithDuration:50 delay:20 options:UIViewAnimationOptionRepeat|UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionAllowAnimatedContent animations:^{
+            [bSelf.cloud2 setOrigin:CGPointMake( bSelf.view.width + bSelf.cloud2.width, bSelf.cloud2.origin.y)];
+        } completion:nil];
+        
+        [UIView animateWithDuration:40 delay:0 options:UIViewAnimationOptionRepeat|UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionAllowAnimatedContent animations:^{
+            [bSelf.cloud3 setOrigin:CGPointMake( bSelf.view.width +bSelf.cloud3.width, bSelf.cloud3.origin.y)];
+        } completion:nil];
+        
+        
+
+    });
+
+    /*
+    UIView *cloudView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width*2, 64)];
+    cloudView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"cloud"]];
+    cloudView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    [self.supporteeWithSolutionView addSubview:cloudView];
+    UIView *extraCloudView = [[UIView alloc] initWithFrame:CGRectMake(-64, -10, self.view.width*2, 64)];
+    extraCloudView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"cloud"]];
+    extraCloudView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    [cloudView addSubview:extraCloudView];
+//
+    [UIView animateWithDuration:5 delay:0 options:(UIViewAnimationOptionRepeat|UIViewAnimationOptionAutoreverse) animations:^{
+        cloudView.transform = CGAffineTransformMakeTranslation(-120, -5);
+        extraCloudView.transform = CGAffineTransformMakeTranslation(120, 5);
+    } completion:NULL];
+     */
+     
 //    CGPoint newCloudOrigin = CGPointMake( self.cloud2.origin.x + 300, self.cloud2.origin.y);
     
 //    CABasicAnimation *hover = [CABasicAnimation animationWithKeyPath:@"position"];
@@ -87,11 +123,11 @@
 //    } completion:nil];
     
     
-//    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseInOut| UIViewAnimationOptionRepeat|UIViewAnimationOptionAutoreverse|UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionAllowAnimatedContent animations:^{
-//        [self.cloud2 setOrigin:CGPointMake( self.cloud2.origin.x + 300, self.cloud2.origin.y)];
-//        [self.cloud3 setOrigin:CGPointMake( self.cloud3.origin.x -100, self.cloud3.origin.y)];
-//
-//    } completion:nil];
+    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseInOut| UIViewAnimationOptionRepeat|UIViewAnimationOptionAutoreverse|UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionAllowAnimatedContent animations:^{
+        [self.cloud2 setOrigin:CGPointMake( self.cloud2.origin.x + 300, self.cloud2.origin.y)];
+        [self.cloud3 setOrigin:CGPointMake( self.cloud3.origin.x -100, self.cloud3.origin.y)];
+
+    } completion:nil];
 }
 
 -(IBAction) exitTapGestureRecognizerRecognized:(UITapGestureRecognizer*)recognizer{
