@@ -34,16 +34,59 @@
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"patternsquare_green.png"]]];
     [self.mainContentScrollView setBackgroundColor:[UIColor clearColor]];
     
+    CGFloat realHeight = [UIApplication sharedApplication].keyWindow.size.height;
+//    [self.view setHeight:realHeight];
+//    [self.mainContentScrollView setHeight:self.view.height];
     CGFloat contentHeight = self.mainContentScrollView.size.height;
-    self.mainContentScrollView.contentSize = CGSizeMake(self.mainContentScrollView.size.width, contentHeight * 3);
+    self.mainContentScrollView.contentSize = CGSizeMake(self.mainContentScrollView.size.width, realHeight * 3);
     
     [self.mainContentScrollView addSubview:self.supporteeQuestionView];
+    self.supporteeQuestionTipTapHintLabel.alpha = 0;
+    self.supporteeQuestionTipTapHintLabel.layer.anchorPoint = CGPointMake(.5, .5);
+
+    __block DOIntroViewController * bSelf = self;
+    double delayInSeconds = 7.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [UIView animateWithDuration:.7 delay:0 options:0 animations:^{
+            bSelf.supporteeQuestionTipTapHintLabel.alpha = 1;
+
+            CATransform3D transform = CATransform3DMakeScale(1, 1, 1);
+            transform = CATransform3DRotate(transform, -7.0/360.0 * 2.0* M_PI, 0, 0, 1);
+
+            bSelf.supporteeQuestionTipTapHintLabel.layer.transform = transform;
+
+        } completion:^(BOOL finished) {
+            
+            [UIView animateWithDuration:.3 animations:^{
+                CATransform3D transform = CATransform3DMakeScale(1, 1, 1);
+                transform = CATransform3DRotate(transform, 7.0/360.0 * 2.0* M_PI, 0, 0, 1);
+                bSelf.supporteeQuestionTipTapHintLabel.layer.transform = transform;
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:.3 animations:^{
+                    CATransform3D transform = CATransform3DMakeScale(1, 1, 1);
+                    transform = CATransform3DRotate(transform, 0.0/360.0 * 2.0* M_PI, 0, 0, 1);
+                    bSelf.supporteeQuestionTipTapHintLabel.layer.transform = transform;
+                }];
+
+            }];
+
+        }];
+    });
+    
+    
     
     [self.supportersAnswerView setOrigin:CGPointMake(0, contentHeight)];
     [self.mainContentScrollView addSubview:self.supportersAnswerView];
     
     [self.supporteeWithSolutionView setOrigin:CGPointMake(0, contentHeight*2)];
     [self.mainContentScrollView addSubview:self.supporteeWithSolutionView];
+    
+//    double delayInSeconds2 = 2.0;
+//    dispatch_time_t popTime2 = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds2 * NSEC_PER_SEC));
+//    dispatch_after(popTime2, dispatch_get_main_queue(), ^(void){
+//        EXLog(@"self.supporteeWithSolutionView : %@", self.supporteeWithSolutionView);
+//    });
     
     UIView * underview = [[UIView alloc] initWithFrame:CGRectZero];
     underview.size = self.mainContentScrollView.contentSize;

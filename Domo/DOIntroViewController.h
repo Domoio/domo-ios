@@ -18,6 +18,7 @@
 - (IBAction)exitTapGestureRecognizerRecognized:(UITapGestureRecognizer *)sender;
 - (IBAction)nextPageTapGestureRecognized:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *supporteeQuestionTipTapHintLabel;
 
 @property (weak, nonatomic) IBOutlet UIImageView *cloud0;
 @property (weak, nonatomic) IBOutlet UIImageView *cloud1;
