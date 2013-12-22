@@ -158,6 +158,12 @@
 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath  *)indexPath{
     EXLog(@"%@",@"shouldHighlightRowAtIndexPath");
+    id object = [(NITableViewModel *)tableView.dataSource objectAtIndexPath:indexPath];
+    
+    if ([object isKindOfClass:[Response class]]){
+    
+        [self myQuestionsResponseCellCellWasTappedWithCell:(DOMyQuestionsResponseCell*)[self.tableView cellForRowAtIndexPath:indexPath]];
+    }
 
     return TRUE;
 }
