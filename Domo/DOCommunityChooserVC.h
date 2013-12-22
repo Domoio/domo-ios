@@ -18,6 +18,8 @@
 -(void) communityChooserDidFinish:(DOCommunityChooserVC*)chooser;
 -(void) communityChooserDidSelectOrganization:(Organization*)organization withChooser:(DOCommunityChooserVC*)chooser;
 
+-(void) domoInfoButtonTappedOnCommunityChooser:(DOCommunityChooserVC*)chooser;
+
 @end
 
 @interface DOCommunityChooserVC : UIViewController <NITableViewModelDelegate, UITableViewDelegate,NSFetchedResultsControllerDelegate, DOCommunityChooserCodeEntryVCDelegate>{
@@ -36,6 +38,9 @@
 
 - (IBAction)communityChooserBackgroundViewTapped:(UITapGestureRecognizer *)sender;
 - (IBAction)communityNameTextFieldChanged:(id)sender;
+- (IBAction)domoInfoButtonTapped:(id)sender;
+
+
 
 @property (weak, nonatomic) id<DOCommunityChooserVCDelegate> delegate;
 

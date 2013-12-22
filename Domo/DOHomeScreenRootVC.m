@@ -10,6 +10,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIResponder+FirstResponder.h"
 
+#import "DOIntroViewController.h"
+
 @interface DOHomeScreenRootVC (){
 	float originalMyQuestionsDistanceFromBottom;
 	float askAdviceDisplayedOrigin;
@@ -98,6 +100,20 @@ const float askAdviceHandleHeight = 48;
     [self.myQuestionsPeakView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
     
     
+    
+    //now we check the intro screen's past status
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:didDisplayIntroUserDefault] boolValue] == FALSE){
+        
+        double delayInSeconds = 0.5;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            DOIntroViewController * introVC = [[DOIntroViewController alloc] initWithNibName:@"DOIntroViewController-iPhone" bundle:nil];
+            [self presentViewController:introVC animated:TRUE completion:^{
+                [[NSUserDefaults standardUserDefaults] setObject:@(TRUE) forKey:didDisplayIntroUserDefault];
+            }];
+        });
+    }
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -121,6 +137,8 @@ const float askAdviceHandleHeight = 48;
         
         [self setupPeakViewForCurrentOrientation];
 	}
+    
+    
 }
 
 
@@ -456,6 +474,13 @@ const float askAdviceHandleHeight = 48;
         [DOUpdater registerForNotificationsAndAskPermission];
     }
     [self.updater registerForSubscriberID];
+}
+
+-(void)domoInfoButtonTappedOnCommunityChooser:(DOCommunityChooserVC *)chooser{
+    DOIntroViewController * introVC = [[DOIntroViewController alloc] initWithNibName:@"DOIntroViewController-iPhone" bundle:nil];
+    [self presentViewController:introVC animated:TRUE completion:^{
+        [[NSUserDefaults standardUserDefaults] setObject:@(TRUE) forKey:didDisplayIntroUserDefault];
+    }];
 }
 
 #pragma mark - data

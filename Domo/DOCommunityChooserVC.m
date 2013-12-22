@@ -81,6 +81,10 @@
     [self updateSearch];
 }
 
+- (IBAction)domoInfoButtonTapped:(id)sender {
+    [self.delegate domoInfoButtonTappedOnCommunityChooser:self];
+}
+
 -(void) updateSearch{
     [self.fetchController.fetchRequest setPredicate:[self searchPredicate]];
     [self.fetchController performFetch:nil];

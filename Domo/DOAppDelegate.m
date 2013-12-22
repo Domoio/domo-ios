@@ -49,9 +49,7 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
     }
     
     [self.window makeKeyAndVisible];
-    
-    
-    
+        
     [self callInToServer];
     return YES;
 }

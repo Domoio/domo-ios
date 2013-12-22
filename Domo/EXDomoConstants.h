@@ -11,6 +11,7 @@ static NSString * const pushNotificationTokenUserConstant = @"pushNotificationTo
 static NSString * const subscriberTokenUserConstant = @"subscriberTokenUserConstant";
 static NSString * const deviceIdUserConstant = @"deviceIdUserConstant";
 static NSString * const lastUpdateDateUserDefault = @"lastUpdateDateUserDefault";
+static NSString * const didDisplayIntroUserDefault = @"didDisplayIntroUserDefault";
 
 
 static NSString * const shouldUpdateNewAdviceUINotification = @"shouldUpdateNewAdviceUINotification";
