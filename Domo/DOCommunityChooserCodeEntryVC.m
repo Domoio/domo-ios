@@ -89,11 +89,19 @@
         
         if (error.domain == NSURLErrorDomain){
             [CSNotificationView showInViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController] style:CSNotificationViewStyleError message:NSLocalizedString(@"Server connection failed!", @"serverConnectionFailed")];
+        }else{
+            
+            if ([code length] == 0){ //we'll allow them to clear if code is wrong and length is zero
+                //clear set code
+                [weakSelf.evaluatingOrganization setUsersAuthCode:nil];
+                [weakSelf.evaluatingOrganization setIsCurrentActive:@(NO)];
+            }
         }
         
         EXLog(@"failed: %@", [error description]);
         
         [UIView wiggleView:weakSelf.codeEntryTextField completion:^(BOOL finished) {
+            
             [weakSelf enableSubmit];
         }];
         
