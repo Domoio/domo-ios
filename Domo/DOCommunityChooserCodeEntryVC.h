@@ -18,7 +18,7 @@
 
 @interface DOCommunityChooserCodeEntryVC : UIViewController <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *domoCodePromptLabel;
-@property (weak, nonatomic) IBOutlet UILabel *codeLocationHintLabel;
+@property (weak, nonatomic) IBOutlet UILabel *usageDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UITextField *codeEntryTextField;
 @property (weak, nonatomic) IBOutlet UIButton *sendButton;
 @property (nonatomic, weak) id<DOCommunityChooserCodeEntryVCDelegate> delegate;

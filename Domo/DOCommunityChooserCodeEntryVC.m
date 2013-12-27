@@ -31,6 +31,13 @@
     [self.domoCodePromptLabel setText:orgPrompt];
     [self.codeEntryTextField setText:self.evaluatingOrganization.usersAuthCode];
     
+    
+    NSString * usageDescriptionText = self.evaluatingOrganization.usageDescription;
+    if (usageDescriptionText == nil){
+        usageDescriptionText = NSLocalizedString(@"Hello! We use Domo to provide peer support in our community.", @"default usageDescriptionText");
+    }
+    
+    [self.usageDescriptionLabel setText:usageDescriptionText];
 }
 
 - (IBAction)codeEntryTextFieldContentChanged:(id)sender {
