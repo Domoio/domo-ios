@@ -28,6 +28,7 @@
 		790B086B177B7FD1005C6308 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 790B0867177B7FD1005C6308 /* CoreText.framework */; };
 		790B086C177B7FD1005C6308 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 790B0868177B7FD1005C6308 /* QuartzCore.framework */; };
 		790B086D177B7FD1005C6308 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 790B0869177B7FD1005C6308 /* CoreGraphics.framework */; };
+		7910F501186E41E5008E26CE /* DOShadedBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7910F500186E41E5008E26CE /* DOShadedBackgroundView.m */; };
 		79117F2A17C82050002F1506 /* seedDatabase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 79117F2917C82050002F1506 /* seedDatabase.sqlite */; };
 		79117F2E17CC5C2F002F1506 /* DOMyQuestionsRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79117F2D17CC5C2F002F1506 /* DOMyQuestionsRequestCell.m */; };
 		79117F3117CC5C55002F1506 /* DOMyQuestionsResponseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79117F3017CC5C55002F1506 /* DOMyQuestionsResponseCell.m */; };
@@ -210,6 +211,8 @@
 		790B0867177B7FD1005C6308 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		790B0868177B7FD1005C6308 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		790B0869177B7FD1005C6308 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7910F4FF186E41E5008E26CE /* DOShadedBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOShadedBackgroundView.h; sourceTree = "<group>"; };
+		7910F500186E41E5008E26CE /* DOShadedBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOShadedBackgroundView.m; sourceTree = "<group>"; };
 		79117F2917C82050002F1506 /* seedDatabase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = seedDatabase.sqlite; sourceTree = "<group>"; };
 		79117F2C17CC5C2F002F1506 /* DOMyQuestionsRequestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMyQuestionsRequestCell.h; sourceTree = "<group>"; };
 		79117F2D17CC5C2F002F1506 /* DOMyQuestionsRequestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMyQuestionsRequestCell.m; sourceTree = "<group>"; };
@@ -740,6 +743,8 @@
 		798A52271779FCCC00939FB8 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				7910F4FF186E41E5008E26CE /* DOShadedBackgroundView.h */,
+				7910F500186E41E5008E26CE /* DOShadedBackgroundView.m */,
 				79F198CA18667B6E00059F2C /* Intro */,
 				79117F3717CD66A6002F1506 /* DOSupportAreaChooser */,
 				79117F3617CD6694002F1506 /* DOCommunityChooser */,
@@ -1205,6 +1210,7 @@
 				790B0861177B7F88005C6308 /* MGLineStyled.m in Sources */,
 				790B0862177B7F88005C6308 /* MGMushParser.m in Sources */,
 				790B0863177B7F88005C6308 /* MGScrollView.m in Sources */,
+				7910F501186E41E5008E26CE /* DOShadedBackgroundView.m in Sources */,
 				790B0864177B7F88005C6308 /* MGTableBox.m in Sources */,
 				790B0865177B7F88005C6308 /* MGTableBoxStyled.m in Sources */,
 				79C21112177C8CE800D7F984 /* DOMyQuestionsVC.m in Sources */,

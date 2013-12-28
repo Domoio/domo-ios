@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface DOIntroViewController : UIViewController
+@property (strong, nonatomic) UIView * backgroundView;
+
 @property (strong, nonatomic) IBOutlet UIView *supporteeWithSolutionView;
 @property (strong, nonatomic) IBOutlet UIView *supportersAnswerView;
 @property (strong, nonatomic) IBOutlet UIView *supporteeQuestionView;

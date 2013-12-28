@@ -107,10 +107,15 @@ const float askAdviceHandleHeight = 48;
         double delayInSeconds = 0.5;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            DOIntroViewController * introVC = [[DOIntroViewController alloc] initWithNibName:@"DOIntroViewController-iPhone" bundle:nil];
-            [self presentViewController:introVC animated:TRUE completion:^{
-                [[NSUserDefaults standardUserDefaults] setObject:@(TRUE) forKey:didDisplayIntroUserDefault];
+            self.introVC = [[DOIntroViewController alloc] initWithNibName:@"DOIntroViewController-iPhone" bundle:nil];
+            [self.introVC.view setAlpha:0];
+            [self.view addSubview:self.introVC.view];
+            
+            [UIView animateWithDuration:.4 animations:^{
+                self.introVC.view.alpha = 1;
             }];
+            
+            [[NSUserDefaults standardUserDefaults] setObject:@(TRUE) forKey:didDisplayIntroUserDefault];
         });
     }
     
@@ -477,10 +482,20 @@ const float askAdviceHandleHeight = 48;
 }
 
 -(void)domoInfoButtonTappedOnCommunityChooser:(DOCommunityChooserVC *)chooser{
-    DOIntroViewController * introVC = [[DOIntroViewController alloc] initWithNibName:@"DOIntroViewController-iPhone" bundle:nil];
-    [self presentViewController:introVC animated:TRUE completion:^{
-        [[NSUserDefaults standardUserDefaults] setObject:@(TRUE) forKey:didDisplayIntroUserDefault];
+    self.introVC = [[DOIntroViewController alloc] initWithNibName:@"DOIntroViewController-iPhone" bundle:nil];
+    [self.introVC.view setAlpha:0];
+    [self.view addSubview:self.introVC.view];
+    
+    __block DOIntroViewController * unretIntroVC = self.introVC;
+    [UIView animateWithDuration:.4 animations:^{
+        unretIntroVC.view.alpha = 1;
     }];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:@(TRUE) forKey:didDisplayIntroUserDefault];
+    
+//    [self presentViewController:introVC animated:TRUE completion:^{
+//        [[NSUserDefaults standardUserDefaults] setObject:@(TRUE) forKey:didDisplayIntroUserDefault];
+//    }];
 }
 
 #pragma mark - data

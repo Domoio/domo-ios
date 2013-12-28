@@ -10,6 +10,8 @@
 #import "Organization.h"
 #import "NITableViewModel.h"
 #import "DOCommunityChooserCodeEntryVC.h"
+#import "DOShadedBackgroundView.h"
+#import "DOIntroViewController.h"
 
 @class DOCommunityChooserVC;
 
@@ -36,6 +38,7 @@
 
 @property (nonatomic, strong) DOCommunityChooserCodeEntryVC * codeEntryVC;
 
+
 - (IBAction)communityChooserBackgroundViewTapped:(UITapGestureRecognizer *)sender;
 - (IBAction)communityNameTextFieldChanged:(id)sender;
 - (IBAction)domoInfoButtonTapped:(id)sender;
@@ -47,6 +50,3 @@
 
 @end
 
-
-@interface communityChooserBackgroundView : UIView
-@end

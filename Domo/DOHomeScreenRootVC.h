@@ -29,6 +29,7 @@
 
 @property (nonatomic, strong) DOUpdater * updater;
 
+@property (nonatomic, strong) DOIntroViewController * introVC;
 
 -(BOOL) mainGetAdviceTrayIsScrolledToTop;//if on top 'page' of view
 
