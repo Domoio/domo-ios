@@ -488,6 +488,7 @@ const float askAdviceHandleHeight = 48;
 -(void)_displayIntroVC{
     self.introVC = [[DOIntroViewController alloc] initWithNibName:@"DOIntroViewController-iPhone" bundle:nil];
     self.introVC.delegate = self;
+    self.introVC.view.frame = self.view.bounds;
     [self.introVC.view setAlpha:0];
     [self.view addSubview:self.introVC.view];
     
