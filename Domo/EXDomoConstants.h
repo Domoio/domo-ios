@@ -18,13 +18,13 @@ static NSString * const shouldUpdateNewAdviceUINotification = @"shouldUpdateNewA
 
 
 
-#define IS_SHIPPING 0
+#define IS_SHIPPING 1
 #define DEV_MUTE 0
 #define DEV_STATE_RESET 0
 #define DEV_MAKE_DB_SEED 0
 
 
-#define DEBUG_MODE_ENABLED 1
+#define DEBUG_MODE_ENABLED 0
 
 #if DEBUG_MODE_ENABLED == 1
 

@@ -86,7 +86,7 @@ static NSString * seedDatabaseName = @"seedDatabase.sqlite";
         seedPath = [RKApplicationDataDirectory() stringByAppendingPathComponent:seedDatabaseName];
         #if IS_SHIPPING == 1
         #warning make sure that this isn't printed out!
-        EXLog(@"Warning, dynamic seed at path used - compile and bundle b4 ship: %@", seedPath);
+//        EXLog(@"Warning, dynamic seed at path used - compile and bundle b4 ship: %@", seedPath);
         #endif
     }
     
