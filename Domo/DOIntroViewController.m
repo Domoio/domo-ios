@@ -93,6 +93,7 @@
     UIView * underview = [[UIView alloc] initWithFrame:CGRectZero];
     underview.size = CGSizeMake(self.mainContentScrollView.size.width, realHeight * 3);
     [underview setBackgroundColor:[UIColor whiteColor]];
+    [underview setAutoresizingMask:UIViewAutoresizingNone];
     [self.mainContentScrollView insertSubview:underview atIndex:0];
     
     

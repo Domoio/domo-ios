@@ -111,9 +111,11 @@
                     <color key="textColor" white="0.17335766420000001" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a community and ask us questions at http://domo.io" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="i8e-T0-bom">
-                    <rect key="frame" x="18" y="460" width="277" height="52"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="i8e-T0-bom">
+                    <rect key="frame" x="18" y="460" width="213" height="52"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <string key="text">Create a community at 
+http://domo.io</string>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="22"/>
                     <color key="textColor" white="0.17335766420000001" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
