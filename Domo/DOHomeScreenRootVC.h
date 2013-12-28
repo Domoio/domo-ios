@@ -15,7 +15,8 @@
 #import "DOSupportAreaChooserVC.h"
 #import "DOUpdater.h"
 
-@interface DOHomeScreenRootVC : UIViewController <UIScrollViewDelegate,DOWelcomeAndCommunityVCDelegate,DOCommunityChooserVCDelegate, DORequestAdviceVCDelegate,DOSupportAreaChooserVCDelegate>
+
+@interface DOHomeScreenRootVC : UIViewController <UIScrollViewDelegate,DOWelcomeAndCommunityVCDelegate,DOCommunityChooserVCDelegate, DORequestAdviceVCDelegate,DOSupportAreaChooserVCDelegate , DOIntroViewControllerDelegate>
 
 @property (nonatomic, strong) DOWelcomeAndCommunityVC * welcomeCommunityHeader;
 @property (nonatomic, strong) DORequestAdviceVC* requestAdviceVC;
@@ -35,5 +36,7 @@
 
 -(BOOL) myQuestionsIsDisplayed;
 -(void) updateMyQuestionsViewForScrollState;
+
+-(void)_displayIntroVC;
 
 @end

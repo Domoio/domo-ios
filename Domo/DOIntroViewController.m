@@ -46,7 +46,7 @@
     self.supporteeQuestionTipTapHintLabel.alpha = 0;
     self.supporteeQuestionTipTapHintLabel.layer.anchorPoint = CGPointMake(.5, .5);
 
-    __block DOIntroViewController * bSelf = self;
+    __weak DOIntroViewController * bSelf = self;
     double delayInSeconds = 7.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -112,7 +112,7 @@
     //I Can't get motion working :/
     
     
-    __block DOIntroViewController * bSelf = self;
+    __weak DOIntroViewController * bSelf = self;
     double delayInSeconds = 0.1;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -148,8 +148,8 @@
 
     
     [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseInOut| UIViewAnimationOptionRepeat|UIViewAnimationOptionAutoreverse|UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionAllowAnimatedContent animations:^{
-        [self.cloud2 setOrigin:CGPointMake( self.cloud2.origin.x + 300, self.cloud2.origin.y)];
-        [self.cloud3 setOrigin:CGPointMake( self.cloud3.origin.x -100, self.cloud3.origin.y)];
+        [bSelf.cloud2 setOrigin:CGPointMake( bSelf.cloud2.origin.x + 300, bSelf.cloud2.origin.y)];
+        [bSelf.cloud3 setOrigin:CGPointMake( bSelf.cloud3.origin.x -100, bSelf.cloud3.origin.y)];
 
     } completion:nil];
 }
@@ -189,9 +189,13 @@
             
             self.view.alpha = newAlpha;
             
+            __weak DOIntroViewController * wSelf = self;
             if (distIntoClear == viewHeight){
                 [UIView animateWithDuration:.4 animations:^{
                     [self.view removeFromSuperview];
+                } completion:^(BOOL finished) {
+                    [wSelf.delegate DOIntroViewControllerDidConclude:wSelf];
+                    wSelf.delegate = nil;
                 }];
             }
             
@@ -202,12 +206,7 @@
 }
 
 -(void) dealloc{
-    @try{
-        [self removeObserver:self forKeyPath:@"contentOffset"];
-    }@catch(id anException){
-        EXLog(@"exception for contentoffset %@", anException);
-        //do nothing, obviously it wasn't attached because an exception was thrown
-    }
+    [self.mainContentScrollView removeObserver:self forKeyPath:@"contentOffset"];
 }
 
 
